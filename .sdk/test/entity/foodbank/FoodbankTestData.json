@@ -1,0 +1,73 @@
+{
+  "existing": {
+    "foodbank": {
+      "FOODBANK00": {
+        "address": "s82",
+        "email": "s83",
+        "items_needed": [],
+        "latitude": 133,
+        "longitude": 134,
+        "name": "s87",
+        "need": {},
+        "phone": "s89",
+        "postcode": "s8a",
+        "shopping_list_url": "s8b",
+        "slug": "s8c",
+        "updated": "s8d",
+        "url": "s8e",
+        "id": "FOODBANK00"
+      },
+      "FOODBANK01": {
+        "address": "s104",
+        "email": "s105",
+        "items_needed": [],
+        "latitude": 263,
+        "longitude": 264,
+        "name": "s109",
+        "need": {},
+        "phone": "s10b",
+        "postcode": "s10c",
+        "shopping_list_url": "s10d",
+        "slug": "s10e",
+        "updated": "s10f",
+        "url": "s110",
+        "id": "FOODBANK01"
+      },
+      "FOODBANK02": {
+        "address": "s186",
+        "email": "s187",
+        "items_needed": [],
+        "latitude": 393,
+        "longitude": 394,
+        "name": "s18b",
+        "need": {},
+        "phone": "s18d",
+        "postcode": "s18e",
+        "shopping_list_url": "s18f",
+        "slug": "s190",
+        "updated": "s191",
+        "url": "s192",
+        "id": "FOODBANK02"
+      }
+    }
+  },
+  "new": {
+    "foodbank": {
+      "foodbank_ref01": {
+        "address": "s208",
+        "email": "s209",
+        "items_needed": [],
+        "latitude": 523,
+        "longitude": 524,
+        "name": "s20d",
+        "need": {},
+        "phone": "s20f",
+        "postcode": "s210",
+        "shopping_list_url": "s211",
+        "slug": "s212",
+        "updated": "s213",
+        "url": "s214"
+      }
+    }
+  }
+}

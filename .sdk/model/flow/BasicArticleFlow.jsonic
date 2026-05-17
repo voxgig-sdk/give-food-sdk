@@ -1,0 +1,22 @@
+# BasicArticleFlow
+
+main: kit: flow: BasicArticleFlow:
+{
+  entity: "article",
+  kind: "basic",
+  name: "BasicArticleFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "article_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicArticleFlow"
+}

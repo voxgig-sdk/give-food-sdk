@@ -1,0 +1,163 @@
+# Entity: foodbank
+
+main: kit: entity: foodbank: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "address"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "email"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "items_needed"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "latitude"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "longitude"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "need"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "phone"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "postcode"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "shopping_list_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "slug"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "updated"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "url"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "foodbank"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/foodbanks/"
+          parts: [
+            "foodbanks"
+          ]
+          select: {
+            exist: [
+              "format"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/foodbanks/{slug}/"
+          parts: [
+            "foodbanks"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              slug: "id"
+            }
+          }
+          select: {
+            exist: [
+              "format"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

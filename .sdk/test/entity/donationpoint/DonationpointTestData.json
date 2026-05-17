@@ -1,0 +1,53 @@
+{
+  "existing": {
+    "donationpoint": {
+      "DONATIONPOINT00": {
+        "address": "s50",
+        "foodbank_slug": "s51",
+        "latitude": 82,
+        "longitude": 83,
+        "name": "s54",
+        "postcode": "s55",
+        "slug": "s56",
+        "type": "s57",
+        "id": "DONATIONPOINT00"
+      },
+      "DONATIONPOINT01": {
+        "address": "sa0",
+        "foodbank_slug": "sa1",
+        "latitude": 162,
+        "longitude": 163,
+        "name": "sa4",
+        "postcode": "sa5",
+        "slug": "sa6",
+        "type": "sa7",
+        "id": "DONATIONPOINT01"
+      },
+      "DONATIONPOINT02": {
+        "address": "sf0",
+        "foodbank_slug": "sf1",
+        "latitude": 242,
+        "longitude": 243,
+        "name": "sf4",
+        "postcode": "sf5",
+        "slug": "sf6",
+        "type": "sf7",
+        "id": "DONATIONPOINT02"
+      }
+    }
+  },
+  "new": {
+    "donationpoint": {
+      "donationpoint_ref01": {
+        "address": "s140",
+        "foodbank_slug": "s141",
+        "latitude": 322,
+        "longitude": 323,
+        "name": "s144",
+        "postcode": "s145",
+        "slug": "s146",
+        "type": "s147"
+      }
+    }
+  }
+}

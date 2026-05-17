@@ -1,0 +1,6 @@
+# Entity Models
+
+@"article.jsonic"
+@"donationpoint.jsonic"
+@"foodbank.jsonic"
+@"item.jsonic"

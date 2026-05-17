@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "article": {
+      "ARTICLE00": {
+        "foodbank_slug": "s3c",
+        "id": "ARTICLE00",
+        "published": "s3e",
+        "source": "s3f",
+        "title": "s40",
+        "url": "s41"
+      },
+      "ARTICLE01": {
+        "foodbank_slug": "s78",
+        "id": "ARTICLE01",
+        "published": "s7a",
+        "source": "s7b",
+        "title": "s7c",
+        "url": "s7d"
+      },
+      "ARTICLE02": {
+        "foodbank_slug": "sb4",
+        "id": "ARTICLE02",
+        "published": "sb6",
+        "source": "sb7",
+        "title": "sb8",
+        "url": "sb9"
+      }
+    }
+  },
+  "new": {
+    "article": {
+      "article_ref01": {
+        "foodbank_slug": "sf0",
+        "published": "sf2",
+        "source": "sf3",
+        "title": "sf4",
+        "url": "sf5"
+      }
+    }
+  }
+}

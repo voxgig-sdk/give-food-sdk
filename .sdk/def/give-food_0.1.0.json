@@ -1,0 +1,591 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Give Food API",
+    "description": "This API provides access to the largest public database of food banks in the UK, including details about their locations and the items they need donated. Users can retrieve this data in various formats such as JSON, GeoJSON, XML, or YAML, facilitating numerous applications in addressing food insecurity.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "mail@givefood.org.uk"
+    },
+    "termsOfService": "https://www.givefood.org.uk/api/",
+    "license": {
+      "name": "Attribution Required",
+      "url": "https://www.givefood.org.uk/api/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.givefood.org.uk/api",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/foodbanks/": {
+      "get": {
+        "summary": "List all food banks",
+        "description": "Returns a list of all food banks in the UK database with their details including locations and contact information.",
+        "operationId": "listFoodBanks",
+        "tags": [
+          "Food Banks"
+        ],
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Response format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "geojson",
+                "xml",
+                "yaml"
+              ],
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FoodBank"
+                  }
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "FeatureCollection"
+                    },
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/x-yaml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/foodbanks/{slug}/": {
+      "get": {
+        "summary": "Get food bank details",
+        "description": "Returns detailed information about a specific food bank including items needed, location, and contact details.",
+        "operationId": "getFoodBank",
+        "tags": [
+          "Food Banks"
+        ],
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "description": "Unique identifier for the food bank",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Response format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml",
+                "yaml"
+              ],
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FoodBankDetail"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/FoodBankDetail"
+                }
+              },
+              "application/x-yaml": {
+                "schema": {
+                  "$ref": "#/components/schemas/FoodBankDetail"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Food bank not found"
+          }
+        }
+      }
+    },
+    "/donationpoints/": {
+      "get": {
+        "summary": "List all donation points",
+        "description": "Returns a list of all donation points where people can donate food items to food banks.",
+        "operationId": "listDonationPoints",
+        "tags": [
+          "Donation Points"
+        ],
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Response format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "geojson",
+                "xml",
+                "yaml"
+              ],
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DonationPoint"
+                  }
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "FeatureCollection"
+                    },
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/x-yaml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/donationpoints/{slug}/": {
+      "get": {
+        "summary": "Get donation point details",
+        "description": "Returns detailed information about a specific donation point.",
+        "operationId": "getDonationPoint",
+        "tags": [
+          "Donation Points"
+        ],
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "description": "Unique identifier for the donation point",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Response format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml",
+                "yaml"
+              ],
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DonationPoint"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DonationPoint"
+                }
+              },
+              "application/x-yaml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DonationPoint"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Donation point not found"
+          }
+        }
+      }
+    },
+    "/articles/": {
+      "get": {
+        "summary": "List articles",
+        "description": "Returns a list of articles related to food banks and food insecurity.",
+        "operationId": "listArticles",
+        "tags": [
+          "Articles"
+        ],
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Response format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml",
+                "yaml"
+              ],
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Article"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/x-yaml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/items/": {
+      "get": {
+        "summary": "List items needed",
+        "description": "Returns a list of items that food banks are requesting for donation.",
+        "operationId": "listItems",
+        "tags": [
+          "Items"
+        ],
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Response format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml",
+                "yaml"
+              ],
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Item"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/x-yaml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FoodBank": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "Unique identifier for the food bank"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the food bank"
+          },
+          "address": {
+            "type": "string",
+            "description": "Physical address of the food bank"
+          },
+          "postcode": {
+            "type": "string",
+            "description": "Postal code"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Website URL"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Latitude coordinate"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Longitude coordinate"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Contact phone number"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Contact email address"
+          }
+        }
+      },
+      "FoodBankDetail": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/FoodBank"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "items_needed": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of items currently needed for donation"
+              },
+              "shopping_list_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL to the food bank's detailed shopping list"
+              },
+              "updated": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Last update timestamp"
+              },
+              "needs": {
+                "type": "object",
+                "description": "Current needs status"
+              }
+            }
+          }
+        ]
+      },
+      "DonationPoint": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "Unique identifier for the donation point"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the donation point"
+          },
+          "address": {
+            "type": "string",
+            "description": "Physical address"
+          },
+          "postcode": {
+            "type": "string",
+            "description": "Postal code"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Latitude coordinate"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Longitude coordinate"
+          },
+          "foodbank_slug": {
+            "type": "string",
+            "description": "Associated food bank identifier"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of donation point (e.g., supermarket, collection point)"
+          }
+        }
+      },
+      "Article": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the article"
+          },
+          "title": {
+            "type": "string",
+            "description": "Article title"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the article"
+          },
+          "published": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Publication date"
+          },
+          "source": {
+            "type": "string",
+            "description": "Publication source"
+          },
+          "foodbank_slug": {
+            "type": "string",
+            "description": "Related food bank identifier"
+          }
+        }
+      },
+      "Item": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the item need record"
+          },
+          "foodbank_slug": {
+            "type": "string",
+            "description": "Food bank identifier"
+          },
+          "item": {
+            "type": "string",
+            "description": "Name of the item needed"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When this need was recorded"
+          },
+          "updated": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Food Banks",
+      "description": "Operations related to food bank information"
+    },
+    {
+      "name": "Donation Points",
+      "description": "Operations related to donation point locations"
+    },
+    {
+      "name": "Articles",
+      "description": "News articles related to food banks"
+    },
+    {
+      "name": "Items",
+      "description": "Items needed by food banks"
+    }
+  ],
+  "externalDocs": {
+    "description": "Full API Documentation",
+    "url": "https://www.givefood.org.uk/api/"
+  }
+}

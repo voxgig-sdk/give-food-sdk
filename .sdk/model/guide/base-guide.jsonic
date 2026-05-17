@@ -1,0 +1,40 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 4
+  metrics: count: path: 6
+  metrics: count: method: 6
+
+  entity: article: {
+    path: "/articles/": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: donationpoint: {
+    path: "/donationpoints/": {
+      op: list: method: *GET
+    }
+    path: "/donationpoints/{slug}/": {
+      rename: param: "slug": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: foodbank: {
+    path: "/foodbanks/": {
+      op: list: method: *GET
+    }
+    path: "/foodbanks/{slug}/": {
+      rename: param: "slug": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: item: {
+    path: "/items/": {
+      op: list: method: *GET
+    }
+  }
+
+}

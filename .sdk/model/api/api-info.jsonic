@@ -1,0 +1,28 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "mail@givefood.org.uk"
+      }
+      description: "This API provides access to the largest public database of food banks in the UK, including details about their locations and the items they need donated. Users can retrieve this data in various formats such as JSON, GeoJSON, XML, or YAML, facilitating numerous applications in addressing food insecurity."
+      license: {
+        name: "Attribution Required"
+        url: "https://www.givefood.org.uk/api/"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://www.givefood.org.uk/api"
+        }
+      ]
+      termsOfService: "https://www.givefood.org.uk/api/"
+      title: "Give Food API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

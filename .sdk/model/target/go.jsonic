@@ -1,0 +1,21 @@
+
+main: kit: target: go: {
+
+  title: Golang
+  ext: go
+  comment: line: "//"
+  module: name: 'give-food'
+  srcfeature: false
+
+  deps: &: {
+    kind: *'prod' | string
+  }
+
+  // struct is inlined under <gomodule>/utility/struct — no external dep.
+  deps: {}
+}
+
+
+main: kit: feature: &: target: go: deps: &: {
+  kind: *'prod' | string
+}

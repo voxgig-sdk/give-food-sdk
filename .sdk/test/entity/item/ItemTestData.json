@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "item": {
+      "ITEM00": {
+        "created": "s32",
+        "foodbank_slug": "s33",
+        "id": "ITEM00",
+        "item": "s35",
+        "updated": "s36"
+      },
+      "ITEM01": {
+        "created": "s64",
+        "foodbank_slug": "s65",
+        "id": "ITEM01",
+        "item": "s67",
+        "updated": "s68"
+      },
+      "ITEM02": {
+        "created": "s96",
+        "foodbank_slug": "s97",
+        "id": "ITEM02",
+        "item": "s99",
+        "updated": "s9a"
+      }
+    }
+  },
+  "new": {
+    "item": {
+      "item_ref01": {
+        "created": "sc8",
+        "foodbank_slug": "sc9",
+        "item": "scb",
+        "updated": "scc"
+      }
+    }
+  }
+}
