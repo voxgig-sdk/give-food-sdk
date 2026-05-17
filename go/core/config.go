@@ -13,7 +13,7 @@ func MakeConfig() map[string]any {
 			},
 		},
 		"options": map[string]any{
-			"base": "https://www.givefood.org.uk/api",
+			"base": "https://www.givefood.org.uk/api/2",
 			"auth": map[string]any{
 				"prefix": "Bearer",
 			},

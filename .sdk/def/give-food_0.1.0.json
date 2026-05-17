@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "https://www.givefood.org.uk/api",
+      "url": "https://www.givefood.org.uk/api/2",
       "description": "Production server"
     }
   ],

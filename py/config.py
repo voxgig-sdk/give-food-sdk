@@ -14,7 +14,7 @@ def make_config():
       },
         },
         "options": {
-            "base": "https://www.givefood.org.uk/api",
+            "base": "https://www.givefood.org.uk/api/2",
             "auth": {
                 "prefix": "Bearer",
             },
