@@ -129,7 +129,6 @@ func foodbankBasicSetup(extra map[string]any) *entityTestSetup {
 		"GIVEFOOD_TEST_FOODBANK_ENTID": idmap,
 		"GIVEFOOD_TEST_LIVE":      "FALSE",
 		"GIVEFOOD_TEST_EXPLAIN":   "FALSE",
-		"GIVEFOOD_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["GIVEFOOD_TEST_FOODBANK_ENTID"])
@@ -140,7 +139,6 @@ func foodbankBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["GIVEFOOD_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["GIVEFOOD_APIKEY"],
 			},
 			extra,
 		})

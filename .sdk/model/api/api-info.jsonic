@@ -21,8 +21,32 @@ main: {
       termsOfService: "https://www.givefood.org.uk/api/"
       title: "Give Food API"
       version: "1.0.0"
+      tagline: "Query the UK's largest open database of food banks, their locations, and what they need donated"
+      homepage: "https://www.givefood.org.uk/"
+      docs_url: "https://www.givefood.org.uk/api/2/docs/"
+      license_short: "Free to use with attribution; link back to Give Food and the underlying food banks"
+      license_md: `- Free to use, but attribution is required: credit Give Food with a link wherever the data appears.
+- When showing a food bank's details, link to that food bank; when showing needed items, link to the food bank's shopping list URL.
+- Do not reorder or modify item lists, and treat them as guidance rather than a strict shopping list.
+- Do not use contact details for bulk email, calling, or messaging, and keep cached data fresh (the source updates multiple times daily).`
+      about_md: `[Give Food](https://www.givefood.org.uk/) maintains the largest public database of UK food banks and the items they are asking the public to donate. The data is curated from food bank websites and social feeds and is offered as a free read-only API to anyone building apps, maps, or services that help people give food where it is needed.
+
+What you get from the API:
+
+- Food bank organisations with contact details, addresses, and current needs.
+- Individual food bank locations (distribution centres, donation points) with geographic and political-geography metadata.
+- Latest "needs" — short text snapshots of what food banks have been asking for, harvested from their public channels.
+- UK parliamentary constituency lookups that tie food banks to their MP and constituency.
+- Search by postcode/address or by latitude and longitude to find the nearest open food banks.
+
+Responses are available in JSON, GeoJSON, XML, YAML, and CSV. No authentication or API key is required, and CORS is enabled so the API can be called directly from browser code. Daily data dumps are also published for bulk use.`
+      entity_desc: {
+        article: "A news or update article published by Give Food about food banks and the wider donation network."
+        donationpoint: "An individual food bank location or drop-off point with address, geographic coordinates, and political-geography metadata; available via `/api/2/locations` and `/api/2/locations/search`."
+        foodbank: "A food bank organisation — name, address, contact details, and current donation needs; available at `/api/2/foodbanks` and `/api/2/foodbank/{slug}`."
+        item: "A specific item that a food bank is requesting or has in excess, surfaced as part of a food bank's current needs list."
+      }
+      auth: false
     }
   }
-}
-
 }

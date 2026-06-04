@@ -194,14 +194,12 @@ func donationpointDirectSetup(mockres any) *donationpointDirectSetupResult {
 	env := envOverride(map[string]any{
 		"GIVEFOOD_TEST_DONATIONPOINT_ENTID": map[string]any{},
 		"GIVEFOOD_TEST_LIVE":    "FALSE",
-		"GIVEFOOD_APIKEY":       "NONE",
 	})
 
 	live := env["GIVEFOOD_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["GIVEFOOD_APIKEY"],
 		}
 		client := sdk.NewGiveFoodSDK(mergedOpts)
 

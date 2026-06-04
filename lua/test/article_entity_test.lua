@@ -92,7 +92,6 @@ function article_basic_setup(extra)
     ["GIVEFOOD_TEST_ARTICLE_ENTID"] = idmap,
     ["GIVEFOOD_TEST_LIVE"] = "FALSE",
     ["GIVEFOOD_TEST_EXPLAIN"] = "FALSE",
-    ["GIVEFOOD_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function article_basic_setup(extra)
   if env["GIVEFOOD_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["GIVEFOOD_APIKEY"],
       },
       extra or {},
     })
