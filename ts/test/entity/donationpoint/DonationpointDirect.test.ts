@@ -136,12 +136,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'GIVEFOOD_TEST_DONATIONPOINT_ENTID': {},
     'GIVEFOOD_TEST_LIVE': 'FALSE',
+    'GIVEFOOD_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.GIVEFOOD_TEST_LIVE
 
   if (live) {
     const client = new GiveFoodSDK({
+      apikey: env.GIVEFOOD_APIKEY,
     })
 
     let idmap: any = env['GIVEFOOD_TEST_DONATIONPOINT_ENTID']

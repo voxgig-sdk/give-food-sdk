@@ -98,6 +98,7 @@ def _donationpoint_basic_setup(extra):
         "GIVEFOOD_TEST_DONATIONPOINT_ENTID": idmap,
         "GIVEFOOD_TEST_LIVE": "FALSE",
         "GIVEFOOD_TEST_EXPLAIN": "FALSE",
+        "GIVEFOOD_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -108,6 +109,7 @@ def _donationpoint_basic_setup(extra):
     if env.get("GIVEFOOD_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("GIVEFOOD_APIKEY"),
             },
             extra or {},
         ])

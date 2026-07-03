@@ -117,12 +117,14 @@ function donationpoint_direct_setup(mockres)
   local env = runner.env_override({
     ["GIVEFOOD_TEST_DONATIONPOINT_ENTID"] = {},
     ["GIVEFOOD_TEST_LIVE"] = "FALSE",
+    ["GIVEFOOD_APIKEY"] = "NONE",
   })
 
   local live = env["GIVEFOOD_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["GIVEFOOD_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
