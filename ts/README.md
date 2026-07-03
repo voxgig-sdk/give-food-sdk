@@ -10,7 +10,7 @@ The TypeScript SDK for the GiveFood API — a type-safe, entity-oriented client 
 
 ## Install
 ```bash
-npm install give-food
+npm install @voxgig-sdk/give-food
 ```
 ## Tutorial: your first API call
 

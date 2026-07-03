@@ -10,7 +10,7 @@ The Lua SDK for the GiveFood API — an entity-oriented client using Lua convent
 
 ## Install
 ```bash
-luarocks install give-food-sdk
+luarocks install voxgig-sdk-give-food
 ```
 
 If the module is not yet published, add the source directory to

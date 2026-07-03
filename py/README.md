@@ -10,7 +10,7 @@ The Python SDK for the GiveFood API — an entity-oriented client following Pyth
 
 ## Install
 ```bash
-pip install give-food-sdk
+pip install voxgig-sdk-give-food
 ```
 
 Or install from source:

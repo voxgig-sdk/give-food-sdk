@@ -10,13 +10,13 @@ The Ruby SDK for the GiveFood API — an entity-oriented client using idiomatic 
 
 ## Install
 ```bash
-gem install give-food-sdk
+gem install voxgig-sdk-give-food
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "give-food-sdk"
+gem "voxgig-sdk-give-food"
 ```
 
 Then run:

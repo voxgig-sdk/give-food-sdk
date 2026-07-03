@@ -10,7 +10,7 @@ The PHP SDK for the GiveFood API — an entity-oriented client using PHP convent
 
 ## Install
 ```bash
-composer require voxgig/give-food-sdk
+composer require voxgig-sdk/give-food
 ```
 
 
