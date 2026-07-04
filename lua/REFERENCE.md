@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -96,7 +95,7 @@ same parameters as `direct()`.
 ## ArticleEntity
 
 ```lua
-local article = client:Article(nil)
+local article = client:article(nil)
 ```
 
 ### Fields
@@ -117,7 +116,7 @@ local article = client:Article(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Article():list()
+local results, err = client:article():list()
 ```
 
 ### Common Methods
@@ -153,7 +152,7 @@ Return the entity name.
 ## DonationpointEntity
 
 ```lua
-local donationpoint = client:Donationpoint(nil)
+local donationpoint = client:donationpoint(nil)
 ```
 
 ### Fields
@@ -176,7 +175,7 @@ local donationpoint = client:Donationpoint(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Donationpoint():list()
+local results, err = client:donationpoint():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -184,7 +183,7 @@ local results, err = client:Donationpoint():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Donationpoint():load({ id = "donationpoint_id" })
+local result, err = client:donationpoint():load({ id = "donationpoint_id" })
 ```
 
 ### Common Methods
@@ -220,7 +219,7 @@ Return the entity name.
 ## FoodbankEntity
 
 ```lua
-local foodbank = client:Foodbank(nil)
+local foodbank = client:foodbank(nil)
 ```
 
 ### Fields
@@ -248,7 +247,7 @@ local foodbank = client:Foodbank(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Foodbank():list()
+local results, err = client:foodbank():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -256,7 +255,7 @@ local results, err = client:Foodbank():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Foodbank():load({ id = "foodbank_id" })
+local result, err = client:foodbank():load({ id = "foodbank_id" })
 ```
 
 ### Common Methods
@@ -292,7 +291,7 @@ Return the entity name.
 ## ItemEntity
 
 ```lua
-local item = client:Item(nil)
+local item = client:item(nil)
 ```
 
 ### Fields
@@ -312,7 +311,7 @@ local item = client:Item(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Item():list()
+local results, err = client:item():list()
 ```
 
 ### Common Methods

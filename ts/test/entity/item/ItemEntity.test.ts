@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'GIVE_FOOD_TEST_ITEM_ENTID': idmap,
     'GIVE_FOOD_TEST_LIVE': 'FALSE',
     'GIVE_FOOD_TEST_EXPLAIN': 'FALSE',
-    'GIVE_FOOD_APIKEY': 'NONE',
   })
 
   idmap = env['GIVE_FOOD_TEST_ITEM_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new GiveFoodSDK(merge([
       {
-        apikey: env.GIVE_FOOD_APIKEY,
       },
       extra
     ]))

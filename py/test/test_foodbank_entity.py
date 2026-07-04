@@ -50,14 +50,12 @@ class TestFoodbankEntity:
         foodbank_ref01_ent = client.Foodbank(None)
         foodbank_ref01_match = {}
 
-        foodbank_ref01_list_result, err = foodbank_ref01_ent.list(foodbank_ref01_match, None)
-        assert err is None
+        foodbank_ref01_list_result = foodbank_ref01_ent.list(foodbank_ref01_match, None)
         assert isinstance(foodbank_ref01_list_result, list)
 
         # LOAD
         foodbank_ref01_match_dt0 = {}
-        foodbank_ref01_data_dt0_loaded, err = foodbank_ref01_ent.load(foodbank_ref01_match_dt0, None)
-        assert err is None
+        foodbank_ref01_data_dt0_loaded = foodbank_ref01_ent.load(foodbank_ref01_match_dt0, None)
         assert foodbank_ref01_data_dt0_loaded is not None
 
 
@@ -98,7 +96,6 @@ def _foodbank_basic_setup(extra):
         "GIVEFOOD_TEST_FOODBANK_ENTID": idmap,
         "GIVEFOOD_TEST_LIVE": "FALSE",
         "GIVEFOOD_TEST_EXPLAIN": "FALSE",
-        "GIVEFOOD_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +106,6 @@ def _foodbank_basic_setup(extra):
     if env.get("GIVEFOOD_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("GIVEFOOD_APIKEY"),
             },
             extra or {},
         ])

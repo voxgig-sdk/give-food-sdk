@@ -245,21 +245,33 @@ func (sdk *GiveFoodSDK) Direct(fetchargs map[string]any) (map[string]any, error)
 }
 
 
+// Article returns a Article entity bound to this client.
+// Idiomatic usage: client.Article(nil).List(nil, nil) or
+// client.Article(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GiveFoodSDK) Article(data map[string]any) GiveFoodEntity {
 	return NewArticleEntityFunc(sdk, data)
 }
 
 
+// Donationpoint returns a Donationpoint entity bound to this client.
+// Idiomatic usage: client.Donationpoint(nil).List(nil, nil) or
+// client.Donationpoint(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GiveFoodSDK) Donationpoint(data map[string]any) GiveFoodEntity {
 	return NewDonationpointEntityFunc(sdk, data)
 }
 
 
+// Foodbank returns a Foodbank entity bound to this client.
+// Idiomatic usage: client.Foodbank(nil).List(nil, nil) or
+// client.Foodbank(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GiveFoodSDK) Foodbank(data map[string]any) GiveFoodEntity {
 	return NewFoodbankEntityFunc(sdk, data)
 }
 
 
+// Item returns a Item entity bound to this client.
+// Idiomatic usage: client.Item(nil).List(nil, nil) or
+// client.Item(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GiveFoodSDK) Item(data map[string]any) GiveFoodEntity {
 	return NewItemEntityFunc(sdk, data)
 }

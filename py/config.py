@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://www.givefood.org.uk/api/2",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -233,6 +230,7 @@ def make_config():
                       "orig": "slug",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -427,6 +425,7 @@ def make_config():
                       "orig": "slug",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [

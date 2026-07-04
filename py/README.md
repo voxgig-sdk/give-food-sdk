@@ -9,11 +9,9 @@ The Python SDK for the GiveFood API — an entity-oriented client following Pyth
 
 
 ## Install
-```bash
-pip install voxgig-sdk-give-food
-```
-
-Or install from source:
+This package is not yet published to PyPI. Install it from the GitHub
+release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/give-food-sdk/releases)) or
+from a source checkout:
 
 ```bash
 pip install -e .
@@ -28,25 +26,21 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from givefood_sdk import GiveFoodSDK
 
-client = GiveFoodSDK({
-    "apikey": os.environ.get("GIVE-FOOD_APIKEY"),
-})
+client = GiveFoodSDK()
 ```
 
 ### 2. List articles
 
 ```python
-result, err = client.Article().list()
-if err:
-    raise Exception(err)
-
-if isinstance(result, list):
+try:
+    result = client.article.list()
     for item in result:
         d = item.data_get()
         print(d["id"], d["name"])
+except Exception as err:
+    print(f"list failed: {err}")
 ```
 
 
@@ -57,29 +51,28 @@ if isinstance(result, list):
 For endpoints not covered by entity methods:
 
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
+else:
+    print(result["err"])     # error value
 ```
 
 ### Prepare a request without sending it
 
 ```python
-fetchdef, err = client.prepare({
+# prepare() returns the fetch definition and raises on error.
+fetchdef = client.prepare({
     "path": "/api/resource/{id}",
     "method": "DELETE",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 print(fetchdef["url"])
 print(fetchdef["method"])
@@ -93,7 +86,7 @@ Create a mock client for unit testing — no server required:
 ```python
 client = GiveFoodSDK.test()
 
-result, err = client.GiveFood().load({"id": "test01"})
+result = client.article.load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -123,8 +116,7 @@ client = GiveFoodSDK({
 Create a `.env.local` file at the project root:
 
 ```
-GIVE-FOOD_TEST_LIVE=TRUE
-GIVE-FOOD_APIKEY=<your-key>
+GIVE_FOOD_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -148,7 +140,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |
@@ -170,8 +161,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | --- | --- | --- |
 | `options_map` | `() -> dict` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> (dict, err)` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> (dict, err)` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Article` | `(data) -> ArticleEntity` | Create a Article entity instance. |
 | `Donationpoint` | `(data) -> DonationpointEntity` | Create a Donationpoint entity instance. |
 | `Foodbank` | `(data) -> FoodbankEntity` | Create a Foodbank entity instance. |
@@ -183,11 +174,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> (any, err)` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> (any, err)` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> (any, err)` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> (any, err)` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> (any, err)` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -197,8 +188,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`dict` with these keys:
+Entity operations return the bare result data (a `dict` for single-entity
+ops, a `list` for `list`) and raise on error. Wrap calls in
+`try`/`except` to handle failures.
+
+The `direct()` escape hatch never raises — it returns a result `dict`
+you branch on via `result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -286,7 +281,7 @@ API path: `/items/`
 
 ### Article
 
-Create an instance: `const article = client.Article()`
+Create an instance: `const article = client.article`
 
 #### Operations
 
@@ -308,13 +303,13 @@ Create an instance: `const article = client.Article()`
 #### Example: List
 
 ```ts
-const articles = await client.Article().list()
+const articles = await client.article.list()
 ```
 
 
 ### Donationpoint
 
-Create an instance: `const donationpoint = client.Donationpoint()`
+Create an instance: `const donationpoint = client.donationpoint`
 
 #### Operations
 
@@ -339,19 +334,19 @@ Create an instance: `const donationpoint = client.Donationpoint()`
 #### Example: Load
 
 ```ts
-const donationpoint = await client.Donationpoint().load({ id: 'donationpoint_id' })
+const donationpoint = await client.donationpoint.load({ id: 'donationpoint_id' })
 ```
 
 #### Example: List
 
 ```ts
-const donationpoints = await client.Donationpoint().list()
+const donationpoints = await client.donationpoint.list()
 ```
 
 
 ### Foodbank
 
-Create an instance: `const foodbank = client.Foodbank()`
+Create an instance: `const foodbank = client.foodbank`
 
 #### Operations
 
@@ -381,19 +376,19 @@ Create an instance: `const foodbank = client.Foodbank()`
 #### Example: Load
 
 ```ts
-const foodbank = await client.Foodbank().load({ id: 'foodbank_id' })
+const foodbank = await client.foodbank.load({ id: 'foodbank_id' })
 ```
 
 #### Example: List
 
 ```ts
-const foodbanks = await client.Foodbank().list()
+const foodbanks = await client.foodbank.list()
 ```
 
 
 ### Item
 
-Create an instance: `const item = client.Item()`
+Create an instance: `const item = client.item`
 
 #### Operations
 
@@ -414,7 +409,7 @@ Create an instance: `const item = client.Item()`
 #### Example: List
 
 ```ts
-const items = await client.Item().list()
+const items = await client.item.list()
 ```
 
 
@@ -488,11 +483,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-moon = client.Moon()
-moon.load({"planet_id": "earth", "id": "luna"})
+article = client.article
+article.load({"id": "example_id"})
 
-# moon.data_get() now returns the loaded moon data
-# moon.match_get() returns the last match criteria
+# article.data_get() now returns the loaded article data
+# article.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

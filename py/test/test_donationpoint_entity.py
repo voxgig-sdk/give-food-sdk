@@ -50,14 +50,12 @@ class TestDonationpointEntity:
         donationpoint_ref01_ent = client.Donationpoint(None)
         donationpoint_ref01_match = {}
 
-        donationpoint_ref01_list_result, err = donationpoint_ref01_ent.list(donationpoint_ref01_match, None)
-        assert err is None
+        donationpoint_ref01_list_result = donationpoint_ref01_ent.list(donationpoint_ref01_match, None)
         assert isinstance(donationpoint_ref01_list_result, list)
 
         # LOAD
         donationpoint_ref01_match_dt0 = {}
-        donationpoint_ref01_data_dt0_loaded, err = donationpoint_ref01_ent.load(donationpoint_ref01_match_dt0, None)
-        assert err is None
+        donationpoint_ref01_data_dt0_loaded = donationpoint_ref01_ent.load(donationpoint_ref01_match_dt0, None)
         assert donationpoint_ref01_data_dt0_loaded is not None
 
 
@@ -98,7 +96,6 @@ def _donationpoint_basic_setup(extra):
         "GIVEFOOD_TEST_DONATIONPOINT_ENTID": idmap,
         "GIVEFOOD_TEST_LIVE": "FALSE",
         "GIVEFOOD_TEST_EXPLAIN": "FALSE",
-        "GIVEFOOD_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +106,6 @@ def _donationpoint_basic_setup(extra):
     if env.get("GIVEFOOD_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("GIVEFOOD_APIKEY"),
             },
             extra or {},
         ])

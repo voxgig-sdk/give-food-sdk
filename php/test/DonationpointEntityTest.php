@@ -50,14 +50,12 @@ class DonationpointEntityTest extends TestCase
         $donationpoint_ref01_ent = $client->Donationpoint(null);
         $donationpoint_ref01_match = [];
 
-        [$donationpoint_ref01_list_result, $err] = $donationpoint_ref01_ent->list($donationpoint_ref01_match, null);
-        $this->assertNull($err);
+        $donationpoint_ref01_list_result = $donationpoint_ref01_ent->list($donationpoint_ref01_match, null);
         $this->assertIsArray($donationpoint_ref01_list_result);
 
         // LOAD
         $donationpoint_ref01_match_dt0 = [];
-        [$donationpoint_ref01_data_dt0_loaded, $err] = $donationpoint_ref01_ent->load($donationpoint_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $donationpoint_ref01_data_dt0_loaded = $donationpoint_ref01_ent->load($donationpoint_ref01_match_dt0, null);
         $this->assertNotNull($donationpoint_ref01_data_dt0_loaded);
 
     }
@@ -92,7 +90,6 @@ function donationpoint_basic_setup($extra)
         "GIVEFOOD_TEST_DONATIONPOINT_ENTID" => $idmap,
         "GIVEFOOD_TEST_LIVE" => "FALSE",
         "GIVEFOOD_TEST_EXPLAIN" => "FALSE",
-        "GIVEFOOD_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -104,7 +101,6 @@ function donationpoint_basic_setup($extra)
     if ($env["GIVEFOOD_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["GIVEFOOD_APIKEY"],
             ],
             $extra ?? [],
         ]);

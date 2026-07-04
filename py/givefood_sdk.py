@@ -144,16 +144,23 @@ class GiveFoodSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class GiveFoodSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,30 +212,74 @@ class GiveFoodSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def article(self):
+        """Idiomatic facade: client.article.list() / client.article.load({"id": ...})."""
+        from entity.article_entity import ArticleEntity
+        cached = getattr(self, "_article", None)
+        if cached is None:
+            cached = ArticleEntity(self, None)
+            self._article = cached
+        return cached
 
     def Article(self, data=None):
+        # Deprecated: use client.article instead.
         from entity.article_entity import ArticleEntity
         return ArticleEntity(self, data)
 
 
+    @property
+    def donationpoint(self):
+        """Idiomatic facade: client.donationpoint.list() / client.donationpoint.load({"id": ...})."""
+        from entity.donationpoint_entity import DonationpointEntity
+        cached = getattr(self, "_donationpoint", None)
+        if cached is None:
+            cached = DonationpointEntity(self, None)
+            self._donationpoint = cached
+        return cached
+
     def Donationpoint(self, data=None):
+        # Deprecated: use client.donationpoint instead.
         from entity.donationpoint_entity import DonationpointEntity
         return DonationpointEntity(self, data)
 
 
+    @property
+    def foodbank(self):
+        """Idiomatic facade: client.foodbank.list() / client.foodbank.load({"id": ...})."""
+        from entity.foodbank_entity import FoodbankEntity
+        cached = getattr(self, "_foodbank", None)
+        if cached is None:
+            cached = FoodbankEntity(self, None)
+            self._foodbank = cached
+        return cached
+
     def Foodbank(self, data=None):
+        # Deprecated: use client.foodbank instead.
         from entity.foodbank_entity import FoodbankEntity
         return FoodbankEntity(self, data)
 
 
+    @property
+    def item(self):
+        """Idiomatic facade: client.item.list() / client.item.load({"id": ...})."""
+        from entity.item_entity import ItemEntity
+        cached = getattr(self, "_item", None)
+        if cached is None:
+            cached = ItemEntity(self, None)
+            self._item = cached
+        return cached
+
     def Item(self, data=None):
+        # Deprecated: use client.item instead.
         from entity.item_entity import ItemEntity
         return ItemEntity(self, data)
 

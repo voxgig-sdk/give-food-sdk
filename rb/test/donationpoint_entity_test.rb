@@ -43,14 +43,12 @@ class DonationpointEntityTest < Minitest::Test
     donationpoint_ref01_ent = client.Donationpoint(nil)
     donationpoint_ref01_match = {}
 
-    donationpoint_ref01_list_result, err = donationpoint_ref01_ent.list(donationpoint_ref01_match, nil)
-    assert_nil err
+    donationpoint_ref01_list_result = donationpoint_ref01_ent.list(donationpoint_ref01_match, nil)
     assert donationpoint_ref01_list_result.is_a?(Array)
 
     # LOAD
     donationpoint_ref01_match_dt0 = {}
-    donationpoint_ref01_data_dt0_loaded, err = donationpoint_ref01_ent.load(donationpoint_ref01_match_dt0, nil)
-    assert_nil err
+    donationpoint_ref01_data_dt0_loaded = donationpoint_ref01_ent.load(donationpoint_ref01_match_dt0, nil)
     assert !donationpoint_ref01_data_dt0_loaded.nil?
 
   end
@@ -89,7 +87,6 @@ def donationpoint_basic_setup(extra)
     "GIVEFOOD_TEST_DONATIONPOINT_ENTID" => idmap,
     "GIVEFOOD_TEST_LIVE" => "FALSE",
     "GIVEFOOD_TEST_EXPLAIN" => "FALSE",
-    "GIVEFOOD_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -101,7 +98,6 @@ def donationpoint_basic_setup(extra)
   if env["GIVEFOOD_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["GIVEFOOD_APIKEY"],
       },
       extra || {},
     ])

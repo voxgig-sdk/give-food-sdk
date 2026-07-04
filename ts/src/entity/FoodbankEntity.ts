@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Foodbank,
+  FoodbankLoadMatch,
+  FoodbankListMatch,
+} from '../GiveFoodTypes'
 
 // TODO: needs Entity superclass
-class FoodbankEntity extends GiveFoodEntityBase {
+class FoodbankEntity extends GiveFoodEntityBase<Foodbank> {
 
   constructor(client: GiveFoodSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class FoodbankEntity extends GiveFoodEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: FoodbankLoadMatch, ctrl?: Control): Promise<Foodbank> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class FoodbankEntity extends GiveFoodEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Foodbank> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: FoodbankListMatch, ctrl?: Control): Promise<Foodbank[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class FoodbankEntity extends GiveFoodEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Foodbank[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -244,24 +244,76 @@ end
 
 
 
+-- Idiomatic facade: client:article():list() / client:article():load({ id = ... })
+function GiveFoodSDK:article(data)
+  local EntityMod = require("entity.article_entity")
+  if data == nil then
+    if self._article == nil then
+      self._article = EntityMod.new(self, nil)
+    end
+    return self._article
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:article() instead.
 function GiveFoodSDK:Article(data)
   local EntityMod = require("entity.article_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:donationpoint():list() / client:donationpoint():load({ id = ... })
+function GiveFoodSDK:donationpoint(data)
+  local EntityMod = require("entity.donationpoint_entity")
+  if data == nil then
+    if self._donationpoint == nil then
+      self._donationpoint = EntityMod.new(self, nil)
+    end
+    return self._donationpoint
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:donationpoint() instead.
 function GiveFoodSDK:Donationpoint(data)
   local EntityMod = require("entity.donationpoint_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:foodbank():list() / client:foodbank():load({ id = ... })
+function GiveFoodSDK:foodbank(data)
+  local EntityMod = require("entity.foodbank_entity")
+  if data == nil then
+    if self._foodbank == nil then
+      self._foodbank = EntityMod.new(self, nil)
+    end
+    return self._foodbank
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:foodbank() instead.
 function GiveFoodSDK:Foodbank(data)
   local EntityMod = require("entity.foodbank_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:item():list() / client:item():load({ id = ... })
+function GiveFoodSDK:item(data)
+  local EntityMod = require("entity.item_entity")
+  if data == nil then
+    if self._item == nil then
+      self._item = EntityMod.new(self, nil)
+    end
+    return self._item
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:item() instead.
 function GiveFoodSDK:Item(data)
   local EntityMod = require("entity.item_entity")
   return EntityMod.new(self, data)

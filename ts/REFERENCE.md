@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -146,7 +145,7 @@ Alias for `GiveFoodSDK.test()`.
 ## ArticleEntity
 
 ```ts
-const article = client.Article()
+const article = client.article
 ```
 
 ### Fields
@@ -167,7 +166,7 @@ const article = client.Article()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Article().list()
+const results = await client.article.list()
 ```
 
 ### Common Methods
@@ -201,7 +200,7 @@ Return a copy of the entity options.
 ## DonationpointEntity
 
 ```ts
-const donationpoint = client.Donationpoint()
+const donationpoint = client.donationpoint
 ```
 
 ### Fields
@@ -224,7 +223,7 @@ const donationpoint = client.Donationpoint()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Donationpoint().list()
+const results = await client.donationpoint.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -232,7 +231,7 @@ const results = await client.Donationpoint().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Donationpoint().load({ id: 'donationpoint_id' })
+const result = await client.donationpoint.load({ id: 'donationpoint_id' })
 ```
 
 ### Common Methods
@@ -266,7 +265,7 @@ Return a copy of the entity options.
 ## FoodbankEntity
 
 ```ts
-const foodbank = client.Foodbank()
+const foodbank = client.foodbank
 ```
 
 ### Fields
@@ -294,7 +293,7 @@ const foodbank = client.Foodbank()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Foodbank().list()
+const results = await client.foodbank.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -302,7 +301,7 @@ const results = await client.Foodbank().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Foodbank().load({ id: 'foodbank_id' })
+const result = await client.foodbank.load({ id: 'foodbank_id' })
 ```
 
 ### Common Methods
@@ -336,7 +335,7 @@ Return a copy of the entity options.
 ## ItemEntity
 
 ```ts
-const item = client.Item()
+const item = client.item
 ```
 
 ### Fields
@@ -356,7 +355,7 @@ const item = client.Item()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Item().list()
+const results = await client.item.list()
 ```
 
 ### Common Methods

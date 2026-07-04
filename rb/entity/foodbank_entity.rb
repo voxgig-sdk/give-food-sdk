@@ -45,6 +45,7 @@ class FoodbankEntity
     end
   end
 
+  # @return [Foodbank, Hash] the current Foodbank data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class FoodbankEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Foodbank fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Foodbank.
+  #
+  # @param reqmatch [FoodbankLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Foodbank, Hash] the loaded Foodbank; raises GiveFoodError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class FoodbankEntity
 
 
   
+  # List Foodbank items matching the given filter.
+  #
+  # @param reqmatch [FoodbankListMatch, Hash, nil] match filter (any subset of Foodbank fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Foodbank>, Array] the matching Foodbank items; raises GiveFoodError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

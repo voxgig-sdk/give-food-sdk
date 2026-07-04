@@ -45,6 +45,7 @@ class ArticleEntity
     end
   end
 
+  # @return [Article, Hash] the current Article data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class ArticleEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Article fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class ArticleEntity
   
 
   
+  # List Article items matching the given filter.
+  #
+  # @param reqmatch [ArticleListMatch, Hash, nil] match filter (any subset of Article fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Article>, Array] the matching Article items; raises GiveFoodError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

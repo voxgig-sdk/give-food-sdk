@@ -9,9 +9,12 @@ The TypeScript SDK for the GiveFood API — a type-safe, entity-oriented client 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/give-food
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/give-food-sdk/releases](https://github.com/voxgig-sdk/give-food-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { GiveFoodSDK } from 'give-food'
+import { GiveFoodSDK } from '@voxgig-sdk/give-food'
 
-const client = new GiveFoodSDK({
-  apikey: process.env.GIVE-FOOD_APIKEY,
-})
+const client = new GiveFoodSDK()
 ```
 
 ### 2. List articles
 
 ```ts
-const result = await client.Article().list()
+const result = await client.article.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = GiveFoodSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.article.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new GiveFoodSDK({ apikey: '...' })
+const client = new GiveFoodSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.article
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new GiveFoodSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -135,8 +135,7 @@ const client = new GiveFoodSDK({
 Create a `.env.local` file at the project root:
 
 ```
-GIVE-FOOD_TEST_LIVE=TRUE
-GIVE-FOOD_APIKEY=<your-key>
+GIVE_FOOD_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new GiveFoodSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new GiveFoodSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -329,7 +326,7 @@ API path: `/items/`
 
 ### Article
 
-Create an instance: `const article = client.Article()`
+Create an instance: `const article = client.article`
 
 #### Operations
 
@@ -351,13 +348,13 @@ Create an instance: `const article = client.Article()`
 #### Example: List
 
 ```ts
-const articles = await client.Article().list()
+const articles = await client.article.list()
 ```
 
 
 ### Donationpoint
 
-Create an instance: `const donationpoint = client.Donationpoint()`
+Create an instance: `const donationpoint = client.donationpoint`
 
 #### Operations
 
@@ -382,19 +379,19 @@ Create an instance: `const donationpoint = client.Donationpoint()`
 #### Example: Load
 
 ```ts
-const donationpoint = await client.Donationpoint().load({ id: 'donationpoint_id' })
+const donationpoint = await client.donationpoint.load({ id: 'donationpoint_id' })
 ```
 
 #### Example: List
 
 ```ts
-const donationpoints = await client.Donationpoint().list()
+const donationpoints = await client.donationpoint.list()
 ```
 
 
 ### Foodbank
 
-Create an instance: `const foodbank = client.Foodbank()`
+Create an instance: `const foodbank = client.foodbank`
 
 #### Operations
 
@@ -424,19 +421,19 @@ Create an instance: `const foodbank = client.Foodbank()`
 #### Example: Load
 
 ```ts
-const foodbank = await client.Foodbank().load({ id: 'foodbank_id' })
+const foodbank = await client.foodbank.load({ id: 'foodbank_id' })
 ```
 
 #### Example: List
 
 ```ts
-const foodbanks = await client.Foodbank().list()
+const foodbanks = await client.foodbank.list()
 ```
 
 
 ### Item
 
-Create an instance: `const item = client.Item()`
+Create an instance: `const item = client.item`
 
 #### Operations
 
@@ -457,7 +454,7 @@ Create an instance: `const item = client.Item()`
 #### Example: List
 
 ```ts
-const items = await client.Item().list()
+const items = await client.item.list()
 ```
 
 
@@ -518,7 +515,7 @@ give-food/
 Import the SDK from the package root:
 
 ```ts
-import { GiveFoodSDK } from 'give-food'
+import { GiveFoodSDK } from '@voxgig-sdk/give-food'
 ```
 
 ### Entity state
@@ -528,11 +525,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const article = client.article
+await article.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// article.data() now returns the loaded article data
+// article.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

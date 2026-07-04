@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch FoodbankLoadMatch
+---@param ctrl? table
+---@return Foodbank
+---@return string? err
 function FoodbankEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch FoodbankListMatch
+---@param ctrl? table
+---@return Foodbank[]
+---@return string? err
 function FoodbankEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

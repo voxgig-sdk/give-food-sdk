@@ -50,14 +50,12 @@ class FoodbankEntityTest extends TestCase
         $foodbank_ref01_ent = $client->Foodbank(null);
         $foodbank_ref01_match = [];
 
-        [$foodbank_ref01_list_result, $err] = $foodbank_ref01_ent->list($foodbank_ref01_match, null);
-        $this->assertNull($err);
+        $foodbank_ref01_list_result = $foodbank_ref01_ent->list($foodbank_ref01_match, null);
         $this->assertIsArray($foodbank_ref01_list_result);
 
         // LOAD
         $foodbank_ref01_match_dt0 = [];
-        [$foodbank_ref01_data_dt0_loaded, $err] = $foodbank_ref01_ent->load($foodbank_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $foodbank_ref01_data_dt0_loaded = $foodbank_ref01_ent->load($foodbank_ref01_match_dt0, null);
         $this->assertNotNull($foodbank_ref01_data_dt0_loaded);
 
     }
@@ -92,7 +90,6 @@ function foodbank_basic_setup($extra)
         "GIVEFOOD_TEST_FOODBANK_ENTID" => $idmap,
         "GIVEFOOD_TEST_LIVE" => "FALSE",
         "GIVEFOOD_TEST_EXPLAIN" => "FALSE",
-        "GIVEFOOD_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -104,7 +101,6 @@ function foodbank_basic_setup($extra)
     if ($env["GIVEFOOD_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["GIVEFOOD_APIKEY"],
             ],
             $extra ?? [],
         ]);

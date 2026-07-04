@@ -5,6 +5,8 @@ import { DonationpointEntity } from './entity/DonationpointEntity'
 import { FoodbankEntity } from './entity/FoodbankEntity'
 import { ItemEntity } from './entity/ItemEntity'
 
+export type * from './GiveFoodTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -205,24 +207,56 @@ class GiveFoodSDK {
 
 
 
+  _article?: ArticleEntity
+
+  // Idiomatic facade: `client.article.list()` / `client.article.load({ id })`.
+  get article(): ArticleEntity {
+    return (this._article ??= new ArticleEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.article` instead. */
   Article(data?: any) {
     const self = this
     return new ArticleEntity(self,data)
   }
 
 
+  _donationpoint?: DonationpointEntity
+
+  // Idiomatic facade: `client.donationpoint.list()` / `client.donationpoint.load({ id })`.
+  get donationpoint(): DonationpointEntity {
+    return (this._donationpoint ??= new DonationpointEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.donationpoint` instead. */
   Donationpoint(data?: any) {
     const self = this
     return new DonationpointEntity(self,data)
   }
 
 
+  _foodbank?: FoodbankEntity
+
+  // Idiomatic facade: `client.foodbank.list()` / `client.foodbank.load({ id })`.
+  get foodbank(): FoodbankEntity {
+    return (this._foodbank ??= new FoodbankEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.foodbank` instead. */
   Foodbank(data?: any) {
     const self = this
     return new FoodbankEntity(self,data)
   }
 
 
+  _item?: ItemEntity
+
+  // Idiomatic facade: `client.item.list()` / `client.item.load({ id })`.
+  get item(): ItemEntity {
+    return (this._item ??= new ItemEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.item` instead. */
   Item(data?: any) {
     const self = this
     return new ItemEntity(self,data)

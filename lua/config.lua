@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://www.givefood.org.uk/api/2",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -232,6 +229,7 @@ local function make_config()
                       ["orig"] = "slug",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -426,6 +424,7 @@ local function make_config()
                       ["orig"] = "slug",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {

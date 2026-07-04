@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://www.givefood.org.uk/api/2',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -268,7 +264,8 @@ class Config {
                     "name": "id",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -462,7 +459,8 @@ class Config {
                     "name": "id",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [

@@ -50,8 +50,7 @@ class TestArticleEntity:
         article_ref01_ent = client.Article(None)
         article_ref01_match = {}
 
-        article_ref01_list_result, err = article_ref01_ent.list(article_ref01_match, None)
-        assert err is None
+        article_ref01_list_result = article_ref01_ent.list(article_ref01_match, None)
         assert isinstance(article_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _article_basic_setup(extra):
         "GIVEFOOD_TEST_ARTICLE_ENTID": idmap,
         "GIVEFOOD_TEST_LIVE": "FALSE",
         "GIVEFOOD_TEST_EXPLAIN": "FALSE",
-        "GIVEFOOD_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _article_basic_setup(extra):
     if env.get("GIVEFOOD_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("GIVEFOOD_APIKEY"),
             },
             extra or {},
         ])

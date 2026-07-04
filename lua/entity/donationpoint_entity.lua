@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch DonationpointLoadMatch
+---@param ctrl? table
+---@return Donationpoint
+---@return string? err
 function DonationpointEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch DonationpointListMatch
+---@param ctrl? table
+---@return Donationpoint[]
+---@return string? err
 function DonationpointEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

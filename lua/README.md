@@ -9,12 +9,9 @@ The Lua SDK for the GiveFood API — an entity-oriented client using Lua convent
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-give-food
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/give-food-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("give-food_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("GIVE-FOOD_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List articles
 
 ```lua
-local result, err = client:Article():list()
+local result, err = client:article():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -93,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:GiveFood():load({ id = "test01" })
+local result, err = client:article():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -126,8 +121,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-GIVE-FOOD_TEST_LIVE=TRUE
-GIVE-FOOD_APIKEY=<your-key>
+GIVE_FOOD_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -150,7 +144,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -288,7 +281,7 @@ API path: `/items/`
 
 ### Article
 
-Create an instance: `const article = client.Article()`
+Create an instance: `const article = client.article`
 
 #### Operations
 
@@ -310,13 +303,13 @@ Create an instance: `const article = client.Article()`
 #### Example: List
 
 ```ts
-const articles = await client.Article().list()
+const articles = await client.article.list()
 ```
 
 
 ### Donationpoint
 
-Create an instance: `const donationpoint = client.Donationpoint()`
+Create an instance: `const donationpoint = client.donationpoint`
 
 #### Operations
 
@@ -341,19 +334,19 @@ Create an instance: `const donationpoint = client.Donationpoint()`
 #### Example: Load
 
 ```ts
-const donationpoint = await client.Donationpoint().load({ id: 'donationpoint_id' })
+const donationpoint = await client.donationpoint.load({ id: 'donationpoint_id' })
 ```
 
 #### Example: List
 
 ```ts
-const donationpoints = await client.Donationpoint().list()
+const donationpoints = await client.donationpoint.list()
 ```
 
 
 ### Foodbank
 
-Create an instance: `const foodbank = client.Foodbank()`
+Create an instance: `const foodbank = client.foodbank`
 
 #### Operations
 
@@ -383,19 +376,19 @@ Create an instance: `const foodbank = client.Foodbank()`
 #### Example: Load
 
 ```ts
-const foodbank = await client.Foodbank().load({ id: 'foodbank_id' })
+const foodbank = await client.foodbank.load({ id: 'foodbank_id' })
 ```
 
 #### Example: List
 
 ```ts
-const foodbanks = await client.Foodbank().list()
+const foodbanks = await client.foodbank.list()
 ```
 
 
 ### Item
 
-Create an instance: `const item = client.Item()`
+Create an instance: `const item = client.item`
 
 #### Operations
 
@@ -416,7 +409,7 @@ Create an instance: `const item = client.Item()`
 #### Example: List
 
 ```ts
-const items = await client.Item().list()
+const items = await client.item.list()
 ```
 
 
@@ -491,11 +484,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local article = client:article()
+article:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- article:data_get() now returns the loaded article data
+-- article:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch ArticleListMatch
+---@param ctrl? table
+---@return Article[]
+---@return string? err
 function ArticleEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

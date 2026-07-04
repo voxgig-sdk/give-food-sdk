@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'GiveFood_types'
+
 
 class GiveFoodSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class GiveFoodSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class GiveFoodSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue GiveFoodError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = GiveFoodHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class GiveFoodSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,34 +198,62 @@ class GiveFoodSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.article.list / client.article.load({ "id" => ... })
+  def article
+    require_relative 'entity/article_entity'
+    @article ||= ArticleEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.article instead.
   def Article(data = nil)
     require_relative 'entity/article_entity'
     ArticleEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.donationpoint.list / client.donationpoint.load({ "id" => ... })
+  def donationpoint
+    require_relative 'entity/donationpoint_entity'
+    @donationpoint ||= DonationpointEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.donationpoint instead.
   def Donationpoint(data = nil)
     require_relative 'entity/donationpoint_entity'
     DonationpointEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.foodbank.list / client.foodbank.load({ "id" => ... })
+  def foodbank
+    require_relative 'entity/foodbank_entity'
+    @foodbank ||= FoodbankEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.foodbank instead.
   def Foodbank(data = nil)
     require_relative 'entity/foodbank_entity'
     FoodbankEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.item.list / client.item.load({ "id" => ... })
+  def item
+    require_relative 'entity/item_entity'
+    @item ||= ItemEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.item instead.
   def Item(data = nil)
     require_relative 'entity/item_entity'
     ItemEntity.new(self, data)

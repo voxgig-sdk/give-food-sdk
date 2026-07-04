@@ -50,8 +50,7 @@ class ItemEntityTest extends TestCase
         $item_ref01_ent = $client->Item(null);
         $item_ref01_match = [];
 
-        [$item_ref01_list_result, $err] = $item_ref01_ent->list($item_ref01_match, null);
-        $this->assertNull($err);
+        $item_ref01_list_result = $item_ref01_ent->list($item_ref01_match, null);
         $this->assertIsArray($item_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function item_basic_setup($extra)
         "GIVEFOOD_TEST_ITEM_ENTID" => $idmap,
         "GIVEFOOD_TEST_LIVE" => "FALSE",
         "GIVEFOOD_TEST_EXPLAIN" => "FALSE",
-        "GIVEFOOD_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function item_basic_setup($extra)
     if ($env["GIVEFOOD_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["GIVEFOOD_APIKEY"],
             ],
             $extra ?? [],
         ]);

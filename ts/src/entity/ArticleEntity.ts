@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Article,
+  ArticleListMatch,
+} from '../GiveFoodTypes'
 
 // TODO: needs Entity superclass
-class ArticleEntity extends GiveFoodEntityBase {
+class ArticleEntity extends GiveFoodEntityBase<Article> {
 
   constructor(client: GiveFoodSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class ArticleEntity extends GiveFoodEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: ArticleListMatch, ctrl?: Control): Promise<Article[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class ArticleEntity extends GiveFoodEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Article[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

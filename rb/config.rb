@@ -15,9 +15,6 @@ module GiveFoodConfig
       },
       "options" => {
         "base" => "https://www.givefood.org.uk/api/2",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -233,6 +230,7 @@ module GiveFoodConfig
                         "orig" => "slug",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -427,6 +425,7 @@ module GiveFoodConfig
                         "orig" => "slug",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [

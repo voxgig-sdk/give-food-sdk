@@ -45,6 +45,7 @@ class DonationpointEntity
     end
   end
 
+  # @return [Donationpoint, Hash] the current Donationpoint data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class DonationpointEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Donationpoint fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Donationpoint.
+  #
+  # @param reqmatch [DonationpointLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Donationpoint, Hash] the loaded Donationpoint; raises GiveFoodError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class DonationpointEntity
 
 
   
+  # List Donationpoint items matching the given filter.
+  #
+  # @param reqmatch [DonationpointListMatch, Hash, nil] match filter (any subset of Donationpoint fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Donationpoint>, Array] the matching Donationpoint items; raises GiveFoodError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

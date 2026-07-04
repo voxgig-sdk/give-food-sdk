@@ -20,9 +20,6 @@ class GiveFoodConfig
             ],
             "options" => [
                 "base" => "https://www.givefood.org.uk/api/2",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -238,6 +235,7 @@ class GiveFoodConfig
                         'orig' => 'slug',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -432,6 +430,7 @@ class GiveFoodConfig
                         'orig' => 'slug',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
