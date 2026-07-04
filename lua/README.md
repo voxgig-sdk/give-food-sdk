@@ -31,17 +31,17 @@ local sdk = require("give-food_sdk")
 local client = sdk.new()
 ```
 
-### 2. List articles
+### 2. List article records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:article():list()
+local articles, err = client:Article():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(articles) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:article():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Article():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -167,10 +167,10 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Article` | `(data) -> ArticleEntity` | Create a Article entity instance. |
+| `Article` | `(data) -> ArticleEntity` | Create an Article entity instance. |
 | `Donationpoint` | `(data) -> DonationpointEntity` | Create a Donationpoint entity instance. |
 | `Foodbank` | `(data) -> FoodbankEntity` | Create a Foodbank entity instance. |
-| `Item` | `(data) -> ItemEntity` | Create a Item entity instance. |
+| `Item` | `(data) -> ItemEntity` | Create an Item entity instance. |
 
 ### Entity interface
 
@@ -192,17 +192,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local article, err = client:Article():load({ id = "example_id" })
+    if err then error(err) end
+    -- article is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -281,7 +286,7 @@ API path: `/items/`
 
 ### Article
 
-Create an instance: `const article = client.article`
+Create an instance: `local article = client:Article(nil)`
 
 #### Operations
 
@@ -302,14 +307,14 @@ Create an instance: `const article = client.article`
 
 #### Example: List
 
-```ts
-const articles = await client.article.list()
+```lua
+local articles, err = client:Article():list()
 ```
 
 
 ### Donationpoint
 
-Create an instance: `const donationpoint = client.donationpoint`
+Create an instance: `local donationpoint = client:Donationpoint(nil)`
 
 #### Operations
 
@@ -333,20 +338,20 @@ Create an instance: `const donationpoint = client.donationpoint`
 
 #### Example: Load
 
-```ts
-const donationpoint = await client.donationpoint.load({ id: 'donationpoint_id' })
+```lua
+local donationpoint, err = client:Donationpoint():load({ id = "donationpoint_id" })
 ```
 
 #### Example: List
 
-```ts
-const donationpoints = await client.donationpoint.list()
+```lua
+local donationpoints, err = client:Donationpoint():list()
 ```
 
 
 ### Foodbank
 
-Create an instance: `const foodbank = client.foodbank`
+Create an instance: `local foodbank = client:Foodbank(nil)`
 
 #### Operations
 
@@ -375,20 +380,20 @@ Create an instance: `const foodbank = client.foodbank`
 
 #### Example: Load
 
-```ts
-const foodbank = await client.foodbank.load({ id: 'foodbank_id' })
+```lua
+local foodbank, err = client:Foodbank():load({ id = "foodbank_id" })
 ```
 
 #### Example: List
 
-```ts
-const foodbanks = await client.foodbank.list()
+```lua
+local foodbanks, err = client:Foodbank():list()
 ```
 
 
 ### Item
 
-Create an instance: `const item = client.item`
+Create an instance: `local item = client:Item(nil)`
 
 #### Operations
 
@@ -408,8 +413,8 @@ Create an instance: `const item = client.item`
 
 #### Example: List
 
-```ts
-const items = await client.item.list()
+```lua
+local items, err = client:Item():list()
 ```
 
 
@@ -484,7 +489,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local article = client:article()
+local article = client:Article()
 article:load({ id = "example_id" })
 
 -- article:data_get() now returns the loaded article data

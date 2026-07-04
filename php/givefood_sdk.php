@@ -233,10 +233,10 @@ class GiveFoodSDK
 
     private $_article = null;
 
-    // Idiomatic facade: $client->article()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Article() (PHP method
-    // names are case-insensitive).
-    public function article($data = null)
+    // Canonical facade: $client->Article()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->article()
+    // resolves here too.
+    public function Article($data = null)
     {
         require_once __DIR__ . '/entity/article_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class GiveFoodSDK
 
     private $_donationpoint = null;
 
-    // Idiomatic facade: $client->donationpoint()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Donationpoint() (PHP method
-    // names are case-insensitive).
-    public function donationpoint($data = null)
+    // Canonical facade: $client->Donationpoint()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->donationpoint()
+    // resolves here too.
+    public function Donationpoint($data = null)
     {
         require_once __DIR__ . '/entity/donationpoint_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class GiveFoodSDK
 
     private $_foodbank = null;
 
-    // Idiomatic facade: $client->foodbank()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Foodbank() (PHP method
-    // names are case-insensitive).
-    public function foodbank($data = null)
+    // Canonical facade: $client->Foodbank()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->foodbank()
+    // resolves here too.
+    public function Foodbank($data = null)
     {
         require_once __DIR__ . '/entity/foodbank_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class GiveFoodSDK
 
     private $_item = null;
 
-    // Idiomatic facade: $client->item()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Item() (PHP method
-    // names are case-insensitive).
-    public function item($data = null)
+    // Canonical facade: $client->Item()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->item()
+    // resolves here too.
+    public function Item($data = null)
     {
         require_once __DIR__ . '/entity/item_entity.php';
         if ($data === null) {

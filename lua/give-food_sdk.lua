@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:article():list() / client:article():load({ id = ... })
-function GiveFoodSDK:article(data)
+-- Idiomatic facade: client:Article():list() / client:Article():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GiveFoodSDK:Article(data)
   local EntityMod = require("entity.article_entity")
   if data == nil then
     if self._article == nil then
@@ -256,15 +257,10 @@ function GiveFoodSDK:article(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:article() instead.
-function GiveFoodSDK:Article(data)
-  local EntityMod = require("entity.article_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:donationpoint():list() / client:donationpoint():load({ id = ... })
-function GiveFoodSDK:donationpoint(data)
+-- Idiomatic facade: client:Donationpoint():list() / client:Donationpoint():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GiveFoodSDK:Donationpoint(data)
   local EntityMod = require("entity.donationpoint_entity")
   if data == nil then
     if self._donationpoint == nil then
@@ -275,15 +271,10 @@ function GiveFoodSDK:donationpoint(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:donationpoint() instead.
-function GiveFoodSDK:Donationpoint(data)
-  local EntityMod = require("entity.donationpoint_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:foodbank():list() / client:foodbank():load({ id = ... })
-function GiveFoodSDK:foodbank(data)
+-- Idiomatic facade: client:Foodbank():list() / client:Foodbank():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GiveFoodSDK:Foodbank(data)
   local EntityMod = require("entity.foodbank_entity")
   if data == nil then
     if self._foodbank == nil then
@@ -294,15 +285,10 @@ function GiveFoodSDK:foodbank(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:foodbank() instead.
-function GiveFoodSDK:Foodbank(data)
-  local EntityMod = require("entity.foodbank_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:item():list() / client:item():load({ id = ... })
-function GiveFoodSDK:item(data)
+-- Idiomatic facade: client:Item():list() / client:Item():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GiveFoodSDK:Item(data)
   local EntityMod = require("entity.item_entity")
   if data == nil then
     if self._item == nil then
@@ -310,12 +296,6 @@ function GiveFoodSDK:item(data)
     end
     return self._item
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:item() instead.
-function GiveFoodSDK:Item(data)
-  local EntityMod = require("entity.item_entity")
   return EntityMod.new(self, data)
 end
 

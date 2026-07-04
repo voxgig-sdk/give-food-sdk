@@ -30,37 +30,33 @@ go mod edit -replace github.com/voxgig-sdk/give-food-sdk/go=../give-food-sdk/go
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/give-food-sdk/go"
-    "github.com/voxgig-sdk/give-food-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 2. List articles
-
-```go
-    result, err := client.Article(nil).List(nil, nil)
+    // List article records — the value is the array of records itself.
+    articles, err := client.Article(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range articles.([]any) {
+        fmt.Println(item)
     }
+}
 ```
 
 
@@ -110,10 +106,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Article(nil).Load(
+article, err := client.Article(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(article) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -190,10 +189,10 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `Article` | `(data map[string]any) GiveFoodEntity` | Create a Article entity instance. |
+| `Article` | `(data map[string]any) GiveFoodEntity` | Create an Article entity instance. |
 | `Donationpoint` | `(data map[string]any) GiveFoodEntity` | Create a Donationpoint entity instance. |
 | `Foodbank` | `(data map[string]any) GiveFoodEntity` | Create a Foodbank entity instance. |
-| `Item` | `(data map[string]any) GiveFoodEntity` | Create a Item entity instance. |
+| `Item` | `(data map[string]any) GiveFoodEntity` | Create an Item entity instance. |
 
 ### Entity interface (GiveFoodEntity)
 
@@ -213,17 +212,24 @@ All entities implement the `GiveFoodEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    article, err := client.Article(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // article is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -324,7 +330,11 @@ Create an instance: `article := client.Article(nil)`
 #### Example: List
 
 ```go
-results, err := client.Article(nil).List(nil, nil)
+articles, err := client.Article(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(articles) // the array of records
 ```
 
 
@@ -355,13 +365,21 @@ Create an instance: `donationpoint := client.Donationpoint(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Donationpoint(nil).Load(map[string]any{"id": "donationpoint_id"}, nil)
+donationpoint, err := client.Donationpoint(nil).Load(map[string]any{"id": "donationpoint_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(donationpoint) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Donationpoint(nil).List(nil, nil)
+donationpoints, err := client.Donationpoint(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(donationpoints) // the array of records
 ```
 
 
@@ -397,13 +415,21 @@ Create an instance: `foodbank := client.Foodbank(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Foodbank(nil).Load(map[string]any{"id": "foodbank_id"}, nil)
+foodbank, err := client.Foodbank(nil).Load(map[string]any{"id": "foodbank_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(foodbank) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Foodbank(nil).List(nil, nil)
+foodbanks, err := client.Foodbank(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(foodbanks) // the array of records
 ```
 
 
@@ -430,7 +456,11 @@ Create an instance: `item := client.Item(nil)`
 #### Example: List
 
 ```go
-results, err := client.Item(nil).List(nil, nil)
+items, err := client.Item(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(items) // the array of records
 ```
 
 

@@ -29,18 +29,16 @@ require_once 'givefood_sdk.php';
 $client = new GiveFoodSDK();
 ```
 
-### 2. List articles
+### 2. List article records
 
 ```php
 try {
-    $result = $client->article()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Article records — iterate directly.
+    $articles = $client->Article()->list();
+    foreach ($articles as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = GiveFoodSDK::test();
+$client = GiveFoodSDK::test([
+    "entity" => ["article" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->article()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$article = $client->Article()->load(["id" => "test01"]);
+print_r($article);
 ```
 
 ### Use a custom fetch function
@@ -171,10 +173,10 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Article` | `($data): ArticleEntity` | Create a Article entity instance. |
+| `Article` | `($data): ArticleEntity` | Create an Article entity instance. |
 | `Donationpoint` | `($data): DonationpointEntity` | Create a Donationpoint entity instance. |
 | `Foodbank` | `($data): FoodbankEntity` | Create a Foodbank entity instance. |
-| `Item` | `($data): ItemEntity` | Create a Item entity instance. |
+| `Item` | `($data): ItemEntity` | Create an Item entity instance. |
 
 ### Entity interface
 
@@ -289,7 +291,7 @@ API path: `/items/`
 
 ### Article
 
-Create an instance: `const article = client.article`
+Create an instance: `$article = $client->Article();`
 
 #### Operations
 
@@ -310,14 +312,15 @@ Create an instance: `const article = client.article`
 
 #### Example: List
 
-```ts
-const articles = await client.article.list()
+```php
+// list() returns an array of Article records (throws on error).
+$articles = $client->Article()->list();
 ```
 
 
 ### Donationpoint
 
-Create an instance: `const donationpoint = client.donationpoint`
+Create an instance: `$donationpoint = $client->Donationpoint();`
 
 #### Operations
 
@@ -341,20 +344,22 @@ Create an instance: `const donationpoint = client.donationpoint`
 
 #### Example: Load
 
-```ts
-const donationpoint = await client.donationpoint.load({ id: 'donationpoint_id' })
+```php
+// load() returns the bare Donationpoint record (throws on error).
+$donationpoint = $client->Donationpoint()->load(["id" => "donationpoint_id"]);
 ```
 
 #### Example: List
 
-```ts
-const donationpoints = await client.donationpoint.list()
+```php
+// list() returns an array of Donationpoint records (throws on error).
+$donationpoints = $client->Donationpoint()->list();
 ```
 
 
 ### Foodbank
 
-Create an instance: `const foodbank = client.foodbank`
+Create an instance: `$foodbank = $client->Foodbank();`
 
 #### Operations
 
@@ -383,20 +388,22 @@ Create an instance: `const foodbank = client.foodbank`
 
 #### Example: Load
 
-```ts
-const foodbank = await client.foodbank.load({ id: 'foodbank_id' })
+```php
+// load() returns the bare Foodbank record (throws on error).
+$foodbank = $client->Foodbank()->load(["id" => "foodbank_id"]);
 ```
 
 #### Example: List
 
-```ts
-const foodbanks = await client.foodbank.list()
+```php
+// list() returns an array of Foodbank records (throws on error).
+$foodbanks = $client->Foodbank()->list();
 ```
 
 
 ### Item
 
-Create an instance: `const item = client.item`
+Create an instance: `$item = $client->Item();`
 
 #### Operations
 
@@ -416,8 +423,9 @@ Create an instance: `const item = client.item`
 
 #### Example: List
 
-```ts
-const items = await client.item.list()
+```php
+// list() returns an array of Item records (throws on error).
+$items = $client->Item()->list();
 ```
 
 
@@ -492,7 +500,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$article = $client->article();
+$article = $client->Article();
 $article->load(["id" => "example_id"]);
 
 // $article->dataGet() now returns the loaded article data

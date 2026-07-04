@@ -4,115 +4,109 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Article:
-    foodbank_slug: Optional[str] = None
-    id: Optional[int] = None
-    published: Optional[str] = None
-    source: Optional[str] = None
-    title: Optional[str] = None
-    url: Optional[str] = None
+class Article(TypedDict, total=False):
+    foodbank_slug: str
+    id: int
+    published: str
+    source: str
+    title: str
+    url: str
 
 
-@dataclass
-class ArticleListMatch:
-    foodbank_slug: Optional[str] = None
-    id: Optional[int] = None
-    published: Optional[str] = None
-    source: Optional[str] = None
-    title: Optional[str] = None
-    url: Optional[str] = None
+class ArticleListMatch(TypedDict, total=False):
+    foodbank_slug: str
+    id: int
+    published: str
+    source: str
+    title: str
+    url: str
 
 
-@dataclass
-class Donationpoint:
-    address: Optional[str] = None
-    foodbank_slug: Optional[str] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-    name: Optional[str] = None
-    postcode: Optional[str] = None
-    slug: Optional[str] = None
-    type: Optional[str] = None
+class Donationpoint(TypedDict, total=False):
+    address: str
+    foodbank_slug: str
+    latitude: float
+    longitude: float
+    name: str
+    postcode: str
+    slug: str
+    type: str
 
 
-@dataclass
-class DonationpointLoadMatch:
+class DonationpointLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class DonationpointListMatch:
-    address: Optional[str] = None
-    foodbank_slug: Optional[str] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-    name: Optional[str] = None
-    postcode: Optional[str] = None
-    slug: Optional[str] = None
-    type: Optional[str] = None
+class DonationpointListMatch(TypedDict, total=False):
+    address: str
+    foodbank_slug: str
+    latitude: float
+    longitude: float
+    name: str
+    postcode: str
+    slug: str
+    type: str
 
 
-@dataclass
-class Foodbank:
-    address: Optional[str] = None
-    email: Optional[str] = None
-    items_needed: Optional[list] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-    name: Optional[str] = None
-    need: Optional[dict] = None
-    phone: Optional[str] = None
-    postcode: Optional[str] = None
-    shopping_list_url: Optional[str] = None
-    slug: Optional[str] = None
-    updated: Optional[str] = None
-    url: Optional[str] = None
+class Foodbank(TypedDict, total=False):
+    address: str
+    email: str
+    items_needed: list
+    latitude: float
+    longitude: float
+    name: str
+    need: dict
+    phone: str
+    postcode: str
+    shopping_list_url: str
+    slug: str
+    updated: str
+    url: str
 
 
-@dataclass
-class FoodbankLoadMatch:
+class FoodbankLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class FoodbankListMatch:
-    address: Optional[str] = None
-    email: Optional[str] = None
-    items_needed: Optional[list] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-    name: Optional[str] = None
-    need: Optional[dict] = None
-    phone: Optional[str] = None
-    postcode: Optional[str] = None
-    shopping_list_url: Optional[str] = None
-    slug: Optional[str] = None
-    updated: Optional[str] = None
-    url: Optional[str] = None
+class FoodbankListMatch(TypedDict, total=False):
+    address: str
+    email: str
+    items_needed: list
+    latitude: float
+    longitude: float
+    name: str
+    need: dict
+    phone: str
+    postcode: str
+    shopping_list_url: str
+    slug: str
+    updated: str
+    url: str
 
 
-@dataclass
-class Item:
-    created: Optional[str] = None
-    foodbank_slug: Optional[str] = None
-    id: Optional[int] = None
-    item: Optional[str] = None
-    updated: Optional[str] = None
+class Item(TypedDict, total=False):
+    created: str
+    foodbank_slug: str
+    id: int
+    item: str
+    updated: str
 
 
-@dataclass
-class ItemListMatch:
-    created: Optional[str] = None
-    foodbank_slug: Optional[str] = None
-    id: Optional[int] = None
-    item: Optional[str] = None
-    updated: Optional[str] = None
-
+class ItemListMatch(TypedDict, total=False):
+    created: str
+    foodbank_slug: str
+    id: int
+    item: str
+    updated: str

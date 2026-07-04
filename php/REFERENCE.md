@@ -97,7 +97,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## ArticleEntity
 
 ```php
-$article = $client->article();
+$article = $client->Article();
 ```
 
 ### Fields
@@ -118,7 +118,7 @@ $article = $client->article();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->article()->list([]);
+$results = $client->Article()->list([]);
 ```
 
 ### Common Methods
@@ -154,7 +154,7 @@ Return the entity name.
 ## DonationpointEntity
 
 ```php
-$donationpoint = $client->donationpoint();
+$donationpoint = $client->Donationpoint();
 ```
 
 ### Fields
@@ -177,7 +177,7 @@ $donationpoint = $client->donationpoint();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->donationpoint()->list([]);
+$results = $client->Donationpoint()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -185,7 +185,7 @@ $results = $client->donationpoint()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->donationpoint()->load(["id" => "donationpoint_id"]);
+$result = $client->Donationpoint()->load(["id" => "donationpoint_id"]);
 ```
 
 ### Common Methods
@@ -221,7 +221,7 @@ Return the entity name.
 ## FoodbankEntity
 
 ```php
-$foodbank = $client->foodbank();
+$foodbank = $client->Foodbank();
 ```
 
 ### Fields
@@ -249,7 +249,7 @@ $foodbank = $client->foodbank();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->foodbank()->list([]);
+$results = $client->Foodbank()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -257,7 +257,7 @@ $results = $client->foodbank()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->foodbank()->load(["id" => "foodbank_id"]);
+$result = $client->Foodbank()->load(["id" => "foodbank_id"]);
 ```
 
 ### Common Methods
@@ -293,7 +293,7 @@ Return the entity name.
 ## ItemEntity
 
 ```php
-$item = $client->item();
+$item = $client->Item();
 ```
 
 ### Fields
@@ -313,7 +313,7 @@ $item = $client->item();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->item()->list([]);
+$results = $client->Item()->list([]);
 ```
 
 ### Common Methods

@@ -28,15 +28,15 @@ import { GiveFoodSDK } from '@voxgig-sdk/give-food'
 const client = new GiveFoodSDK()
 ```
 
-### 2. List articles
+### 2. List article records
+
+`list()` resolves to an array of Article objects — iterate it directly:
 
 ```ts
-const result = await client.article.list()
+const articles = await client.Article().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const article of articles) {
+  console.log(article)
 }
 ```
 
@@ -54,6 +54,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -82,9 +85,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = GiveFoodSDK.test()
 
-const result = await client.article.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const article = await client.Article().load({ id: 'test01' })
+// article is a bare entity populated with mock response data
+console.log(article)
 ```
 
 You can also use the instance method:
@@ -99,7 +102,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.article
+const entity = client.Article()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -177,10 +180,10 @@ new GiveFoodSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Article(data?)` | `ArticleEntity` | Create a Article entity instance. |
+| `Article(data?)` | `ArticleEntity` | Create an Article entity instance. |
 | `Donationpoint(data?)` | `DonationpointEntity` | Create a Donationpoint entity instance. |
 | `Foodbank(data?)` | `FoodbankEntity` | Create a Foodbank entity instance. |
-| `Item(data?)` | `ItemEntity` | Create a Item entity instance. |
+| `Item(data?)` | `ItemEntity` | Create an Item entity instance. |
 | `tester(testopts?, sdkopts?)` | `GiveFoodSDK` | Create a test-mode client instance. |
 
 #### Static methods
@@ -197,29 +200,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): GiveFoodSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -326,7 +330,7 @@ API path: `/items/`
 
 ### Article
 
-Create an instance: `const article = client.article`
+Create an instance: `const article = client.Article()`
 
 #### Operations
 
@@ -348,13 +352,13 @@ Create an instance: `const article = client.article`
 #### Example: List
 
 ```ts
-const articles = await client.article.list()
+const articles = await client.Article().list()
 ```
 
 
 ### Donationpoint
 
-Create an instance: `const donationpoint = client.donationpoint`
+Create an instance: `const donationpoint = client.Donationpoint()`
 
 #### Operations
 
@@ -379,19 +383,19 @@ Create an instance: `const donationpoint = client.donationpoint`
 #### Example: Load
 
 ```ts
-const donationpoint = await client.donationpoint.load({ id: 'donationpoint_id' })
+const donationpoint = await client.Donationpoint().load({ id: 'donationpoint_id' })
 ```
 
 #### Example: List
 
 ```ts
-const donationpoints = await client.donationpoint.list()
+const donationpoints = await client.Donationpoint().list()
 ```
 
 
 ### Foodbank
 
-Create an instance: `const foodbank = client.foodbank`
+Create an instance: `const foodbank = client.Foodbank()`
 
 #### Operations
 
@@ -421,19 +425,19 @@ Create an instance: `const foodbank = client.foodbank`
 #### Example: Load
 
 ```ts
-const foodbank = await client.foodbank.load({ id: 'foodbank_id' })
+const foodbank = await client.Foodbank().load({ id: 'foodbank_id' })
 ```
 
 #### Example: List
 
 ```ts
-const foodbanks = await client.foodbank.list()
+const foodbanks = await client.Foodbank().list()
 ```
 
 
 ### Item
 
-Create an instance: `const item = client.item`
+Create an instance: `const item = client.Item()`
 
 #### Operations
 
@@ -454,7 +458,7 @@ Create an instance: `const item = client.item`
 #### Example: List
 
 ```ts
-const items = await client.item.list()
+const items = await client.Item().list()
 ```
 
 
@@ -525,7 +529,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const article = client.article
+const article = client.Article()
 await article.load({ id: "example_id" })
 
 // article.data() now returns the loaded article data

@@ -145,7 +145,7 @@ Alias for `GiveFoodSDK.test()`.
 ## ArticleEntity
 
 ```ts
-const article = client.article
+const article = client.Article()
 ```
 
 ### Fields
@@ -166,7 +166,7 @@ const article = client.article
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.article.list()
+const results = await client.Article().list()
 ```
 
 ### Common Methods
@@ -200,7 +200,7 @@ Return a copy of the entity options.
 ## DonationpointEntity
 
 ```ts
-const donationpoint = client.donationpoint
+const donationpoint = client.Donationpoint()
 ```
 
 ### Fields
@@ -223,7 +223,7 @@ const donationpoint = client.donationpoint
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.donationpoint.list()
+const results = await client.Donationpoint().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -231,7 +231,7 @@ const results = await client.donationpoint.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.donationpoint.load({ id: 'donationpoint_id' })
+const result = await client.Donationpoint().load({ id: 'donationpoint_id' })
 ```
 
 ### Common Methods
@@ -265,7 +265,7 @@ Return a copy of the entity options.
 ## FoodbankEntity
 
 ```ts
-const foodbank = client.foodbank
+const foodbank = client.Foodbank()
 ```
 
 ### Fields
@@ -293,7 +293,7 @@ const foodbank = client.foodbank
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.foodbank.list()
+const results = await client.Foodbank().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -301,7 +301,7 @@ const results = await client.foodbank.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.foodbank.load({ id: 'foodbank_id' })
+const result = await client.Foodbank().load({ id: 'foodbank_id' })
 ```
 
 ### Common Methods
@@ -335,7 +335,7 @@ Return a copy of the entity options.
 ## ItemEntity
 
 ```ts
-const item = client.item
+const item = client.Item()
 ```
 
 ### Fields
@@ -355,7 +355,7 @@ const item = client.item
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.item.list()
+const results = await client.Item().list()
 ```
 
 ### Common Methods

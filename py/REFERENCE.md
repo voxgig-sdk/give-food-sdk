@@ -92,7 +92,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## ArticleEntity
 
 ```python
-article = client.article
+article = client.Article()
 ```
 
 ### Fields
@@ -113,7 +113,9 @@ article = client.article
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.article.list({})
+results = client.Article().list({})
+for article in results:
+    print(article)
 ```
 
 ### Common Methods
@@ -148,7 +150,7 @@ Return the entity name.
 ## DonationpointEntity
 
 ```python
-donationpoint = client.donationpoint
+donationpoint = client.Donationpoint()
 ```
 
 ### Fields
@@ -171,7 +173,9 @@ donationpoint = client.donationpoint
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.donationpoint.list({})
+results = client.Donationpoint().list({})
+for donationpoint in results:
+    print(donationpoint)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -179,7 +183,7 @@ results = client.donationpoint.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.donationpoint.load({"id": "donationpoint_id"})
+result = client.Donationpoint().load({"id": "donationpoint_id"})
 ```
 
 ### Common Methods
@@ -214,7 +218,7 @@ Return the entity name.
 ## FoodbankEntity
 
 ```python
-foodbank = client.foodbank
+foodbank = client.Foodbank()
 ```
 
 ### Fields
@@ -242,7 +246,9 @@ foodbank = client.foodbank
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.foodbank.list({})
+results = client.Foodbank().list({})
+for foodbank in results:
+    print(foodbank)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -250,7 +256,7 @@ results = client.foodbank.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.foodbank.load({"id": "foodbank_id"})
+result = client.Foodbank().load({"id": "foodbank_id"})
 ```
 
 ### Common Methods
@@ -285,7 +291,7 @@ Return the entity name.
 ## ItemEntity
 
 ```python
-item = client.item
+item = client.Item()
 ```
 
 ### Fields
@@ -305,7 +311,9 @@ item = client.item
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.item.list({})
+results = client.Item().list({})
+for item in results:
+    print(item)
 ```
 
 ### Common Methods

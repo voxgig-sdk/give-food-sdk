@@ -208,52 +208,28 @@ class GiveFoodSDK
   end
 
 
-  # Idiomatic facade: client.article.list / client.article.load({ "id" => ... })
-  def article
-    require_relative 'entity/article_entity'
-    @article ||= ArticleEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.article instead.
+  # Canonical facade: client.Article.list / client.Article.load({ "id" => ... })
   def Article(data = nil)
     require_relative 'entity/article_entity'
     ArticleEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.donationpoint.list / client.donationpoint.load({ "id" => ... })
-  def donationpoint
-    require_relative 'entity/donationpoint_entity'
-    @donationpoint ||= DonationpointEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.donationpoint instead.
+  # Canonical facade: client.Donationpoint.list / client.Donationpoint.load({ "id" => ... })
   def Donationpoint(data = nil)
     require_relative 'entity/donationpoint_entity'
     DonationpointEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.foodbank.list / client.foodbank.load({ "id" => ... })
-  def foodbank
-    require_relative 'entity/foodbank_entity'
-    @foodbank ||= FoodbankEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.foodbank instead.
+  # Canonical facade: client.Foodbank.list / client.Foodbank.load({ "id" => ... })
   def Foodbank(data = nil)
     require_relative 'entity/foodbank_entity'
     FoodbankEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.item.list / client.item.load({ "id" => ... })
-  def item
-    require_relative 'entity/item_entity'
-    @item ||= ItemEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.item instead.
+  # Canonical facade: client.Item.list / client.Item.load({ "id" => ... })
   def Item(data = nil)
     require_relative 'entity/item_entity'
     ItemEntity.new(self, data)

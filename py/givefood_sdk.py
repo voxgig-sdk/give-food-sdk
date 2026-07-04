@@ -220,73 +220,33 @@ class GiveFoodSDK:
         }
 
 
-    @property
-    def article(self):
-        """Idiomatic facade: client.article.list() / client.article.load({"id": ...})."""
-        from entity.article_entity import ArticleEntity
-        cached = getattr(self, "_article", None)
-        if cached is None:
-            cached = ArticleEntity(self, None)
-            self._article = cached
-        return cached
-
-    def Article(self, data=None):
-        # Deprecated: use client.article instead.
+    def Article(self, data=None) -> "ArticleEntity":
+        """Entity factory: client.Article().list({}) / client.Article().load({"id": ...})."""
         from entity.article_entity import ArticleEntity
         return ArticleEntity(self, data)
 
 
-    @property
-    def donationpoint(self):
-        """Idiomatic facade: client.donationpoint.list() / client.donationpoint.load({"id": ...})."""
-        from entity.donationpoint_entity import DonationpointEntity
-        cached = getattr(self, "_donationpoint", None)
-        if cached is None:
-            cached = DonationpointEntity(self, None)
-            self._donationpoint = cached
-        return cached
-
-    def Donationpoint(self, data=None):
-        # Deprecated: use client.donationpoint instead.
+    def Donationpoint(self, data=None) -> "DonationpointEntity":
+        """Entity factory: client.Donationpoint().list({}) / client.Donationpoint().load({"id": ...})."""
         from entity.donationpoint_entity import DonationpointEntity
         return DonationpointEntity(self, data)
 
 
-    @property
-    def foodbank(self):
-        """Idiomatic facade: client.foodbank.list() / client.foodbank.load({"id": ...})."""
-        from entity.foodbank_entity import FoodbankEntity
-        cached = getattr(self, "_foodbank", None)
-        if cached is None:
-            cached = FoodbankEntity(self, None)
-            self._foodbank = cached
-        return cached
-
-    def Foodbank(self, data=None):
-        # Deprecated: use client.foodbank instead.
+    def Foodbank(self, data=None) -> "FoodbankEntity":
+        """Entity factory: client.Foodbank().list({}) / client.Foodbank().load({"id": ...})."""
         from entity.foodbank_entity import FoodbankEntity
         return FoodbankEntity(self, data)
 
 
-    @property
-    def item(self):
-        """Idiomatic facade: client.item.list() / client.item.load({"id": ...})."""
-        from entity.item_entity import ItemEntity
-        cached = getattr(self, "_item", None)
-        if cached is None:
-            cached = ItemEntity(self, None)
-            self._item = cached
-        return cached
-
-    def Item(self, data=None):
-        # Deprecated: use client.item instead.
+    def Item(self, data=None) -> "ItemEntity":
+        """Entity factory: client.Item().list({}) / client.Item().load({"id": ...})."""
         from entity.item_entity import ItemEntity
         return ItemEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "GiveFoodSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -306,3 +266,12 @@ class GiveFoodSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.article_entity import ArticleEntity
+    from entity.donationpoint_entity import DonationpointEntity
+    from entity.foodbank_entity import FoodbankEntity
+    from entity.item_entity import ItemEntity

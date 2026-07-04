@@ -95,7 +95,7 @@ same parameters as `direct()`.
 ## ArticleEntity
 
 ```lua
-local article = client:article(nil)
+local article = client:Article(nil)
 ```
 
 ### Fields
@@ -116,7 +116,7 @@ local article = client:article(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:article():list()
+local results, err = client:Article():list()
 ```
 
 ### Common Methods
@@ -152,7 +152,7 @@ Return the entity name.
 ## DonationpointEntity
 
 ```lua
-local donationpoint = client:donationpoint(nil)
+local donationpoint = client:Donationpoint(nil)
 ```
 
 ### Fields
@@ -175,7 +175,7 @@ local donationpoint = client:donationpoint(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:donationpoint():list()
+local results, err = client:Donationpoint():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -183,7 +183,7 @@ local results, err = client:donationpoint():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:donationpoint():load({ id = "donationpoint_id" })
+local result, err = client:Donationpoint():load({ id = "donationpoint_id" })
 ```
 
 ### Common Methods
@@ -219,7 +219,7 @@ Return the entity name.
 ## FoodbankEntity
 
 ```lua
-local foodbank = client:foodbank(nil)
+local foodbank = client:Foodbank(nil)
 ```
 
 ### Fields
@@ -247,7 +247,7 @@ local foodbank = client:foodbank(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:foodbank():list()
+local results, err = client:Foodbank():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -255,7 +255,7 @@ local results, err = client:foodbank():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:foodbank():load({ id = "foodbank_id" })
+local result, err = client:Foodbank():load({ id = "foodbank_id" })
 ```
 
 ### Common Methods
@@ -291,7 +291,7 @@ Return the entity name.
 ## ItemEntity
 
 ```lua
-local item = client:item(nil)
+local item = client:Item(nil)
 ```
 
 ### Fields
@@ -311,7 +311,7 @@ local item = client:item(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:item():list()
+local results, err = client:Item():list()
 ```
 
 ### Common Methods

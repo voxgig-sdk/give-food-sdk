@@ -98,7 +98,7 @@ same parameters as `direct()`. Raises on error.
 ## ArticleEntity
 
 ```ruby
-article = client.article
+article = client.Article
 ```
 
 ### Fields
@@ -119,7 +119,7 @@ article = client.article
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.article.list(nil)
+results = client.Article.list(nil)
 ```
 
 ### Common Methods
@@ -155,7 +155,7 @@ Return the entity name.
 ## DonationpointEntity
 
 ```ruby
-donationpoint = client.donationpoint
+donationpoint = client.Donationpoint
 ```
 
 ### Fields
@@ -178,7 +178,7 @@ donationpoint = client.donationpoint
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.donationpoint.list(nil)
+results = client.Donationpoint.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -186,7 +186,7 @@ results = client.donationpoint.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.donationpoint.load({ "id" => "donationpoint_id" })
+result = client.Donationpoint.load({ "id" => "donationpoint_id" })
 ```
 
 ### Common Methods
@@ -222,7 +222,7 @@ Return the entity name.
 ## FoodbankEntity
 
 ```ruby
-foodbank = client.foodbank
+foodbank = client.Foodbank
 ```
 
 ### Fields
@@ -250,7 +250,7 @@ foodbank = client.foodbank
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.foodbank.list(nil)
+results = client.Foodbank.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -258,7 +258,7 @@ results = client.foodbank.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.foodbank.load({ "id" => "foodbank_id" })
+result = client.Foodbank.load({ "id" => "foodbank_id" })
 ```
 
 ### Common Methods
@@ -294,7 +294,7 @@ Return the entity name.
 ## ItemEntity
 
 ```ruby
-item = client.item
+item = client.Item
 ```
 
 ### Fields
@@ -314,7 +314,7 @@ item = client.item
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.item.list(nil)
+results = client.Item.list(nil)
 ```
 
 ### Common Methods
