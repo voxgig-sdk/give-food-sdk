@@ -4,6 +4,11 @@
 
 The Python SDK for the GiveFood API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Article()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,11 +43,39 @@ error — iterate it directly.
 
 ```python
 try:
-    articles = client.Article().list({})
+    articles = client.Article().list()
     for article in articles:
         print(article)
 except Exception as err:
     print(f"list failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    articles = client.Article().list()
+    print(articles)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -63,7 +96,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -89,7 +125,7 @@ Create a mock client for unit testing — no server required:
 client = GiveFoodSDK.test()
 
 # Entity ops return the bare record and raise on error.
-article = client.Article().load({"id": "test01"})
+article = client.Article().list()
 # article contains the mock response record
 ```
 
@@ -179,9 +215,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -290,23 +323,23 @@ Create an instance: `article = client.Article()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `foodbank_slug` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `published` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `foodbank_slug` | `str` |  |
+| `id` | `int` |  |
+| `published` | `str` |  |
+| `source` | `str` |  |
+| `title` | `str` |  |
+| `url` | `str` |  |
 
 #### Example: List
 
 ```python
-articles = client.Article().list({})
+articles = client.Article().list()
 ```
 
 
@@ -318,21 +351,21 @@ Create an instance: `donationpoint = client.Donationpoint()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `foodbank_slug` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `postcode` | ``$STRING`` |  |
-| `slug` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `address` | `str` |  |
+| `foodbank_slug` | `str` |  |
+| `latitude` | `float` |  |
+| `longitude` | `float` |  |
+| `name` | `str` |  |
+| `postcode` | `str` |  |
+| `slug` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
@@ -343,7 +376,7 @@ donationpoint = client.Donationpoint().load({"id": "donationpoint_id"})
 #### Example: List
 
 ```python
-donationpoints = client.Donationpoint().list({})
+donationpoints = client.Donationpoint().list()
 ```
 
 
@@ -355,26 +388,26 @@ Create an instance: `foodbank = client.Foodbank()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `items_needed` | ``$ARRAY`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `need` | ``$OBJECT`` |  |
-| `phone` | ``$STRING`` |  |
-| `postcode` | ``$STRING`` |  |
-| `shopping_list_url` | ``$STRING`` |  |
-| `slug` | ``$STRING`` |  |
-| `updated` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `address` | `str` |  |
+| `email` | `str` |  |
+| `items_needed` | `list` |  |
+| `latitude` | `float` |  |
+| `longitude` | `float` |  |
+| `name` | `str` |  |
+| `need` | `dict` |  |
+| `phone` | `str` |  |
+| `postcode` | `str` |  |
+| `shopping_list_url` | `str` |  |
+| `slug` | `str` |  |
+| `updated` | `str` |  |
+| `url` | `str` |  |
 
 #### Example: Load
 
@@ -385,7 +418,7 @@ foodbank = client.Foodbank().load({"id": "foodbank_id"})
 #### Example: List
 
 ```python
-foodbanks = client.Foodbank().list({})
+foodbanks = client.Foodbank().list()
 ```
 
 
@@ -397,31 +430,35 @@ Create an instance: `item = client.Item()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created` | ``$STRING`` |  |
-| `foodbank_slug` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `item` | ``$STRING`` |  |
-| `updated` | ``$STRING`` |  |
+| `created` | `str` |  |
+| `foodbank_slug` | `str` |  |
+| `id` | `int` |  |
+| `item` | `str` |  |
+| `updated` | `str` |  |
 
 #### Example: List
 
 ```python
-items = client.Item().list({})
+items = client.Item().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -438,8 +475,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -482,14 +520,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 article = client.Article()
-article.load({"id": "example_id"})
+article.list()
 
-# article.data_get() now returns the loaded article data
+# article.data_get() now returns the article data from the last list
 # article.match_get() returns the last match criteria
 ```
 

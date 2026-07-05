@@ -4,6 +4,8 @@
 
 The PHP SDK for the GiveFood API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Article()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,10 +38,41 @@ try {
     // list() returns an array of Article records — iterate directly.
     $articles = $client->Article()->list();
     foreach ($articles as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["id"] . " " . $item["foodbank_slug"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $articles = $client->Article()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -63,7 +96,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -84,16 +120,13 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = GiveFoodSDK::test([
-    "entity" => ["article" => ["test01" => ["id" => "test01"]]],
-]);
+$client = GiveFoodSDK::test();
 
-// load() returns the bare mock record (throws on error).
-$article = $client->Article()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$article = $client->Article()->list();
 print_r($article);
 ```
 
@@ -185,10 +218,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -303,12 +333,12 @@ Create an instance: `$article = $client->Article();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `foodbank_slug` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `published` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `foodbank_slug` | `string` |  |
+| `id` | `int` |  |
+| `published` | `string` |  |
+| `source` | `string` |  |
+| `title` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -333,14 +363,14 @@ Create an instance: `$donationpoint = $client->Donationpoint();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `foodbank_slug` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `postcode` | ``$STRING`` |  |
-| `slug` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `foodbank_slug` | `string` |  |
+| `latitude` | `float` |  |
+| `longitude` | `float` |  |
+| `name` | `string` |  |
+| `postcode` | `string` |  |
+| `slug` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -372,19 +402,19 @@ Create an instance: `$foodbank = $client->Foodbank();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `items_needed` | ``$ARRAY`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `need` | ``$OBJECT`` |  |
-| `phone` | ``$STRING`` |  |
-| `postcode` | ``$STRING`` |  |
-| `shopping_list_url` | ``$STRING`` |  |
-| `slug` | ``$STRING`` |  |
-| `updated` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `email` | `string` |  |
+| `items_needed` | `array` |  |
+| `latitude` | `float` |  |
+| `longitude` | `float` |  |
+| `name` | `string` |  |
+| `need` | `array` |  |
+| `phone` | `string` |  |
+| `postcode` | `string` |  |
+| `shopping_list_url` | `string` |  |
+| `slug` | `string` |  |
+| `updated` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
@@ -415,11 +445,11 @@ Create an instance: `$item = $client->Item();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created` | ``$STRING`` |  |
-| `foodbank_slug` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `item` | ``$STRING`` |  |
-| `updated` | ``$STRING`` |  |
+| `created` | `string` |  |
+| `foodbank_slug` | `string` |  |
+| `id` | `int` |  |
+| `item` | `string` |  |
+| `updated` | `string` |  |
 
 #### Example: List
 
@@ -429,12 +459,16 @@ $items = $client->Item()->list();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -451,8 +485,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -496,15 +531,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $article = $client->Article();
-$article->load(["id" => "example_id"]);
+$article->list();
 
-// $article->dataGet() now returns the loaded article data
-// $article->matchGet() returns the last match criteria
+// $article->data_get() now returns the article data from the last list
+// $article->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

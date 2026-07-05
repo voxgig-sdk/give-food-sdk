@@ -8,7 +8,7 @@ Complete API reference for the GiveFood Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'give-food_sdk'
+require_relative 'GiveFood_sdk'
 
 client = GiveFoodSDK.new(options)
 ```
@@ -105,21 +105,21 @@ article = client.Article
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `foodbank_slug` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `published` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `foodbank_slug` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `published` | `String` | No |  |
+| `source` | `String` | No |  |
+| `title` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Article.list(nil)
+results = client.Article.list
 ```
 
 ### Common Methods
@@ -162,23 +162,23 @@ donationpoint = client.Donationpoint
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `foodbank_slug` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `postcode` | ``$STRING`` | No |  |
-| `slug` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `address` | `String` | No |  |
+| `foodbank_slug` | `String` | No |  |
+| `latitude` | `Float` | No |  |
+| `longitude` | `Float` | No |  |
+| `name` | `String` | No |  |
+| `postcode` | `String` | No |  |
+| `slug` | `String` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Donationpoint.list(nil)
+results = client.Donationpoint.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -229,28 +229,28 @@ foodbank = client.Foodbank
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `items_needed` | ``$ARRAY`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `need` | ``$OBJECT`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `postcode` | ``$STRING`` | No |  |
-| `shopping_list_url` | ``$STRING`` | No |  |
-| `slug` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `address` | `String` | No |  |
+| `email` | `String` | No |  |
+| `items_needed` | `Array` | No |  |
+| `latitude` | `Float` | No |  |
+| `longitude` | `Float` | No |  |
+| `name` | `String` | No |  |
+| `need` | `Hash` | No |  |
+| `phone` | `String` | No |  |
+| `postcode` | `String` | No |  |
+| `shopping_list_url` | `String` | No |  |
+| `slug` | `String` | No |  |
+| `updated` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Foodbank.list(nil)
+results = client.Foodbank.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -301,20 +301,20 @@ item = client.Item
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | ``$STRING`` | No |  |
-| `foodbank_slug` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `item` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
+| `created` | `String` | No |  |
+| `foodbank_slug` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `item` | `String` | No |  |
+| `updated` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Item.list(nil)
+results = client.Item.list
 ```
 
 ### Common Methods

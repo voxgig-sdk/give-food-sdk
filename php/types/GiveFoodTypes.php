@@ -23,7 +23,7 @@ class Article
     public ?string $url = null;
 }
 
-/** Match filter for Article#list (any subset of Article fields). */
+/** Request payload for Article#list. */
 class ArticleListMatch
 {
     public ?string $foodbank_slug = null;
@@ -53,7 +53,7 @@ class DonationpointLoadMatch
     public string $id;
 }
 
-/** Match filter for Donationpoint#list (any subset of Donationpoint fields). */
+/** Request payload for Donationpoint#list. */
 class DonationpointListMatch
 {
     public ?string $address = null;
@@ -90,7 +90,7 @@ class FoodbankLoadMatch
     public string $id;
 }
 
-/** Match filter for Foodbank#list (any subset of Foodbank fields). */
+/** Request payload for Foodbank#list. */
 class FoodbankListMatch
 {
     public ?string $address = null;
@@ -118,7 +118,7 @@ class Item
     public ?string $updated = null;
 }
 
-/** Match filter for Item#list (any subset of Item fields). */
+/** Request payload for Item#list. */
 class ItemListMatch
 {
     public ?string $created = null;

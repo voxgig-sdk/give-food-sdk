@@ -8,7 +8,7 @@ Complete API reference for the GiveFood PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/give-food_sdk.php';
+require_once __DIR__ . '/givefood_sdk.php';
 
 $client = new GiveFoodSDK($options);
 ```
@@ -57,11 +57,11 @@ Create a new `FoodbankEntity` instance. Pass `null` for no initial data.
 
 Create a new `ItemEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): GiveFoodUtility`
 
 Return a copy of the SDK utility object.
 
@@ -104,38 +104,38 @@ $article = $client->Article();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `foodbank_slug` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `published` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `foodbank_slug` | `string` | No |  |
+| `id` | `int` | No |  |
+| `published` | `string` | No |  |
+| `source` | `string` | No |  |
+| `title` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Article()->list([]);
+$results = $client->Article()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -144,7 +144,7 @@ Set the entity match criteria.
 Create a new `ArticleEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -161,23 +161,23 @@ $donationpoint = $client->Donationpoint();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `foodbank_slug` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `postcode` | ``$STRING`` | No |  |
-| `slug` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `foodbank_slug` | `string` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
+| `name` | `string` | No |  |
+| `postcode` | `string` | No |  |
+| `slug` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Donationpoint()->list([]);
+$results = $client->Donationpoint()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -190,19 +190,19 @@ $result = $client->Donationpoint()->load(["id" => "donationpoint_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -211,7 +211,7 @@ Set the entity match criteria.
 Create a new `DonationpointEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -228,28 +228,28 @@ $foodbank = $client->Foodbank();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `items_needed` | ``$ARRAY`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `need` | ``$OBJECT`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `postcode` | ``$STRING`` | No |  |
-| `shopping_list_url` | ``$STRING`` | No |  |
-| `slug` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `email` | `string` | No |  |
+| `items_needed` | `array` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
+| `name` | `string` | No |  |
+| `need` | `array` | No |  |
+| `phone` | `string` | No |  |
+| `postcode` | `string` | No |  |
+| `shopping_list_url` | `string` | No |  |
+| `slug` | `string` | No |  |
+| `updated` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Foodbank()->list([]);
+$results = $client->Foodbank()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -262,19 +262,19 @@ $result = $client->Foodbank()->load(["id" => "foodbank_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -283,7 +283,7 @@ Set the entity match criteria.
 Create a new `FoodbankEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -300,37 +300,37 @@ $item = $client->Item();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | ``$STRING`` | No |  |
-| `foodbank_slug` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `item` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
+| `created` | `string` | No |  |
+| `foodbank_slug` | `string` | No |  |
+| `id` | `int` | No |  |
+| `item` | `string` | No |  |
+| `updated` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Item()->list([]);
+$results = $client->Item()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -339,7 +339,7 @@ Set the entity match criteria.
 Create a new `ItemEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

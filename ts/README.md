@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the GiveFood API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.Article()` — each with a small set of operations (`list`, `load`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,6 +42,35 @@ const articles = await client.Article().list()
 
 for (const article of articles) {
   console.log(article)
+}
+```
+
+
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const articles = await client.Article().list()
+  console.log(articles)
+} catch (err) {
+  console.error('list failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
 }
 ```
 
@@ -85,7 +119,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = GiveFoodSDK.test()
 
-const article = await client.Article().load({ id: 'test01' })
+const article = await client.Article().list()
 // article is a bare entity populated with mock response data
 console.log(article)
 ```
@@ -104,12 +138,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.Article()
 
-// First call sets internal match
-await entity.load({ id: 'example' })
+// First call runs the operation and stores its result
+await entity.list()
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -202,11 +236,8 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): GiveFoodSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -216,10 +247,9 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
+- `load` resolves to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -342,12 +372,12 @@ Create an instance: `const article = client.Article()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `foodbank_slug` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `published` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `foodbank_slug` | `string` |  |
+| `id` | `number` |  |
+| `published` | `string` |  |
+| `source` | `string` |  |
+| `title` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -371,14 +401,14 @@ Create an instance: `const donationpoint = client.Donationpoint()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `foodbank_slug` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `postcode` | ``$STRING`` |  |
-| `slug` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `foodbank_slug` | `string` |  |
+| `latitude` | `number` |  |
+| `longitude` | `number` |  |
+| `name` | `string` |  |
+| `postcode` | `string` |  |
+| `slug` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -408,19 +438,19 @@ Create an instance: `const foodbank = client.Foodbank()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `items_needed` | ``$ARRAY`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `need` | ``$OBJECT`` |  |
-| `phone` | ``$STRING`` |  |
-| `postcode` | ``$STRING`` |  |
-| `shopping_list_url` | ``$STRING`` |  |
-| `slug` | ``$STRING`` |  |
-| `updated` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `email` | `string` |  |
+| `items_needed` | `any[]` |  |
+| `latitude` | `number` |  |
+| `longitude` | `number` |  |
+| `name` | `string` |  |
+| `need` | `Record<string, any>` |  |
+| `phone` | `string` |  |
+| `postcode` | `string` |  |
+| `shopping_list_url` | `string` |  |
+| `slug` | `string` |  |
+| `updated` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
@@ -449,11 +479,11 @@ Create an instance: `const item = client.Item()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created` | ``$STRING`` |  |
-| `foodbank_slug` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `item` | ``$STRING`` |  |
-| `updated` | ``$STRING`` |  |
+| `created` | `string` |  |
+| `foodbank_slug` | `string` |  |
+| `id` | `number` |  |
+| `item` | `string` |  |
+| `updated` | `string` |  |
 
 #### Example: List
 
@@ -462,12 +492,16 @@ const items = await client.Item().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -484,11 +518,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -524,16 +556,16 @@ import { GiveFoodSDK } from '@voxgig-sdk/give-food'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
 const article = client.Article()
-await article.load({ id: "example_id" })
+await article.list()
 
-// article.data() now returns the loaded article data
-// article.match() returns { id: "example_id" }
+// article.data() now returns the article data from the last `list`
+// article.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

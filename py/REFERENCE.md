@@ -8,7 +8,7 @@ Complete API reference for the GiveFood Python SDK.
 ### Constructor
 
 ```python
-from give-food_sdk import GiveFoodSDK
+from givefood_sdk import GiveFoodSDK
 
 client = GiveFoodSDK(options)
 ```
@@ -99,21 +99,21 @@ article = client.Article()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `foodbank_slug` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `published` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `foodbank_slug` | `str` | No |  |
+| `id` | `int` | No |  |
+| `published` | `str` | No |  |
+| `source` | `str` | No |  |
+| `title` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Article().list({})
+results = client.Article().list()
 for article in results:
     print(article)
 ```
@@ -157,23 +157,23 @@ donationpoint = client.Donationpoint()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `foodbank_slug` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `postcode` | ``$STRING`` | No |  |
-| `slug` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `address` | `str` | No |  |
+| `foodbank_slug` | `str` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
+| `name` | `str` | No |  |
+| `postcode` | `str` | No |  |
+| `slug` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Donationpoint().list({})
+results = client.Donationpoint().list()
 for donationpoint in results:
     print(donationpoint)
 ```
@@ -225,28 +225,28 @@ foodbank = client.Foodbank()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `items_needed` | ``$ARRAY`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `need` | ``$OBJECT`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `postcode` | ``$STRING`` | No |  |
-| `shopping_list_url` | ``$STRING`` | No |  |
-| `slug` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `address` | `str` | No |  |
+| `email` | `str` | No |  |
+| `items_needed` | `list` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
+| `name` | `str` | No |  |
+| `need` | `dict` | No |  |
+| `phone` | `str` | No |  |
+| `postcode` | `str` | No |  |
+| `shopping_list_url` | `str` | No |  |
+| `slug` | `str` | No |  |
+| `updated` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Foodbank().list({})
+results = client.Foodbank().list()
 for foodbank in results:
     print(foodbank)
 ```
@@ -298,20 +298,20 @@ item = client.Item()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | ``$STRING`` | No |  |
-| `foodbank_slug` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `item` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
+| `created` | `str` | No |  |
+| `foodbank_slug` | `str` | No |  |
+| `id` | `int` | No |  |
+| `item` | `str` | No |  |
+| `updated` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Item().list({})
+results = client.Item().list()
 for item in results:
     print(item)
 ```

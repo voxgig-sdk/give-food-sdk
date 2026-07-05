@@ -37,7 +37,7 @@ Article = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Article#list (any subset of Article fields).
+# Request payload for Article#list.
 #
 # @!attribute [rw] foodbank_slug
 #   @return [String, nil]
@@ -112,7 +112,7 @@ DonationpointLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Donationpoint#list (any subset of Donationpoint fields).
+# Request payload for Donationpoint#list.
 #
 # @!attribute [rw] address
 #   @return [String, nil]
@@ -215,7 +215,7 @@ FoodbankLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Foodbank#list (any subset of Foodbank fields).
+# Request payload for Foodbank#list.
 #
 # @!attribute [rw] address
 #   @return [String, nil]
@@ -297,7 +297,7 @@ Item = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Item#list (any subset of Item fields).
+# Request payload for Item#list.
 #
 # @!attribute [rw] created
 #   @return [String, nil]

@@ -152,12 +152,12 @@ const article = client.Article()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `foodbank_slug` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `published` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `foodbank_slug` | `string` | No |  |
+| `id` | `number` | No |  |
+| `published` | `string` | No |  |
+| `source` | `string` | No |  |
+| `title` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -207,14 +207,14 @@ const donationpoint = client.Donationpoint()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `foodbank_slug` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `postcode` | ``$STRING`` | No |  |
-| `slug` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `foodbank_slug` | `string` | No |  |
+| `latitude` | `number` | No |  |
+| `longitude` | `number` | No |  |
+| `name` | `string` | No |  |
+| `postcode` | `string` | No |  |
+| `slug` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -272,19 +272,19 @@ const foodbank = client.Foodbank()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `items_needed` | ``$ARRAY`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `need` | ``$OBJECT`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `postcode` | ``$STRING`` | No |  |
-| `shopping_list_url` | ``$STRING`` | No |  |
-| `slug` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `email` | `string` | No |  |
+| `items_needed` | `any[]` | No |  |
+| `latitude` | `number` | No |  |
+| `longitude` | `number` | No |  |
+| `name` | `string` | No |  |
+| `need` | `Record<string, any>` | No |  |
+| `phone` | `string` | No |  |
+| `postcode` | `string` | No |  |
+| `shopping_list_url` | `string` | No |  |
+| `slug` | `string` | No |  |
+| `updated` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -342,11 +342,11 @@ const item = client.Item()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | ``$STRING`` | No |  |
-| `foodbank_slug` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `item` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
+| `created` | `string` | No |  |
+| `foodbank_slug` | `string` | No |  |
+| `id` | `number` | No |  |
+| `item` | `string` | No |  |
+| `updated` | `string` | No |  |
 
 ### Operations
 

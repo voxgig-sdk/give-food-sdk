@@ -18,8 +18,7 @@ type Article struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// ArticleListMatch mirrors the article fields as an all-optional match
-// filter (Go analog of Partial<Article>).
+// ArticleListMatch is the typed request payload for Article.ListTyped.
 type ArticleListMatch struct {
 	FoodbankSlug *string `json:"foodbank_slug,omitempty"`
 	Id *int `json:"id,omitempty"`
@@ -46,8 +45,7 @@ type DonationpointLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// DonationpointListMatch mirrors the donationpoint fields as an all-optional match
-// filter (Go analog of Partial<Donationpoint>).
+// DonationpointListMatch is the typed request payload for Donationpoint.ListTyped.
 type DonationpointListMatch struct {
 	Address *string `json:"address,omitempty"`
 	FoodbankSlug *string `json:"foodbank_slug,omitempty"`
@@ -81,8 +79,7 @@ type FoodbankLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// FoodbankListMatch mirrors the foodbank fields as an all-optional match
-// filter (Go analog of Partial<Foodbank>).
+// FoodbankListMatch is the typed request payload for Foodbank.ListTyped.
 type FoodbankListMatch struct {
 	Address *string `json:"address,omitempty"`
 	Email *string `json:"email,omitempty"`
@@ -108,8 +105,7 @@ type Item struct {
 	Updated *string `json:"updated,omitempty"`
 }
 
-// ItemListMatch mirrors the item fields as an all-optional match
-// filter (Go analog of Partial<Item>).
+// ItemListMatch is the typed request payload for Item.ListTyped.
 type ItemListMatch struct {
 	Created *string `json:"created,omitempty"`
 	FoodbankSlug *string `json:"foodbank_slug,omitempty"`

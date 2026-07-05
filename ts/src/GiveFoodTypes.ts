@@ -14,7 +14,14 @@ export interface Article {
   url?: string
 }
 
-export type ArticleListMatch = Partial<Article>
+export interface ArticleListMatch {
+  foodbank_slug?: string
+  id?: number
+  published?: string
+  source?: string
+  title?: string
+  url?: string
+}
 
 export interface Donationpoint {
   address?: string
@@ -31,7 +38,16 @@ export interface DonationpointLoadMatch {
   id: string
 }
 
-export type DonationpointListMatch = Partial<Donationpoint>
+export interface DonationpointListMatch {
+  address?: string
+  foodbank_slug?: string
+  latitude?: number
+  longitude?: number
+  name?: string
+  postcode?: string
+  slug?: string
+  type?: string
+}
 
 export interface Foodbank {
   address?: string
@@ -53,7 +69,21 @@ export interface FoodbankLoadMatch {
   id: string
 }
 
-export type FoodbankListMatch = Partial<Foodbank>
+export interface FoodbankListMatch {
+  address?: string
+  email?: string
+  items_needed?: any[]
+  latitude?: number
+  longitude?: number
+  name?: string
+  need?: Record<string, any>
+  phone?: string
+  postcode?: string
+  shopping_list_url?: string
+  slug?: string
+  updated?: string
+  url?: string
+}
 
 export interface Item {
   created?: string
@@ -63,5 +93,11 @@ export interface Item {
   updated?: string
 }
 
-export type ItemListMatch = Partial<Item>
+export interface ItemListMatch {
+  created?: string
+  foodbank_slug?: string
+  id?: number
+  item?: string
+  updated?: string
+}
 

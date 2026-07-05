@@ -221,25 +221,25 @@ class GiveFoodSDK:
 
 
     def Article(self, data=None) -> "ArticleEntity":
-        """Entity factory: client.Article().list({}) / client.Article().load({"id": ...})."""
+        """Entity factory: client.Article().list() / client.Article().load({"id": ...})."""
         from entity.article_entity import ArticleEntity
         return ArticleEntity(self, data)
 
 
     def Donationpoint(self, data=None) -> "DonationpointEntity":
-        """Entity factory: client.Donationpoint().list({}) / client.Donationpoint().load({"id": ...})."""
+        """Entity factory: client.Donationpoint().list() / client.Donationpoint().load({"id": ...})."""
         from entity.donationpoint_entity import DonationpointEntity
         return DonationpointEntity(self, data)
 
 
     def Foodbank(self, data=None) -> "FoodbankEntity":
-        """Entity factory: client.Foodbank().list({}) / client.Foodbank().load({"id": ...})."""
+        """Entity factory: client.Foodbank().list() / client.Foodbank().load({"id": ...})."""
         from entity.foodbank_entity import FoodbankEntity
         return FoodbankEntity(self, data)
 
 
     def Item(self, data=None) -> "ItemEntity":
-        """Entity factory: client.Item().list({}) / client.Item().load({"id": ...})."""
+        """Entity factory: client.Item().list() / client.Item().load({"id": ...})."""
         from entity.item_entity import ItemEntity
         return ItemEntity(self, data)
 
