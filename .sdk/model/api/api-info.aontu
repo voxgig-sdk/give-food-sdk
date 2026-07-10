@@ -19,10 +19,10 @@ main: {
           url: "https://www.givefood.org.uk/api/2"
         }
       ]
+      summary: "This API provides access to the largest public database of food banks in the UK, including details about their locations and the items they need donated."
       termsOfService: "https://www.givefood.org.uk/api/"
       title: "Give Food API"
       version: "1.0.0"
+      website: "https://www.givefood.org.uk/api/"
     }
   }
-}
-

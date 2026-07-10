@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -782,15 +779,18 @@
           "name": "Attribution Required",
           "url": "https://www.givefood.org.uk/api/"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://www.givefood.org.uk/api/2"
           }
         ],
+        "summary": "This API provides access to the largest public database of food banks in the UK, including details about their locations and the items they need donated.",
         "termsOfService": "https://www.givefood.org.uk/api/",
         "title": "Give Food API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://www.givefood.org.uk/api/"
       },
       "option": {},
       "target": {
@@ -843,6 +843,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -893,6 +896,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

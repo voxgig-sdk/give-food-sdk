@@ -103,6 +103,7 @@ same parameters as `Direct()`.
 
 ```go
 article := client.Article(nil)
+fmt.Println(article.GetName()) // "article"
 ```
 
 ### Fields
@@ -124,6 +125,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Article(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -154,6 +159,7 @@ Return the entity name.
 
 ```go
 donationpoint := client.Donationpoint(nil)
+fmt.Println(donationpoint.GetName()) // "donationpoint"
 ```
 
 ### Fields
@@ -177,6 +183,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Donationpoint(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -185,6 +195,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Donationpoint(nil).Load(map[string]any{"id": "donationpoint_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -215,6 +229,7 @@ Return the entity name.
 
 ```go
 foodbank := client.Foodbank(nil)
+fmt.Println(foodbank.GetName()) // "foodbank"
 ```
 
 ### Fields
@@ -243,6 +258,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Foodbank(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -251,6 +270,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Foodbank(nil).Load(map[string]any{"id": "foodbank_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -281,6 +304,7 @@ Return the entity name.
 
 ```go
 item := client.Item(nil)
+fmt.Println(item.GetName()) // "item"
 ```
 
 ### Fields
@@ -301,6 +325,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Item(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
