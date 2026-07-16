@@ -27,7 +27,20 @@ func main() {
 }
 
 func run(args []string, in io.Reader, out, errOut io.Writer) int {
-	client := sdk.NewGiveFoodSDK(nil)
+	// Configure from the environment: GIVE_FOOD_APIKEY carries the API key and
+	// GIVE_FOOD_BASE optionally overrides the API base URL (e.g. production).
+	// Both injectable by a secrets vault. Unset -> nil config defaults.
+	var opts map[string]any
+	if apikey := os.Getenv("GIVE_FOOD_APIKEY"); apikey != "" {
+		opts = map[string]any{"apikey": apikey}
+	}
+	if base := os.Getenv("GIVE_FOOD_BASE"); base != "" {
+		if opts == nil {
+			opts = map[string]any{}
+		}
+		opts["base"] = base
+	}
+	client := sdk.NewGiveFoodSDK(opts)
 
 	r, err := eng.NewRegistry()
 	if err != nil {
