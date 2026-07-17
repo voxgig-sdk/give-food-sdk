@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- GiveFood SDK exists test
 
 local sdk = require("give-food_sdk")
 
