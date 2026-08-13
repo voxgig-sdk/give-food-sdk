@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'GiveFood',
   }
 
 
@@ -127,6 +127,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/articles/",
               "parts": [
@@ -231,6 +232,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/donationpoints/",
               "parts": [
@@ -280,6 +282,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/donationpoints/{slug}/",
               "parts": [
@@ -357,7 +360,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "need",
+          "name": "needs",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 6
@@ -426,6 +429,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/foodbanks/",
               "parts": [
@@ -475,6 +479,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/foodbanks/{slug}/",
               "parts": [
@@ -565,6 +570,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/items/",
               "parts": [

@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = GiveFoodSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 article = client.Article.list()
 puts article
 ```
@@ -278,7 +279,7 @@ API path: `/donationpoints/`
 | `latitude` |  |
 | `longitude` |  |
 | `name` |  |
-| `need` |  |
+| `needs` |  |
 | `phone` |  |
 | `postcode` |  |
 | `shopping_list_url` |  |
@@ -365,7 +366,7 @@ Create an instance: `donationpoint = client.Donationpoint`
 #### Example: Load
 
 ```ruby
-# load returns the bare Donationpoint record (raises on error).
+# load returns the ENTITY — call data_get for the Donationpoint record (raises on error).
 donationpoint = client.Donationpoint.load({ "id" => "donationpoint_id" })
 ```
 
@@ -398,7 +399,7 @@ Create an instance: `foodbank = client.Foodbank`
 | `latitude` | `Float` |  |
 | `longitude` | `Float` |  |
 | `name` | `String` |  |
-| `need` | `Hash` |  |
+| `needs` | `Hash` |  |
 | `phone` | `String` |  |
 | `postcode` | `String` |  |
 | `shopping_list_url` | `String` |  |
@@ -409,7 +410,7 @@ Create an instance: `foodbank = client.Foodbank`
 #### Example: Load
 
 ```ruby
-# load returns the bare Foodbank record (raises on error).
+# load returns the ENTITY — call data_get for the Foodbank record (raises on error).
 foodbank = client.Foodbank.load({ "id" => "foodbank_id" })
 ```
 

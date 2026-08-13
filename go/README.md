@@ -303,7 +303,7 @@ API path: `/donationpoints/`
 | `"latitude"` |  |
 | `"longitude"` |  |
 | `"name"` |  |
-| `"need"` |  |
+| `"needs"` |  |
 | `"phone"` |  |
 | `"postcode"` |  |
 | `"shopping_list_url"` |  |
@@ -432,7 +432,7 @@ Create an instance: `foodbank := client.Foodbank(nil)`
 | `latitude` | `float64` |  |
 | `longitude` | `float64` |  |
 | `name` | `string` |  |
-| `need` | `map[string]any` |  |
+| `needs` | `map[string]any` |  |
 | `phone` | `string` |  |
 | `postcode` | `string` |  |
 | `shopping_list_url` | `string` |  |

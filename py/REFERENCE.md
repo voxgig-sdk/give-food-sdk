@@ -231,7 +231,7 @@ foodbank = client.Foodbank()
 | `latitude` | `float` | No |  |
 | `longitude` | `float` | No |  |
 | `name` | `str` | No |  |
-| `need` | `dict` | No |  |
+| `needs` | `dict` | No |  |
 | `phone` | `str` | No |  |
 | `postcode` | `str` | No |  |
 | `shopping_list_url` | `str` | No |  |

@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import GiveFoodControl
-from core.error import GiveFoodError
-from core.result import GiveFoodResult
-from core.spec import GiveFoodSpec
+from givefood_sdk.config import make_config
+from givefood_sdk.features import _make_feature
+from givefood_sdk.core.control import GiveFoodControl
+from givefood_sdk.core.error import GiveFoodError
+from givefood_sdk.core.result import GiveFoodResult
+from givefood_sdk.core.spec import GiveFoodSpec
 
 
 # True when this SDK was generated with the named feature.

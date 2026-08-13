@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import GiveFoodSDK
-from core.error import GiveFoodError
-from core.result import GiveFoodResult
-from core.response import GiveFoodResponse
-from core.spec import GiveFoodSpec
-from feature.base_feature import GiveFoodBaseFeature
+from projectname_sdk.core.error import GiveFoodError
+from projectname_sdk.core.result import GiveFoodResult
+from projectname_sdk.core.response import GiveFoodResponse
+from projectname_sdk.core.spec import GiveFoodSpec
+from projectname_sdk.feature.base_feature import GiveFoodBaseFeature
 
 
 def _client():

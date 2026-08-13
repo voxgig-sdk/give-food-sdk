@@ -121,11 +121,11 @@ function donationpoint_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "GIVEFOOD_TEST_DONATIONPOINT_ENTID" => [],
-        "GIVEFOOD_TEST_LIVE" => "FALSE",
+        "GIVE_FOOD_TEST_DONATIONPOINT_ENTID" => [],
+        "GIVE_FOOD_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["GIVEFOOD_TEST_LIVE"] === "TRUE";
+    $live = $env["GIVE_FOOD_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

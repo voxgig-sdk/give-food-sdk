@@ -23,8 +23,8 @@ module GiveFoodTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("GIVEFOOD_TEST_LIVE")
-    override = getenv("GIVEFOOD_TEST_OVERRIDE")
+    live = getenv("GIVE_FOOD_TEST_LIVE")
+    override = getenv("GIVE_FOOD_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module GiveFoodTestRunner
       end
     end
 
-    explain = getenv("GIVEFOOD_TEST_EXPLAIN")
-    m["GIVEFOOD_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("GIVE_FOOD_TEST_EXPLAIN")
+    m["GIVE_FOOD_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

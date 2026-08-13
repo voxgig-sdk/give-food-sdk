@@ -37,7 +37,7 @@ class ItemEntity extends GiveFoodEntityBase<Item> {
 
 
 
-  async list(this: any, reqmatch?: ItemListMatch, ctrl?: Control): Promise<Item[]> {
+  async list(this: any, reqmatch?: ItemListMatch, ctrl?: Control): Promise<ItemEntity[]> {
 
     const utility = this._utility
 

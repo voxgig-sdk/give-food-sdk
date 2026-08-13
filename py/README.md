@@ -124,7 +124,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = GiveFoodSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 article = client.Article().list()
 # article contains the mock response record
 ```
@@ -224,7 +225,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -284,7 +285,7 @@ API path: `/donationpoints/`
 | `latitude` |  |
 | `longitude` |  |
 | `name` |  |
-| `need` |  |
+| `needs` |  |
 | `phone` |  |
 | `postcode` |  |
 | `shopping_list_url` |  |
@@ -401,7 +402,7 @@ Create an instance: `foodbank = client.Foodbank()`
 | `latitude` | `float` |  |
 | `longitude` | `float` |  |
 | `name` | `str` |  |
-| `need` | `dict` |  |
+| `needs` | `dict` |  |
 | `phone` | `str` |  |
 | `postcode` | `str` |  |
 | `shopping_list_url` | `str` |  |

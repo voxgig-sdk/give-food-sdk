@@ -234,7 +234,7 @@ $foodbank = $client->Foodbank();
 | `latitude` | `float` | No |  |
 | `longitude` | `float` | No |  |
 | `name` | `string` | No |  |
-| `need` | `array` | No |  |
+| `needs` | `array` | No |  |
 | `phone` | `string` | No |  |
 | `postcode` | `string` | No |  |
 | `shopping_list_url` | `string` | No |  |

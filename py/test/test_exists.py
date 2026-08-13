@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# GiveFood SDK exists test
 
 import pytest
 from givefood_sdk import GiveFoodSDK

@@ -26,8 +26,8 @@ import {
 describe('ItemEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when GIVEFOOD_TEST_LIVE=TRUE.
-  afterEach(liveDelay('GIVEFOOD_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when GIVE_FOOD_TEST_LIVE=TRUE.
+  afterEach(liveDelay('GIVE_FOOD_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = GiveFoodSDK.test()
@@ -63,7 +63,7 @@ describe('ItemEntity', async () => {
     const item_ref01_ent = client.Item()
     const item_ref01_match: any = {}
 
-    const item_ref01_list = await item_ref01_ent.list(item_ref01_match)
+    const item_ref01_list = (await item_ref01_ent.list(item_ref01_match)).map((e: any) => e.data())
 
 
   })

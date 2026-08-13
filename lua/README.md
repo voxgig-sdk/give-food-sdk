@@ -223,9 +223,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local article, err = client:Article():load()
+    local donationpoint, err = client:Donationpoint():load({ id = "example_id" })
     if err then error(err) end
-    -- article is the loaded record
+    -- donationpoint is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -274,7 +274,7 @@ API path: `/donationpoints/`
 | `latitude` |  |
 | `longitude` |  |
 | `name` |  |
-| `need` |  |
+| `needs` |  |
 | `phone` |  |
 | `postcode` |  |
 | `shopping_list_url` |  |
@@ -391,7 +391,7 @@ Create an instance: `local foodbank = client:Foodbank(nil)`
 | `latitude` | `number` |  |
 | `longitude` | `number` |  |
 | `name` | `string` |  |
-| `need` | `table` |  |
+| `needs` | `table` |  |
 | `phone` | `string` |  |
 | `postcode` | `string` |  |
 | `shopping_list_url` | `string` |  |

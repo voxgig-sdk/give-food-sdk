@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from givefood_sdk.utility.voxgig_struct import voxgig_struct as vs
 from givefood_sdk import GiveFoodSDK
-from core import helpers
+from givefood_sdk.core import helpers
 from test import runner
 
 
@@ -105,11 +105,11 @@ def _donationpoint_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "GIVEFOOD_TEST_DONATIONPOINT_ENTID": {},
-        "GIVEFOOD_TEST_LIVE": "FALSE",
+        "GIVE_FOOD_TEST_DONATIONPOINT_ENTID": {},
+        "GIVE_FOOD_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("GIVEFOOD_TEST_LIVE") == "TRUE"
+    live = env.get("GIVE_FOOD_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

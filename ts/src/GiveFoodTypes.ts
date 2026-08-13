@@ -56,7 +56,7 @@ export interface Foodbank {
   latitude?: number
   longitude?: number
   name?: string
-  need?: Record<string, any>
+  needs?: Record<string, any>
   phone?: string
   postcode?: string
   shopping_list_url?: string
@@ -76,7 +76,7 @@ export interface FoodbankListMatch {
   latitude?: number
   longitude?: number
   name?: string
-  need?: Record<string, any>
+  needs?: Record<string, any>
   phone?: string
   postcode?: string
   shopping_list_url?: string

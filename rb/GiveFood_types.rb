@@ -169,7 +169,7 @@ DonationpointListMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] need
+# @!attribute [rw] needs
 #   @return [Hash, nil]
 #
 # @!attribute [rw] phone
@@ -196,7 +196,7 @@ Foodbank = Struct.new(
   :latitude,
   :longitude,
   :name,
-  :need,
+  :needs,
   :phone,
   :postcode,
   :shopping_list_url,
@@ -235,7 +235,7 @@ FoodbankLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] need
+# @!attribute [rw] needs
 #   @return [Hash, nil]
 #
 # @!attribute [rw] phone
@@ -262,7 +262,7 @@ FoodbankListMatch = Struct.new(
   :latitude,
   :longitude,
   :name,
-  :need,
+  :needs,
   :phone,
   :postcode,
   :shopping_list_url,

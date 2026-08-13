@@ -242,7 +242,7 @@ fmt.Println(foodbank.GetName()) // "foodbank"
 | `latitude` | `float64` | No |  |
 | `longitude` | `float64` | No |  |
 | `name` | `string` | No |  |
-| `need` | `map[string]any` | No |  |
+| `needs` | `map[string]any` | No |  |
 | `phone` | `string` | No |  |
 | `postcode` | `string` | No |  |
 | `shopping_list_url` | `string` | No |  |

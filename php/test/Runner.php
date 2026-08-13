@@ -43,8 +43,8 @@ class GiveFoodTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('GIVEFOOD_TEST_LIVE');
-        $override = self::getenv('GIVEFOOD_TEST_OVERRIDE');
+        $live = self::getenv('GIVE_FOOD_TEST_LIVE');
+        $override = self::getenv('GIVE_FOOD_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class GiveFoodTestRunner
             }
         }
 
-        $explain = self::getenv('GIVEFOOD_TEST_EXPLAIN');
+        $explain = self::getenv('GIVE_FOOD_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['GIVEFOOD_TEST_EXPLAIN'] = $explain;
+            $m['GIVE_FOOD_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

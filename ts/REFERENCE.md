@@ -278,7 +278,7 @@ const foodbank = client.Foodbank()
 | `latitude` | `number` | No |  |
 | `longitude` | `number` | No |  |
 | `name` | `string` | No |  |
-| `need` | `Record<string, any>` | No |  |
+| `needs` | `Record<string, any>` | No |  |
 | `phone` | `string` | No |  |
 | `postcode` | `string` | No |  |
 | `shopping_list_url` | `string` | No |  |

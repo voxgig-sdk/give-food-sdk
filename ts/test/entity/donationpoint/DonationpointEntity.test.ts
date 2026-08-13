@@ -26,8 +26,8 @@ import {
 describe('DonationpointEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when GIVEFOOD_TEST_LIVE=TRUE.
-  afterEach(liveDelay('GIVEFOOD_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when GIVE_FOOD_TEST_LIVE=TRUE.
+  afterEach(liveDelay('GIVE_FOOD_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = GiveFoodSDK.test()
@@ -63,7 +63,7 @@ describe('DonationpointEntity', async () => {
     const donationpoint_ref01_ent = client.Donationpoint()
     const donationpoint_ref01_match: any = {}
 
-    const donationpoint_ref01_list = await donationpoint_ref01_ent.list(donationpoint_ref01_match)
+    const donationpoint_ref01_list = (await donationpoint_ref01_ent.list(donationpoint_ref01_match)).map((e: any) => e.data())
 
 
 

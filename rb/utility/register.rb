@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ GiveFoodUtility.registrar = ->(u) {
   u.prepare_params = GiveFoodUtilities::PrepareParams
   u.prepare_path = GiveFoodUtilities::PreparePath
   u.prepare_query = GiveFoodUtilities::PrepareQuery
+  u.graphql_body = GiveFoodUtilities::GraphqlBody
+  u.graphql_errors = GiveFoodUtilities::GraphqlErrors
   u.result_basic = GiveFoodUtilities::ResultBasic
   u.result_body = GiveFoodUtilities::ResultBody
   u.result_headers = GiveFoodUtilities::ResultHeaders

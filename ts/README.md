@@ -35,7 +35,9 @@ const client = new GiveFoodSDK()
 
 ### 2. List article records
 
-`list()` resolves to an array of Article objects — iterate it directly:
+`list()` resolves to an array of Article ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const articles = await client.Article().list()
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = GiveFoodSDK.test()
 
 const article = await client.Article().list()
-// article is a bare entity populated with mock response data
+// article is the entity, populated with mock response data
+// — call article.data() for the record itself
 console.log(article)
 ```
 
@@ -327,7 +330,7 @@ API path: `/donationpoints/`
 | `latitude` |  |
 | `longitude` |  |
 | `name` |  |
-| `need` |  |
+| `needs` |  |
 | `phone` |  |
 | `postcode` |  |
 | `shopping_list_url` |  |
@@ -444,7 +447,7 @@ Create an instance: `const foodbank = client.Foodbank()`
 | `latitude` | `number` |  |
 | `longitude` | `number` |  |
 | `name` | `string` |  |
-| `need` | `Record<string, any>` |  |
+| `needs` | `Record<string, any>` |  |
 | `phone` | `string` |  |
 | `postcode` | `string` |  |
 | `shopping_list_url` | `string` |  |

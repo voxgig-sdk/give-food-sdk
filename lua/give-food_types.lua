@@ -52,7 +52,7 @@
 ---@field latitude? number
 ---@field longitude? number
 ---@field name? string
----@field need? table
+---@field needs? table
 ---@field phone? string
 ---@field postcode? string
 ---@field shopping_list_url? string
@@ -70,7 +70,7 @@
 ---@field latitude? number
 ---@field longitude? number
 ---@field name? string
----@field need? table
+---@field needs? table
 ---@field phone? string
 ---@field postcode? string
 ---@field shopping_list_url? string

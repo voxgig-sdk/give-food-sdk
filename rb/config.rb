@@ -92,6 +92,7 @@ module GiveFoodConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/articles/",
                   "parts" => [
@@ -196,6 +197,7 @@ module GiveFoodConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/donationpoints/",
                   "parts" => [
@@ -245,6 +247,7 @@ module GiveFoodConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/donationpoints/{slug}/",
                   "parts" => [
@@ -322,7 +325,7 @@ module GiveFoodConfig
             },
             {
               "active" => true,
-              "name" => "need",
+              "name" => "needs",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 6,
@@ -391,6 +394,7 @@ module GiveFoodConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/foodbanks/",
                   "parts" => [
@@ -440,6 +444,7 @@ module GiveFoodConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/foodbanks/{slug}/",
                   "parts" => [
@@ -530,6 +535,7 @@ module GiveFoodConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/items/",
                   "parts" => [

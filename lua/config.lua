@@ -91,6 +91,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/articles/",
                 ["parts"] = {
@@ -195,6 +196,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/donationpoints/",
                 ["parts"] = {
@@ -244,6 +246,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/donationpoints/{slug}/",
                 ["parts"] = {
@@ -321,7 +324,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "need",
+            ["name"] = "needs",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 6,
@@ -390,6 +393,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/foodbanks/",
                 ["parts"] = {
@@ -439,6 +443,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/foodbanks/{slug}/",
                 ["parts"] = {
@@ -529,6 +534,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/items/",
                 ["parts"] = {

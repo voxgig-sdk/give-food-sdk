@@ -115,11 +115,11 @@ function foodbank_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["GIVEFOOD_TEST_FOODBANK_ENTID"] = {},
-    ["GIVEFOOD_TEST_LIVE"] = "FALSE",
+    ["GIVE_FOOD_TEST_FOODBANK_ENTID"] = {},
+    ["GIVE_FOOD_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["GIVEFOOD_TEST_LIVE"] == "TRUE"
+  local live = env["GIVE_FOOD_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

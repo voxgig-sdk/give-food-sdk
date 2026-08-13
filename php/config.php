@@ -97,6 +97,7 @@ class GiveFoodConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/articles/',
                   'parts' => [
@@ -201,6 +202,7 @@ class GiveFoodConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/donationpoints/',
                   'parts' => [
@@ -250,6 +252,7 @@ class GiveFoodConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/donationpoints/{slug}/',
                   'parts' => [
@@ -327,7 +330,7 @@ class GiveFoodConfig
             ],
             [
               'active' => true,
-              'name' => 'need',
+              'name' => 'needs',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 6,
@@ -396,6 +399,7 @@ class GiveFoodConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/foodbanks/',
                   'parts' => [
@@ -445,6 +449,7 @@ class GiveFoodConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/foodbanks/{slug}/',
                   'parts' => [
@@ -535,6 +540,7 @@ class GiveFoodConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/items/',
                   'parts' => [

@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = GiveFoodSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = GiveFoodSDK.test({
+  entity: {
+    article: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const articles = await client.Article().list()
-// articles is an array of bare Article records populated with mock data
+// articles is an array of Article entities, populated with mock data
+// — call articles[0].data() for the record itself
 console.log(articles)
 ```
 
@@ -110,7 +119,7 @@ import { GiveFoodSDK } from '@voxgig-sdk/give-food'
 
 const client = new GiveFoodSDK()
 
-// List all articles (returns Article[])
+// List all articles (returns ArticleEntity[] — .data() for the record)
 const articles = await client.Article().list()
 for (const article of articles) {
   console.log(article)
@@ -346,6 +355,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.givefood.org.uk/api/2](https://www.givefood.org.uk/api/2)
 

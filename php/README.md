@@ -125,7 +125,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = GiveFoodSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $article = $client->Article()->list();
 print_r($article);
 ```
@@ -228,7 +229,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -288,7 +289,7 @@ API path: `/donationpoints/`
 | `latitude` |  |
 | `longitude` |  |
 | `name` |  |
-| `need` |  |
+| `needs` |  |
 | `phone` |  |
 | `postcode` |  |
 | `shopping_list_url` |  |
@@ -375,7 +376,7 @@ Create an instance: `$donationpoint = $client->Donationpoint();`
 #### Example: Load
 
 ```php
-// load() returns the bare Donationpoint record (throws on error).
+// load() returns the ENTITY — call data_get() for the Donationpoint record (throws on error).
 $donationpoint = $client->Donationpoint()->load(["id" => "donationpoint_id"]);
 ```
 
@@ -408,7 +409,7 @@ Create an instance: `$foodbank = $client->Foodbank();`
 | `latitude` | `float` |  |
 | `longitude` | `float` |  |
 | `name` | `string` |  |
-| `need` | `array` |  |
+| `needs` | `array` |  |
 | `phone` | `string` |  |
 | `postcode` | `string` |  |
 | `shopping_list_url` | `string` |  |
@@ -419,7 +420,7 @@ Create an instance: `$foodbank = $client->Foodbank();`
 #### Example: Load
 
 ```php
-// load() returns the bare Foodbank record (throws on error).
+// load() returns the ENTITY — call data_get() for the Foodbank record (throws on error).
 $foodbank = $client->Foodbank()->load(["id" => "foodbank_id"]);
 ```
 

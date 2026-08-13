@@ -75,7 +75,7 @@ class Foodbank
     public ?float $latitude = null;
     public ?float $longitude = null;
     public ?string $name = null;
-    public ?array $need = null;
+    public ?array $needs = null;
     public ?string $phone = null;
     public ?string $postcode = null;
     public ?string $shopping_list_url = null;
@@ -99,7 +99,7 @@ class FoodbankListMatch
     public ?float $latitude = null;
     public ?float $longitude = null;
     public ?string $name = null;
-    public ?array $need = null;
+    public ?array $needs = null;
     public ?string $phone = null;
     public ?string $postcode = null;
     public ?string $shopping_list_url = null;
