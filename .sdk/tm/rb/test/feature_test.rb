@@ -15,7 +15,7 @@ require_relative "../GiveFood_sdk"
 module GiveFoodFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = GiveFoodConfig.make_config["feature"]
+    f = GiveFoodConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

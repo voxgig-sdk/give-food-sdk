@@ -28,7 +28,7 @@ class GiveFoodSDK
     utility = GiveFoodUtility.new
     @_utility = utility
 
-    config = GiveFoodConfig.make_config
+    config = GiveFoodConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

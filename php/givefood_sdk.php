@@ -40,7 +40,7 @@ class GiveFoodSDK
         $utility = new GiveFoodUtility();
         $this->_utility = $utility;
 
-        $config = GiveFoodConfig::make_config();
+        $config = GiveFoodConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
