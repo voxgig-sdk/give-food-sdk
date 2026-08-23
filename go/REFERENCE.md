@@ -110,12 +110,12 @@ fmt.Println(article.GetName()) // "article"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `foodbank_slug` | `string` | No |  |
-| `id` | `int` | No |  |
-| `published` | `string` | No |  |
-| `source` | `string` | No |  |
-| `title` | `string` | No |  |
-| `url` | `string` | No |  |
+| `foodbank_slug` | `string` | No | Related food bank identifier |
+| `id` | `int` | No | Unique identifier for the article |
+| `published` | `string` | No | Publication date |
+| `source` | `string` | No | Publication source |
+| `title` | `string` | No | Article title |
+| `url` | `string` | No | URL to the article |
 
 ### Operations
 
@@ -166,14 +166,14 @@ fmt.Println(donationpoint.GetName()) // "donationpoint"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `foodbank_slug` | `string` | No |  |
-| `latitude` | `float64` | No |  |
-| `longitude` | `float64` | No |  |
-| `name` | `string` | No |  |
-| `postcode` | `string` | No |  |
-| `slug` | `string` | No |  |
-| `type` | `string` | No |  |
+| `address` | `string` | No | Physical address |
+| `foodbank_slug` | `string` | No | Associated food bank identifier |
+| `latitude` | `float64` | No | Latitude coordinate |
+| `longitude` | `float64` | No | Longitude coordinate |
+| `name` | `string` | No | Name of the donation point |
+| `postcode` | `string` | No | Postal code |
+| `slug` | `string` | No | Unique identifier for the donation point |
+| `type` | `string` | No | Type of donation point (e.g., supermarket, collection point) |
 
 ### Operations
 
@@ -236,19 +236,19 @@ fmt.Println(foodbank.GetName()) // "foodbank"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `email` | `string` | No |  |
-| `items_needed` | `[]any` | No |  |
-| `latitude` | `float64` | No |  |
-| `longitude` | `float64` | No |  |
-| `name` | `string` | No |  |
-| `needs` | `map[string]any` | No |  |
-| `phone` | `string` | No |  |
-| `postcode` | `string` | No |  |
-| `shopping_list_url` | `string` | No |  |
-| `slug` | `string` | No |  |
-| `updated` | `string` | No |  |
-| `url` | `string` | No |  |
+| `address` | `string` | No | Physical address of the food bank |
+| `email` | `string` | No | Contact email address |
+| `items_needed` | `[]any` | No | List of items currently needed for donation |
+| `latitude` | `float64` | No | Latitude coordinate |
+| `longitude` | `float64` | No | Longitude coordinate |
+| `name` | `string` | No | Name of the food bank |
+| `needs` | `map[string]any` | No | Current needs status |
+| `phone` | `string` | No | Contact phone number |
+| `postcode` | `string` | No | Postal code |
+| `shopping_list_url` | `string` | No | URL to the food bank's detailed shopping list |
+| `slug` | `string` | No | Unique identifier for the food bank |
+| `updated` | `string` | No | Last update timestamp |
+| `url` | `string` | No | Website URL |
 
 ### Operations
 
@@ -311,11 +311,11 @@ fmt.Println(item.GetName()) // "item"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | `string` | No |  |
-| `foodbank_slug` | `string` | No |  |
-| `id` | `int` | No |  |
-| `item` | `string` | No |  |
-| `updated` | `string` | No |  |
+| `created` | `string` | No | When this need was recorded |
+| `foodbank_slug` | `string` | No | Food bank identifier |
+| `id` | `int` | No | Unique identifier for the item need record |
+| `item` | `string` | No | Name of the item needed |
+| `updated` | `string` | No | Last update timestamp |
 
 ### Operations
 

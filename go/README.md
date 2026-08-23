@@ -6,7 +6,7 @@ The Golang SDK for the GiveFood API — an entity-oriented client using standard
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Article(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -265,12 +265,12 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"foodbank_slug"` |  |
-| `"id"` |  |
-| `"published"` |  |
-| `"source"` |  |
-| `"title"` |  |
-| `"url"` |  |
+| `"foodbank_slug"` | Related food bank identifier |
+| `"id"` | Unique identifier for the article |
+| `"published"` | Publication date |
+| `"source"` | Publication source |
+| `"title"` | Article title |
+| `"url"` | URL to the article |
 
 Operations: List.
 
@@ -280,14 +280,14 @@ API path: `/articles/`
 
 | Field | Description |
 | --- | --- |
-| `"address"` |  |
-| `"foodbank_slug"` |  |
-| `"latitude"` |  |
-| `"longitude"` |  |
-| `"name"` |  |
-| `"postcode"` |  |
-| `"slug"` |  |
-| `"type"` |  |
+| `"address"` | Physical address |
+| `"foodbank_slug"` | Associated food bank identifier |
+| `"latitude"` | Latitude coordinate |
+| `"longitude"` | Longitude coordinate |
+| `"name"` | Name of the donation point |
+| `"postcode"` | Postal code |
+| `"slug"` | Unique identifier for the donation point |
+| `"type"` | Type of donation point (e.g., supermarket, collection point) |
 
 Operations: List, Load.
 
@@ -297,19 +297,19 @@ API path: `/donationpoints/`
 
 | Field | Description |
 | --- | --- |
-| `"address"` |  |
-| `"email"` |  |
-| `"items_needed"` |  |
-| `"latitude"` |  |
-| `"longitude"` |  |
-| `"name"` |  |
-| `"needs"` |  |
-| `"phone"` |  |
-| `"postcode"` |  |
-| `"shopping_list_url"` |  |
-| `"slug"` |  |
-| `"updated"` |  |
-| `"url"` |  |
+| `"address"` | Physical address of the food bank |
+| `"email"` | Contact email address |
+| `"items_needed"` | List of items currently needed for donation |
+| `"latitude"` | Latitude coordinate |
+| `"longitude"` | Longitude coordinate |
+| `"name"` | Name of the food bank |
+| `"needs"` | Current needs status |
+| `"phone"` | Contact phone number |
+| `"postcode"` | Postal code |
+| `"shopping_list_url"` | URL to the food bank's detailed shopping list |
+| `"slug"` | Unique identifier for the food bank |
+| `"updated"` | Last update timestamp |
+| `"url"` | Website URL |
 
 Operations: List, Load.
 
@@ -319,11 +319,11 @@ API path: `/foodbanks/`
 
 | Field | Description |
 | --- | --- |
-| `"created"` |  |
-| `"foodbank_slug"` |  |
-| `"id"` |  |
-| `"item"` |  |
-| `"updated"` |  |
+| `"created"` | When this need was recorded |
+| `"foodbank_slug"` | Food bank identifier |
+| `"id"` | Unique identifier for the item need record |
+| `"item"` | Name of the item needed |
+| `"updated"` | Last update timestamp |
 
 Operations: List.
 
@@ -348,12 +348,12 @@ Create an instance: `article := client.Article(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `foodbank_slug` | `string` |  |
-| `id` | `int` |  |
-| `published` | `string` |  |
-| `source` | `string` |  |
-| `title` | `string` |  |
-| `url` | `string` |  |
+| `foodbank_slug` | `string` | Related food bank identifier |
+| `id` | `int` | Unique identifier for the article |
+| `published` | `string` | Publication date |
+| `source` | `string` | Publication source |
+| `title` | `string` | Article title |
+| `url` | `string` | URL to the article |
 
 #### Example: List
 
@@ -381,14 +381,14 @@ Create an instance: `donationpoint := client.Donationpoint(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `foodbank_slug` | `string` |  |
-| `latitude` | `float64` |  |
-| `longitude` | `float64` |  |
-| `name` | `string` |  |
-| `postcode` | `string` |  |
-| `slug` | `string` |  |
-| `type` | `string` |  |
+| `address` | `string` | Physical address |
+| `foodbank_slug` | `string` | Associated food bank identifier |
+| `latitude` | `float64` | Latitude coordinate |
+| `longitude` | `float64` | Longitude coordinate |
+| `name` | `string` | Name of the donation point |
+| `postcode` | `string` | Postal code |
+| `slug` | `string` | Unique identifier for the donation point |
+| `type` | `string` | Type of donation point (e.g., supermarket, collection point) |
 
 #### Example: Load
 
@@ -426,19 +426,19 @@ Create an instance: `foodbank := client.Foodbank(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `email` | `string` |  |
-| `items_needed` | `[]any` |  |
-| `latitude` | `float64` |  |
-| `longitude` | `float64` |  |
-| `name` | `string` |  |
-| `needs` | `map[string]any` |  |
-| `phone` | `string` |  |
-| `postcode` | `string` |  |
-| `shopping_list_url` | `string` |  |
-| `slug` | `string` |  |
-| `updated` | `string` |  |
-| `url` | `string` |  |
+| `address` | `string` | Physical address of the food bank |
+| `email` | `string` | Contact email address |
+| `items_needed` | `[]any` | List of items currently needed for donation |
+| `latitude` | `float64` | Latitude coordinate |
+| `longitude` | `float64` | Longitude coordinate |
+| `name` | `string` | Name of the food bank |
+| `needs` | `map[string]any` | Current needs status |
+| `phone` | `string` | Contact phone number |
+| `postcode` | `string` | Postal code |
+| `shopping_list_url` | `string` | URL to the food bank's detailed shopping list |
+| `slug` | `string` | Unique identifier for the food bank |
+| `updated` | `string` | Last update timestamp |
+| `url` | `string` | Website URL |
 
 #### Example: Load
 
@@ -475,11 +475,11 @@ Create an instance: `item := client.Item(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created` | `string` |  |
-| `foodbank_slug` | `string` |  |
-| `id` | `int` |  |
-| `item` | `string` |  |
-| `updated` | `string` |  |
+| `created` | `string` | When this need was recorded |
+| `foodbank_slug` | `string` | Food bank identifier |
+| `id` | `int` | Unique identifier for the item need record |
+| `item` | `string` | Name of the item needed |
+| `updated` | `string` | Last update timestamp |
 
 #### Example: List
 

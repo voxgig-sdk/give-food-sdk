@@ -1,0 +1,84 @@
+# Entity: item
+
+main: kit: entity: item: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "created"
+      req: false
+      short: "When this need was recorded"
+      type: "`$STRING`"
+    }
+    {
+      name: "foodbank_slug"
+      req: false
+      short: "Food bank identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique identifier for the item need record"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "item"
+      req: false
+      short: "Name of the item needed"
+      type: "`$STRING`"
+    }
+    {
+      name: "updated"
+      req: false
+      short: "Last update timestamp"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "item"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/items/"
+          parts: [
+            "items"
+          ]
+          select: {
+            exist: [
+              "format"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

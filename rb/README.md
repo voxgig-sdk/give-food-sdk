@@ -241,12 +241,12 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `foodbank_slug` |  |
-| `id` |  |
-| `published` |  |
-| `source` |  |
-| `title` |  |
-| `url` |  |
+| `foodbank_slug` | Related food bank identifier |
+| `id` | Unique identifier for the article |
+| `published` | Publication date |
+| `source` | Publication source |
+| `title` | Article title |
+| `url` | URL to the article |
 
 Operations: List.
 
@@ -256,14 +256,14 @@ API path: `/articles/`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `foodbank_slug` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `name` |  |
-| `postcode` |  |
-| `slug` |  |
-| `type` |  |
+| `address` | Physical address |
+| `foodbank_slug` | Associated food bank identifier |
+| `latitude` | Latitude coordinate |
+| `longitude` | Longitude coordinate |
+| `name` | Name of the donation point |
+| `postcode` | Postal code |
+| `slug` | Unique identifier for the donation point |
+| `type` | Type of donation point (e.g., supermarket, collection point) |
 
 Operations: List, Load.
 
@@ -273,19 +273,19 @@ API path: `/donationpoints/`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `email` |  |
-| `items_needed` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `name` |  |
-| `needs` |  |
-| `phone` |  |
-| `postcode` |  |
-| `shopping_list_url` |  |
-| `slug` |  |
-| `updated` |  |
-| `url` |  |
+| `address` | Physical address of the food bank |
+| `email` | Contact email address |
+| `items_needed` | List of items currently needed for donation |
+| `latitude` | Latitude coordinate |
+| `longitude` | Longitude coordinate |
+| `name` | Name of the food bank |
+| `needs` | Current needs status |
+| `phone` | Contact phone number |
+| `postcode` | Postal code |
+| `shopping_list_url` | URL to the food bank's detailed shopping list |
+| `slug` | Unique identifier for the food bank |
+| `updated` | Last update timestamp |
+| `url` | Website URL |
 
 Operations: List, Load.
 
@@ -295,11 +295,11 @@ API path: `/foodbanks/`
 
 | Field | Description |
 | --- | --- |
-| `created` |  |
-| `foodbank_slug` |  |
-| `id` |  |
-| `item` |  |
-| `updated` |  |
+| `created` | When this need was recorded |
+| `foodbank_slug` | Food bank identifier |
+| `id` | Unique identifier for the item need record |
+| `item` | Name of the item needed |
+| `updated` | Last update timestamp |
 
 Operations: List.
 
@@ -324,12 +324,12 @@ Create an instance: `article = client.Article`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `foodbank_slug` | `String` |  |
-| `id` | `Integer` |  |
-| `published` | `String` |  |
-| `source` | `String` |  |
-| `title` | `String` |  |
-| `url` | `String` |  |
+| `foodbank_slug` | `String` | Related food bank identifier |
+| `id` | `Integer` | Unique identifier for the article |
+| `published` | `String` | Publication date |
+| `source` | `String` | Publication source |
+| `title` | `String` | Article title |
+| `url` | `String` | URL to the article |
 
 #### Example: List
 
@@ -354,14 +354,14 @@ Create an instance: `donationpoint = client.Donationpoint`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `String` |  |
-| `foodbank_slug` | `String` |  |
-| `latitude` | `Float` |  |
-| `longitude` | `Float` |  |
-| `name` | `String` |  |
-| `postcode` | `String` |  |
-| `slug` | `String` |  |
-| `type` | `String` |  |
+| `address` | `String` | Physical address |
+| `foodbank_slug` | `String` | Associated food bank identifier |
+| `latitude` | `Float` | Latitude coordinate |
+| `longitude` | `Float` | Longitude coordinate |
+| `name` | `String` | Name of the donation point |
+| `postcode` | `String` | Postal code |
+| `slug` | `String` | Unique identifier for the donation point |
+| `type` | `String` | Type of donation point (e.g., supermarket, collection point) |
 
 #### Example: Load
 
@@ -393,19 +393,19 @@ Create an instance: `foodbank = client.Foodbank`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `String` |  |
-| `email` | `String` |  |
-| `items_needed` | `Array` |  |
-| `latitude` | `Float` |  |
-| `longitude` | `Float` |  |
-| `name` | `String` |  |
-| `needs` | `Hash` |  |
-| `phone` | `String` |  |
-| `postcode` | `String` |  |
-| `shopping_list_url` | `String` |  |
-| `slug` | `String` |  |
-| `updated` | `String` |  |
-| `url` | `String` |  |
+| `address` | `String` | Physical address of the food bank |
+| `email` | `String` | Contact email address |
+| `items_needed` | `Array` | List of items currently needed for donation |
+| `latitude` | `Float` | Latitude coordinate |
+| `longitude` | `Float` | Longitude coordinate |
+| `name` | `String` | Name of the food bank |
+| `needs` | `Hash` | Current needs status |
+| `phone` | `String` | Contact phone number |
+| `postcode` | `String` | Postal code |
+| `shopping_list_url` | `String` | URL to the food bank's detailed shopping list |
+| `slug` | `String` | Unique identifier for the food bank |
+| `updated` | `String` | Last update timestamp |
+| `url` | `String` | Website URL |
 
 #### Example: Load
 
@@ -436,11 +436,11 @@ Create an instance: `item = client.Item`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created` | `String` |  |
-| `foodbank_slug` | `String` |  |
-| `id` | `Integer` |  |
-| `item` | `String` |  |
-| `updated` | `String` |  |
+| `created` | `String` | When this need was recorded |
+| `foodbank_slug` | `String` | Food bank identifier |
+| `id` | `Integer` | Unique identifier for the item need record |
+| `item` | `String` | Name of the item needed |
+| `updated` | `String` | Last update timestamp |
 
 #### Example: List
 

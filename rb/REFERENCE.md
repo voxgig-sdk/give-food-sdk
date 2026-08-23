@@ -105,12 +105,12 @@ article = client.Article
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `foodbank_slug` | `String` | No |  |
-| `id` | `Integer` | No |  |
-| `published` | `String` | No |  |
-| `source` | `String` | No |  |
-| `title` | `String` | No |  |
-| `url` | `String` | No |  |
+| `foodbank_slug` | `String` | No | Related food bank identifier |
+| `id` | `Integer` | No | Unique identifier for the article |
+| `published` | `String` | No | Publication date |
+| `source` | `String` | No | Publication source |
+| `title` | `String` | No | Article title |
+| `url` | `String` | No | URL to the article |
 
 ### Operations
 
@@ -162,14 +162,14 @@ donationpoint = client.Donationpoint
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `String` | No |  |
-| `foodbank_slug` | `String` | No |  |
-| `latitude` | `Float` | No |  |
-| `longitude` | `Float` | No |  |
-| `name` | `String` | No |  |
-| `postcode` | `String` | No |  |
-| `slug` | `String` | No |  |
-| `type` | `String` | No |  |
+| `address` | `String` | No | Physical address |
+| `foodbank_slug` | `String` | No | Associated food bank identifier |
+| `latitude` | `Float` | No | Latitude coordinate |
+| `longitude` | `Float` | No | Longitude coordinate |
+| `name` | `String` | No | Name of the donation point |
+| `postcode` | `String` | No | Postal code |
+| `slug` | `String` | No | Unique identifier for the donation point |
+| `type` | `String` | No | Type of donation point (e.g., supermarket, collection point) |
 
 ### Operations
 
@@ -229,19 +229,19 @@ foodbank = client.Foodbank
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `String` | No |  |
-| `email` | `String` | No |  |
-| `items_needed` | `Array` | No |  |
-| `latitude` | `Float` | No |  |
-| `longitude` | `Float` | No |  |
-| `name` | `String` | No |  |
-| `needs` | `Hash` | No |  |
-| `phone` | `String` | No |  |
-| `postcode` | `String` | No |  |
-| `shopping_list_url` | `String` | No |  |
-| `slug` | `String` | No |  |
-| `updated` | `String` | No |  |
-| `url` | `String` | No |  |
+| `address` | `String` | No | Physical address of the food bank |
+| `email` | `String` | No | Contact email address |
+| `items_needed` | `Array` | No | List of items currently needed for donation |
+| `latitude` | `Float` | No | Latitude coordinate |
+| `longitude` | `Float` | No | Longitude coordinate |
+| `name` | `String` | No | Name of the food bank |
+| `needs` | `Hash` | No | Current needs status |
+| `phone` | `String` | No | Contact phone number |
+| `postcode` | `String` | No | Postal code |
+| `shopping_list_url` | `String` | No | URL to the food bank's detailed shopping list |
+| `slug` | `String` | No | Unique identifier for the food bank |
+| `updated` | `String` | No | Last update timestamp |
+| `url` | `String` | No | Website URL |
 
 ### Operations
 
@@ -301,11 +301,11 @@ item = client.Item
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | `String` | No |  |
-| `foodbank_slug` | `String` | No |  |
-| `id` | `Integer` | No |  |
-| `item` | `String` | No |  |
-| `updated` | `String` | No |  |
+| `created` | `String` | No | When this need was recorded |
+| `foodbank_slug` | `String` | No | Food bank identifier |
+| `id` | `Integer` | No | Unique identifier for the item need record |
+| `item` | `String` | No | Name of the item needed |
+| `updated` | `String` | No | Last update timestamp |
 
 ### Operations
 

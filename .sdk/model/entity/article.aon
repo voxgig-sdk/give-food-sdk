@@ -1,0 +1,90 @@
+# Entity: article
+
+main: kit: entity: article: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "foodbank_slug"
+      req: false
+      short: "Related food bank identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique identifier for the article"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "published"
+      req: false
+      short: "Publication date"
+      type: "`$STRING`"
+    }
+    {
+      name: "source"
+      req: false
+      short: "Publication source"
+      type: "`$STRING`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "Article title"
+      type: "`$STRING`"
+    }
+    {
+      name: "url"
+      req: false
+      short: "URL to the article"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "article"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/articles/"
+          parts: [
+            "articles"
+          ]
+          select: {
+            exist: [
+              "format"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

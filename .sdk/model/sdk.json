@@ -36,36 +36,42 @@
               "active": true,
               "name": "foodbank_slug",
               "req": false,
+              "short": "Related food bank identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the article",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "published",
               "req": false,
+              "short": "Publication date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "source",
               "req": false,
+              "short": "Publication source",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Article title",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "URL to the article",
               "type": "`$STRING`"
             }
           ],
@@ -127,48 +133,56 @@
               "active": true,
               "name": "address",
               "req": false,
+              "short": "Physical address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "foodbank_slug",
               "req": false,
+              "short": "Associated food bank identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "latitude",
               "req": false,
+              "short": "Latitude coordinate",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "longitude",
               "req": false,
+              "short": "Longitude coordinate",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Name of the donation point",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "postcode",
               "req": false,
+              "short": "Postal code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "slug",
               "req": false,
+              "short": "Unique identifier for the donation point",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Type of donation point (e.g., supermarket, collection point)",
               "type": "`$STRING`"
             }
           ],
@@ -280,78 +294,91 @@
               "active": true,
               "name": "address",
               "req": false,
+              "short": "Physical address of the food bank",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "email",
               "req": false,
+              "short": "Contact email address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "items_needed",
               "req": false,
+              "short": "List of items currently needed for donation",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "latitude",
               "req": false,
+              "short": "Latitude coordinate",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "longitude",
               "req": false,
+              "short": "Longitude coordinate",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Name of the food bank",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "needs",
               "req": false,
+              "short": "Current needs status",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "phone",
               "req": false,
+              "short": "Contact phone number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "postcode",
               "req": false,
+              "short": "Postal code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "shopping_list_url",
               "req": false,
+              "short": "URL to the food bank's detailed shopping list",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "slug",
               "req": false,
+              "short": "Unique identifier for the food bank",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "updated",
               "req": false,
+              "short": "Last update timestamp",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "Website URL",
               "type": "`$STRING`"
             }
           ],
@@ -463,30 +490,35 @@
               "active": true,
               "name": "created",
               "req": false,
+              "short": "When this need was recorded",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "foodbank_slug",
               "req": false,
+              "short": "Food bank identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the item need record",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "item",
               "req": false,
+              "short": "Name of the item needed",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "updated",
               "req": false,
+              "short": "Last update timestamp",
               "type": "`$STRING`"
             }
           ],

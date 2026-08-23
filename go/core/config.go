@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "GiveFood",
+			"slug": "give-food",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -36,26 +39,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "foodbank_slug",
+						"short": "Related food bank identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the article",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "published",
+						"short": "Publication date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "source",
+						"short": "Publication source",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Article title",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "URL to the article",
 						"type": "`$STRING`",
 					},
 				},
@@ -104,34 +113,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "address",
+						"short": "Physical address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "foodbank_slug",
+						"short": "Associated food bank identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "latitude",
+						"short": "Latitude coordinate",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "longitude",
+						"short": "Longitude coordinate",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Name of the donation point",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "postcode",
+						"short": "Postal code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "slug",
+						"short": "Unique identifier for the donation point",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Type of donation point (e.g., supermarket, collection point)",
 						"type": "`$STRING`",
 					},
 				},
@@ -230,54 +247,67 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "address",
+						"short": "Physical address of the food bank",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "email",
+						"short": "Contact email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "items_needed",
+						"short": "List of items currently needed for donation",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "latitude",
+						"short": "Latitude coordinate",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "longitude",
+						"short": "Longitude coordinate",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Name of the food bank",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "needs",
+						"short": "Current needs status",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "phone",
+						"short": "Contact phone number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "postcode",
+						"short": "Postal code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "shopping_list_url",
+						"short": "URL to the food bank's detailed shopping list",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "slug",
+						"short": "Unique identifier for the food bank",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "updated",
+						"short": "Last update timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "Website URL",
 						"type": "`$STRING`",
 					},
 				},
@@ -376,22 +406,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "created",
+						"short": "When this need was recorded",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "foodbank_slug",
+						"short": "Food bank identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the item need record",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "item",
+						"short": "Name of the item needed",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "updated",
+						"short": "Last update timestamp",
 						"type": "`$STRING`",
 					},
 				},
