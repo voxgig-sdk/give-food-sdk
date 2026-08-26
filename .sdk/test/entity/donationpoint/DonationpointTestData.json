@@ -2,51 +2,51 @@
   "existing": {
     "donationpoint": {
       "DONATIONPOINT00": {
-        "address": "s50",
-        "foodbank_slug": "s51",
-        "latitude": 82,
-        "longitude": 83,
-        "name": "s54",
-        "postcode": "s55",
-        "slug": "s56",
-        "type": "s57",
-        "id": "DONATIONPOINT00"
+        "address": "s5a",
+        "foodbank_slug": "s5b",
+        "id": "DONATIONPOINT00",
+        "latitude": 93,
+        "longitude": 94,
+        "name": "s5f",
+        "postcode": "s60",
+        "slug": "s61",
+        "type": "s62"
       },
       "DONATIONPOINT01": {
-        "address": "sa0",
-        "foodbank_slug": "sa1",
-        "latitude": 162,
-        "longitude": 163,
-        "name": "sa4",
-        "postcode": "sa5",
-        "slug": "sa6",
-        "type": "sa7",
-        "id": "DONATIONPOINT01"
+        "address": "sb4",
+        "foodbank_slug": "sb5",
+        "id": "DONATIONPOINT01",
+        "latitude": 183,
+        "longitude": 184,
+        "name": "sb9",
+        "postcode": "sba",
+        "slug": "sbb",
+        "type": "sbc"
       },
       "DONATIONPOINT02": {
-        "address": "sf0",
-        "foodbank_slug": "sf1",
-        "latitude": 242,
-        "longitude": 243,
-        "name": "sf4",
-        "postcode": "sf5",
-        "slug": "sf6",
-        "type": "sf7",
-        "id": "DONATIONPOINT02"
+        "address": "s10e",
+        "foodbank_slug": "s10f",
+        "id": "DONATIONPOINT02",
+        "latitude": 273,
+        "longitude": 274,
+        "name": "s113",
+        "postcode": "s114",
+        "slug": "s115",
+        "type": "s116"
       }
     }
   },
   "new": {
     "donationpoint": {
       "donationpoint_ref01": {
-        "address": "s140",
-        "foodbank_slug": "s141",
-        "latitude": 322,
-        "longitude": 323,
-        "name": "s144",
-        "postcode": "s145",
-        "slug": "s146",
-        "type": "s147"
+        "address": "s168",
+        "foodbank_slug": "s169",
+        "latitude": 363,
+        "longitude": 364,
+        "name": "s16d",
+        "postcode": "s16e",
+        "slug": "s16f",
+        "type": "s170"
       }
     }
   }

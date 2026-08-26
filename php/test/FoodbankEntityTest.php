@@ -93,9 +93,13 @@ class FoodbankEntityTest extends TestCase
         $this->assertIsArray($foodbank_ref01_list_result);
 
         // LOAD
-        $foodbank_ref01_match_dt0 = [];
+        $foodbank_ref01_match_dt0 = [
+            "id" => $foodbank_ref01_data["id"],
+        ];
         $foodbank_ref01_data_dt0_loaded = $foodbank_ref01_ent->load($foodbank_ref01_match_dt0, null);
-        $this->assertNotNull($foodbank_ref01_data_dt0_loaded);
+        $foodbank_ref01_data_dt0_load_result = Helpers::to_map(is_object($foodbank_ref01_data_dt0_loaded) && method_exists($foodbank_ref01_data_dt0_loaded, 'data_get') ? $foodbank_ref01_data_dt0_loaded->data_get() : $foodbank_ref01_data_dt0_loaded);
+        $this->assertNotNull($foodbank_ref01_data_dt0_load_result);
+        $this->assertEquals($foodbank_ref01_data_dt0_load_result["id"], $foodbank_ref01_data["id"]);
 
     }
 }

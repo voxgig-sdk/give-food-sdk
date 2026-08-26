@@ -18,6 +18,11 @@ main: kit: entity: foodbank: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "items_needed"
       req: false
       short: "List of items currently needed for donation"
@@ -84,6 +89,11 @@ main: kit: entity: foodbank: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "foodbank"
   op: {

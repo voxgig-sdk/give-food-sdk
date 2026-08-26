@@ -66,6 +66,12 @@ describe('DonationpointEntity', async () => {
     const donationpoint_ref01_list = (await donationpoint_ref01_ent.list(donationpoint_ref01_match)).map((e: any) => e.data())
 
 
+    // LOAD
+    const donationpoint_ref01_match_dt0: any = {}
+    donationpoint_ref01_match_dt0.id = donationpoint_ref01_data.id
+    const donationpoint_ref01_data_dt0 = (await donationpoint_ref01_ent.load(donationpoint_ref01_match_dt0)).data()
+    assert(donationpoint_ref01_data_dt0.id === donationpoint_ref01_data.id)
+
 
   })
 })

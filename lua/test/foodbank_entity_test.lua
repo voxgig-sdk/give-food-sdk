@@ -92,10 +92,14 @@ describe("FoodbankEntity", function()
     assert.is_table(foodbank_ref01_list_result)
 
     -- LOAD
-    local foodbank_ref01_match_dt0 = {}
+    local foodbank_ref01_match_dt0 = {
+      id = foodbank_ref01_data["id"],
+    }
     local foodbank_ref01_data_dt0_loaded, err = foodbank_ref01_ent:load(foodbank_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(foodbank_ref01_data_dt0_loaded)
+    local foodbank_ref01_data_dt0_load_result = helpers.to_map(type(foodbank_ref01_data_dt0_loaded) == 'table' and foodbank_ref01_data_dt0_loaded.data_get and foodbank_ref01_data_dt0_loaded:data_get() or foodbank_ref01_data_dt0_loaded)
+    assert.is_not_nil(foodbank_ref01_data_dt0_load_result)
+    assert.are.equal(foodbank_ref01_data_dt0_load_result["id"], foodbank_ref01_data["id"])
 
   end)
 end)

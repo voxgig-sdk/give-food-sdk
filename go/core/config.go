@@ -20,6 +20,7 @@ func MakeConfig() map[string]any {
 				"options": map[string]any{
 					"active": false,
 				},
+				"transport": "base",
 			},
 		},
 		"options": map[string]any{
@@ -119,6 +120,10 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "foodbank_slug",
 						"short": "Associated food bank identifier",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -253,6 +258,10 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "email",
 						"short": "Contact email address",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "id",
 						"type": "`$STRING`",
 					},
 					map[string]any{

@@ -93,9 +93,13 @@ class DonationpointEntityTest extends TestCase
         $this->assertIsArray($donationpoint_ref01_list_result);
 
         // LOAD
-        $donationpoint_ref01_match_dt0 = [];
+        $donationpoint_ref01_match_dt0 = [
+            "id" => $donationpoint_ref01_data["id"],
+        ];
         $donationpoint_ref01_data_dt0_loaded = $donationpoint_ref01_ent->load($donationpoint_ref01_match_dt0, null);
-        $this->assertNotNull($donationpoint_ref01_data_dt0_loaded);
+        $donationpoint_ref01_data_dt0_load_result = Helpers::to_map(is_object($donationpoint_ref01_data_dt0_loaded) && method_exists($donationpoint_ref01_data_dt0_loaded, 'data_get') ? $donationpoint_ref01_data_dt0_loaded->data_get() : $donationpoint_ref01_data_dt0_loaded);
+        $this->assertNotNull($donationpoint_ref01_data_dt0_load_result);
+        $this->assertEquals($donationpoint_ref01_data_dt0_load_result["id"], $donationpoint_ref01_data["id"]);
 
     }
 }

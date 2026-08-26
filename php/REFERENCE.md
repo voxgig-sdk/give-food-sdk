@@ -163,6 +163,7 @@ $donationpoint = $client->Donationpoint();
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address |
 | `foodbank_slug` | `string` | No | Associated food bank identifier |
+| `id` | `string` | No |  |
 | `latitude` | `float` | No | Latitude coordinate |
 | `longitude` | `float` | No | Longitude coordinate |
 | `name` | `string` | No | Name of the donation point |
@@ -230,6 +231,7 @@ $foodbank = $client->Foodbank();
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address of the food bank |
 | `email` | `string` | No | Contact email address |
+| `id` | `string` | No |  |
 | `items_needed` | `array` | No | List of items currently needed for donation |
 | `latitude` | `float` | No | Latitude coordinate |
 | `longitude` | `float` | No | Longitude coordinate |

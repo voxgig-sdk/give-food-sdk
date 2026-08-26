@@ -164,6 +164,7 @@ donationpoint = client.Donationpoint
 | --- | --- | --- | --- |
 | `address` | `String` | No | Physical address |
 | `foodbank_slug` | `String` | No | Associated food bank identifier |
+| `id` | `String` | No |  |
 | `latitude` | `Float` | No | Latitude coordinate |
 | `longitude` | `Float` | No | Longitude coordinate |
 | `name` | `String` | No | Name of the donation point |
@@ -231,6 +232,7 @@ foodbank = client.Foodbank
 | --- | --- | --- | --- |
 | `address` | `String` | No | Physical address of the food bank |
 | `email` | `String` | No | Contact email address |
+| `id` | `String` | No |  |
 | `items_needed` | `Array` | No | List of items currently needed for donation |
 | `latitude` | `Float` | No | Latitude coordinate |
 | `longitude` | `Float` | No | Longitude coordinate |

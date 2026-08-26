@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -136,6 +137,10 @@ def make_config():
           {
             "name": "foodbank_slug",
             "short": "Associated food bank identifier",
+            "type": "`$STRING`",
+          },
+          {
+            "name": "id",
             "type": "`$STRING`",
           },
           {
@@ -270,6 +275,10 @@ def make_config():
           {
             "name": "email",
             "short": "Contact email address",
+            "type": "`$STRING`",
+          },
+          {
+            "name": "id",
             "type": "`$STRING`",
           },
           {

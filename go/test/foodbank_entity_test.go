@@ -121,13 +121,19 @@ func TestFoodbankEntity(t *testing.T) {
 		}
 
 		// LOAD
-		foodbankRef01MatchDt0 := map[string]any{}
+		foodbankRef01MatchDt0 := map[string]any{
+			"id": foodbankRef01Data["id"],
+		}
 		foodbankRef01DataDt0Loaded, err := foodbankRef01Ent.Load(foodbankRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if foodbankRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		foodbankRef01DataDt0LoadResult := core.ToMapAny(entityData(foodbankRef01DataDt0Loaded))
+		if foodbankRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if foodbankRef01DataDt0LoadResult["id"] != foodbankRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

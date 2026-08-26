@@ -39,6 +39,7 @@ class Donationpoint
 {
     public ?string $address = null;
     public ?string $foodbank_slug = null;
+    public ?string $id = null;
     public ?float $latitude = null;
     public ?float $longitude = null;
     public ?string $name = null;
@@ -58,6 +59,7 @@ class DonationpointListMatch
 {
     public ?string $address = null;
     public ?string $foodbank_slug = null;
+    public ?string $id = null;
     public ?float $latitude = null;
     public ?float $longitude = null;
     public ?string $name = null;
@@ -71,6 +73,7 @@ class Foodbank
 {
     public ?string $address = null;
     public ?string $email = null;
+    public ?string $id = null;
     public ?array $items_needed = null;
     public ?float $latitude = null;
     public ?float $longitude = null;
@@ -95,6 +98,7 @@ class FoodbankListMatch
 {
     public ?string $address = null;
     public ?string $email = null;
+    public ?string $id = null;
     public ?array $items_needed = null;
     public ?float $latitude = null;
     public ?float $longitude = null;

@@ -26,6 +26,7 @@ export interface ArticleListMatch {
 export interface Donationpoint {
   address?: string
   foodbank_slug?: string
+  id?: string
   latitude?: number
   longitude?: number
   name?: string
@@ -41,6 +42,7 @@ export interface DonationpointLoadMatch {
 export interface DonationpointListMatch {
   address?: string
   foodbank_slug?: string
+  id?: string
   latitude?: number
   longitude?: number
   name?: string
@@ -52,6 +54,7 @@ export interface DonationpointListMatch {
 export interface Foodbank {
   address?: string
   email?: string
+  id?: string
   items_needed?: any[]
   latitude?: number
   longitude?: number
@@ -72,6 +75,7 @@ export interface FoodbankLoadMatch {
 export interface FoodbankListMatch {
   address?: string
   email?: string
+  id?: string
   items_needed?: any[]
   latitude?: number
   longitude?: number

@@ -282,6 +282,7 @@ API path: `/articles/`
 | --- | --- |
 | `"address"` | Physical address |
 | `"foodbank_slug"` | Associated food bank identifier |
+| `"id"` |  |
 | `"latitude"` | Latitude coordinate |
 | `"longitude"` | Longitude coordinate |
 | `"name"` | Name of the donation point |
@@ -299,6 +300,7 @@ API path: `/donationpoints/`
 | --- | --- |
 | `"address"` | Physical address of the food bank |
 | `"email"` | Contact email address |
+| `"id"` |  |
 | `"items_needed"` | List of items currently needed for donation |
 | `"latitude"` | Latitude coordinate |
 | `"longitude"` | Longitude coordinate |
@@ -383,6 +385,7 @@ Create an instance: `donationpoint := client.Donationpoint(nil)`
 | --- | --- | --- |
 | `address` | `string` | Physical address |
 | `foodbank_slug` | `string` | Associated food bank identifier |
+| `id` | `string` |  |
 | `latitude` | `float64` | Latitude coordinate |
 | `longitude` | `float64` | Longitude coordinate |
 | `name` | `string` | Name of the donation point |
@@ -428,6 +431,7 @@ Create an instance: `foodbank := client.Foodbank(nil)`
 | --- | --- | --- |
 | `address` | `string` | Physical address of the food bank |
 | `email` | `string` | Contact email address |
+| `id` | `string` |  |
 | `items_needed` | `[]any` | List of items currently needed for donation |
 | `latitude` | `float64` | Latitude coordinate |
 | `longitude` | `float64` | Longitude coordinate |

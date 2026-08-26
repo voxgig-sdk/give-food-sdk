@@ -168,6 +168,7 @@ fmt.Println(donationpoint.GetName()) // "donationpoint"
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address |
 | `foodbank_slug` | `string` | No | Associated food bank identifier |
+| `id` | `string` | No |  |
 | `latitude` | `float64` | No | Latitude coordinate |
 | `longitude` | `float64` | No | Longitude coordinate |
 | `name` | `string` | No | Name of the donation point |
@@ -238,6 +239,7 @@ fmt.Println(foodbank.GetName()) // "foodbank"
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address of the food bank |
 | `email` | `string` | No | Contact email address |
+| `id` | `string` | No |  |
 | `items_needed` | `[]any` | No | List of items currently needed for donation |
 | `latitude` | `float64` | No | Latitude coordinate |
 | `longitude` | `float64` | No | Longitude coordinate |

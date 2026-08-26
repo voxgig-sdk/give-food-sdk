@@ -66,6 +66,12 @@ describe('FoodbankEntity', async () => {
     const foodbank_ref01_list = (await foodbank_ref01_ent.list(foodbank_ref01_match)).map((e: any) => e.data())
 
 
+    // LOAD
+    const foodbank_ref01_match_dt0: any = {}
+    foodbank_ref01_match_dt0.id = foodbank_ref01_data.id
+    const foodbank_ref01_data_dt0 = (await foodbank_ref01_ent.load(foodbank_ref01_match_dt0)).data()
+    assert(foodbank_ref01_data_dt0.id === foodbank_ref01_data.id)
+
 
   })
 })

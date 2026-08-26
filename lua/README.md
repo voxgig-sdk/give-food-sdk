@@ -253,6 +253,7 @@ API path: `/articles/`
 | --- | --- |
 | `address` | Physical address |
 | `foodbank_slug` | Associated food bank identifier |
+| `id` |  |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
 | `name` | Name of the donation point |
@@ -270,6 +271,7 @@ API path: `/donationpoints/`
 | --- | --- |
 | `address` | Physical address of the food bank |
 | `email` | Contact email address |
+| `id` |  |
 | `items_needed` | List of items currently needed for donation |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
@@ -350,6 +352,7 @@ Create an instance: `local donationpoint = client:Donationpoint(nil)`
 | --- | --- | --- |
 | `address` | `string` | Physical address |
 | `foodbank_slug` | `string` | Associated food bank identifier |
+| `id` | `string` |  |
 | `latitude` | `number` | Latitude coordinate |
 | `longitude` | `number` | Longitude coordinate |
 | `name` | `string` | Name of the donation point |
@@ -387,6 +390,7 @@ Create an instance: `local foodbank = client:Foodbank(nil)`
 | --- | --- | --- |
 | `address` | `string` | Physical address of the food bank |
 | `email` | `string` | Contact email address |
+| `id` | `string` |  |
 | `items_needed` | `table` | List of items currently needed for donation |
 | `latitude` | `number` | Latitude coordinate |
 | `longitude` | `number` | Longitude coordinate |

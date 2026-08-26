@@ -83,9 +83,13 @@ class DonationpointEntityTest < Minitest::Test
     assert donationpoint_ref01_list_result.is_a?(Array)
 
     # LOAD
-    donationpoint_ref01_match_dt0 = {}
+    donationpoint_ref01_match_dt0 = {
+      "id" => donationpoint_ref01_data["id"],
+    }
     donationpoint_ref01_data_dt0_loaded = donationpoint_ref01_ent.load(donationpoint_ref01_match_dt0, nil)
-    assert !donationpoint_ref01_data_dt0_loaded.nil?
+    donationpoint_ref01_data_dt0_load_result = Helpers.to_map(donationpoint_ref01_data_dt0_loaded.respond_to?(:data_get) ? donationpoint_ref01_data_dt0_loaded.data_get : donationpoint_ref01_data_dt0_loaded)
+    assert !donationpoint_ref01_data_dt0_load_result.nil?
+    assert_equal donationpoint_ref01_data_dt0_load_result["id"], donationpoint_ref01_data["id"]
 
   end
 end

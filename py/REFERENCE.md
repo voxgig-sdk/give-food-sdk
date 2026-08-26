@@ -159,6 +159,7 @@ donationpoint = client.Donationpoint()
 | --- | --- | --- | --- |
 | `address` | `str` | No | Physical address |
 | `foodbank_slug` | `str` | No | Associated food bank identifier |
+| `id` | `str` | No |  |
 | `latitude` | `float` | No | Latitude coordinate |
 | `longitude` | `float` | No | Longitude coordinate |
 | `name` | `str` | No | Name of the donation point |
@@ -227,6 +228,7 @@ foodbank = client.Foodbank()
 | --- | --- | --- | --- |
 | `address` | `str` | No | Physical address of the food bank |
 | `email` | `str` | No | Contact email address |
+| `id` | `str` | No |  |
 | `items_needed` | `list` | No | List of items currently needed for donation |
 | `latitude` | `float` | No | Latitude coordinate |
 | `longitude` | `float` | No | Longitude coordinate |

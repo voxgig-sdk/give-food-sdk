@@ -28,6 +28,7 @@ module GiveFoodConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -127,6 +128,10 @@ module GiveFoodConfig
             {
               "name" => "foodbank_slug",
               "short" => "Associated food bank identifier",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {
@@ -261,6 +266,10 @@ module GiveFoodConfig
             {
               "name" => "email",
               "short" => "Contact email address",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {

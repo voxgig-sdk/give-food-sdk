@@ -37,6 +37,7 @@ class ArticleListMatch(TypedDict, total=False):
 class Donationpoint(TypedDict, total=False):
     address: str
     foodbank_slug: str
+    id: str
     latitude: float
     longitude: float
     name: str
@@ -52,6 +53,7 @@ class DonationpointLoadMatch(TypedDict):
 class DonationpointListMatch(TypedDict, total=False):
     address: str
     foodbank_slug: str
+    id: str
     latitude: float
     longitude: float
     name: str
@@ -63,6 +65,7 @@ class DonationpointListMatch(TypedDict, total=False):
 class Foodbank(TypedDict, total=False):
     address: str
     email: str
+    id: str
     items_needed: list
     latitude: float
     longitude: float
@@ -83,6 +86,7 @@ class FoodbankLoadMatch(TypedDict):
 class FoodbankListMatch(TypedDict, total=False):
     address: str
     email: str
+    id: str
     items_needed: list
     latitude: float
     longitude: float

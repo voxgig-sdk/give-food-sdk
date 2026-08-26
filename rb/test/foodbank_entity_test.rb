@@ -83,9 +83,13 @@ class FoodbankEntityTest < Minitest::Test
     assert foodbank_ref01_list_result.is_a?(Array)
 
     # LOAD
-    foodbank_ref01_match_dt0 = {}
+    foodbank_ref01_match_dt0 = {
+      "id" => foodbank_ref01_data["id"],
+    }
     foodbank_ref01_data_dt0_loaded = foodbank_ref01_ent.load(foodbank_ref01_match_dt0, nil)
-    assert !foodbank_ref01_data_dt0_loaded.nil?
+    foodbank_ref01_data_dt0_load_result = Helpers.to_map(foodbank_ref01_data_dt0_loaded.respond_to?(:data_get) ? foodbank_ref01_data_dt0_loaded.data_get : foodbank_ref01_data_dt0_loaded)
+    assert !foodbank_ref01_data_dt0_load_result.nil?
+    assert_equal foodbank_ref01_data_dt0_load_result["id"], foodbank_ref01_data["id"]
 
   end
 end

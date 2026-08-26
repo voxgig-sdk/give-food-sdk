@@ -42,6 +42,7 @@ class GiveFoodConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -141,6 +142,10 @@ class GiveFoodConfig
             [
               'name' => 'foodbank_slug',
               'short' => 'Associated food bank identifier',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [
@@ -275,6 +280,10 @@ class GiveFoodConfig
             [
               'name' => 'email',
               'short' => 'Contact email address',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [

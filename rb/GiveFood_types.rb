@@ -74,6 +74,9 @@ ArticleListMatch = Struct.new(
 # @!attribute [rw] foodbank_slug
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] latitude
 #   @return [Float, nil]
 #
@@ -94,6 +97,7 @@ ArticleListMatch = Struct.new(
 Donationpoint = Struct.new(
   :address,
   :foodbank_slug,
+  :id,
   :latitude,
   :longitude,
   :name,
@@ -120,6 +124,9 @@ DonationpointLoadMatch = Struct.new(
 # @!attribute [rw] foodbank_slug
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] latitude
 #   @return [Float, nil]
 #
@@ -140,6 +147,7 @@ DonationpointLoadMatch = Struct.new(
 DonationpointListMatch = Struct.new(
   :address,
   :foodbank_slug,
+  :id,
   :latitude,
   :longitude,
   :name,
@@ -155,6 +163,9 @@ DonationpointListMatch = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] email
+#   @return [String, nil]
+#
+# @!attribute [rw] id
 #   @return [String, nil]
 #
 # @!attribute [rw] items_needed
@@ -192,6 +203,7 @@ DonationpointListMatch = Struct.new(
 Foodbank = Struct.new(
   :address,
   :email,
+  :id,
   :items_needed,
   :latitude,
   :longitude,
@@ -221,6 +233,9 @@ FoodbankLoadMatch = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] email
+#   @return [String, nil]
+#
+# @!attribute [rw] id
 #   @return [String, nil]
 #
 # @!attribute [rw] items_needed
@@ -258,6 +273,7 @@ FoodbankLoadMatch = Struct.new(
 FoodbankListMatch = Struct.new(
   :address,
   :email,
+  :id,
   :items_needed,
   :latitude,
   :longitude,

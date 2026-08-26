@@ -121,13 +121,19 @@ func TestDonationpointEntity(t *testing.T) {
 		}
 
 		// LOAD
-		donationpointRef01MatchDt0 := map[string]any{}
+		donationpointRef01MatchDt0 := map[string]any{
+			"id": donationpointRef01Data["id"],
+		}
 		donationpointRef01DataDt0Loaded, err := donationpointRef01Ent.Load(donationpointRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if donationpointRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		donationpointRef01DataDt0LoadResult := core.ToMapAny(entityData(donationpointRef01DataDt0Loaded))
+		if donationpointRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if donationpointRef01DataDt0LoadResult["id"] != donationpointRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

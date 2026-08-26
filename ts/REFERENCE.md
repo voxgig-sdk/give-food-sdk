@@ -209,6 +209,7 @@ const donationpoint = client.Donationpoint()
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address |
 | `foodbank_slug` | `string` | No | Associated food bank identifier |
+| `id` | `string` | No |  |
 | `latitude` | `number` | No | Latitude coordinate |
 | `longitude` | `number` | No | Longitude coordinate |
 | `name` | `string` | No | Name of the donation point |
@@ -274,6 +275,7 @@ const foodbank = client.Foodbank()
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address of the food bank |
 | `email` | `string` | No | Contact email address |
+| `id` | `string` | No |  |
 | `items_needed` | `any[]` | No | List of items currently needed for donation |
 | `latitude` | `number` | No | Latitude coordinate |
 | `longitude` | `number` | No | Longitude coordinate |

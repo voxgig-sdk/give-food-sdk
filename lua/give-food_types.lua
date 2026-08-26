@@ -25,6 +25,7 @@
 ---@class Donationpoint
 ---@field address? string
 ---@field foodbank_slug? string
+---@field id? string
 ---@field latitude? number
 ---@field longitude? number
 ---@field name? string
@@ -38,6 +39,7 @@
 ---@class DonationpointListMatch
 ---@field address? string
 ---@field foodbank_slug? string
+---@field id? string
 ---@field latitude? number
 ---@field longitude? number
 ---@field name? string
@@ -48,6 +50,7 @@
 ---@class Foodbank
 ---@field address? string
 ---@field email? string
+---@field id? string
 ---@field items_needed? table
 ---@field latitude? number
 ---@field longitude? number
@@ -66,6 +69,7 @@
 ---@class FoodbankListMatch
 ---@field address? string
 ---@field email? string
+---@field id? string
 ---@field items_needed? table
 ---@field latitude? number
 ---@field longitude? number

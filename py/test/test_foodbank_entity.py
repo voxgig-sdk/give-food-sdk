@@ -88,9 +88,13 @@ class TestFoodbankEntity:
         assert isinstance(foodbank_ref01_list_result, list)
 
         # LOAD
-        foodbank_ref01_match_dt0 = {}
+        foodbank_ref01_match_dt0 = {
+            "id": foodbank_ref01_data["id"],
+        }
         foodbank_ref01_data_dt0_loaded = foodbank_ref01_ent.load(foodbank_ref01_match_dt0, None)
-        assert foodbank_ref01_data_dt0_loaded is not None
+        foodbank_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(foodbank_ref01_data_dt0_loaded))
+        assert foodbank_ref01_data_dt0_load_result is not None
+        assert foodbank_ref01_data_dt0_load_result["id"] == foodbank_ref01_data["id"]
 
 
 

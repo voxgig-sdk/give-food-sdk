@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -156,6 +157,10 @@ class Config {
         {
           "name": "foodbank_slug",
           "short": "Associated food bank identifier",
+          "type": "`$STRING`"
+        },
+        {
+          "name": "id",
           "type": "`$STRING`"
         },
         {
@@ -290,6 +295,10 @@ class Config {
         {
           "name": "email",
           "short": "Contact email address",
+          "type": "`$STRING`"
+        },
+        {
+          "name": "id",
           "type": "`$STRING`"
         },
         {

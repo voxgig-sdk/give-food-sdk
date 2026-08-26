@@ -88,9 +88,13 @@ class TestDonationpointEntity:
         assert isinstance(donationpoint_ref01_list_result, list)
 
         # LOAD
-        donationpoint_ref01_match_dt0 = {}
+        donationpoint_ref01_match_dt0 = {
+            "id": donationpoint_ref01_data["id"],
+        }
         donationpoint_ref01_data_dt0_loaded = donationpoint_ref01_ent.load(donationpoint_ref01_match_dt0, None)
-        assert donationpoint_ref01_data_dt0_loaded is not None
+        donationpoint_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(donationpoint_ref01_data_dt0_loaded))
+        assert donationpoint_ref01_data_dt0_load_result is not None
+        assert donationpoint_ref01_data_dt0_load_result["id"] == donationpoint_ref01_data["id"]
 
 
 

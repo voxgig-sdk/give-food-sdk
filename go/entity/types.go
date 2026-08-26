@@ -36,6 +36,7 @@ type ArticleListMatch struct {
 type Donationpoint struct {
 	Address *string `json:"address,omitempty"`
 	FoodbankSlug *string `json:"foodbank_slug,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -53,6 +54,7 @@ type DonationpointLoadMatch struct {
 type DonationpointListMatch struct {
 	Address *string `json:"address,omitempty"`
 	FoodbankSlug *string `json:"foodbank_slug,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -65,6 +67,7 @@ type DonationpointListMatch struct {
 type Foodbank struct {
 	Address *string `json:"address,omitempty"`
 	Email *string `json:"email,omitempty"`
+	Id *string `json:"id,omitempty"`
 	ItemsNeeded *[]any `json:"items_needed,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
@@ -87,6 +90,7 @@ type FoodbankLoadMatch struct {
 type FoodbankListMatch struct {
 	Address *string `json:"address,omitempty"`
 	Email *string `json:"email,omitempty"`
+	Id *string `json:"id,omitempty"`
 	ItemsNeeded *[]any `json:"items_needed,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`

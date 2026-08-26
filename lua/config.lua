@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -115,6 +116,10 @@ local function make_config()
           {
             ["name"] = "foodbank_slug",
             ["short"] = "Associated food bank identifier",
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
           {
@@ -249,6 +254,10 @@ local function make_config()
           {
             ["name"] = "email",
             ["short"] = "Contact email address",
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
           {
