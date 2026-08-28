@@ -26,12 +26,7 @@ class Article
 /** Request payload for Article#list. */
 class ArticleListMatch
 {
-    public ?string $foodbank_slug = null;
-    public ?int $id = null;
-    public ?string $published = null;
-    public ?string $source = null;
-    public ?string $title = null;
-    public ?string $url = null;
+    public ?string $format = null;
 }
 
 /** Donationpoint entity data model. */
@@ -52,20 +47,13 @@ class Donationpoint
 class DonationpointLoadMatch
 {
     public string $id;
+    public ?string $format = null;
 }
 
 /** Request payload for Donationpoint#list. */
 class DonationpointListMatch
 {
-    public ?string $address = null;
-    public ?string $foodbank_slug = null;
-    public ?string $id = null;
-    public ?float $latitude = null;
-    public ?float $longitude = null;
-    public ?string $name = null;
-    public ?string $postcode = null;
-    public ?string $slug = null;
-    public ?string $type = null;
+    public ?string $format = null;
 }
 
 /** Foodbank entity data model. */
@@ -91,25 +79,13 @@ class Foodbank
 class FoodbankLoadMatch
 {
     public string $id;
+    public ?string $format = null;
 }
 
 /** Request payload for Foodbank#list. */
 class FoodbankListMatch
 {
-    public ?string $address = null;
-    public ?string $email = null;
-    public ?string $id = null;
-    public ?array $items_needed = null;
-    public ?float $latitude = null;
-    public ?float $longitude = null;
-    public ?string $name = null;
-    public ?array $needs = null;
-    public ?string $phone = null;
-    public ?string $postcode = null;
-    public ?string $shopping_list_url = null;
-    public ?string $slug = null;
-    public ?string $updated = null;
-    public ?string $url = null;
+    public ?string $format = null;
 }
 
 /** Item entity data model. */
@@ -125,10 +101,6 @@ class Item
 /** Request payload for Item#list. */
 class ItemListMatch
 {
-    public ?string $created = null;
-    public ?string $foodbank_slug = null;
-    public ?int $id = null;
-    public ?string $item = null;
-    public ?string $updated = null;
+    public ?string $format = null;
 }
 

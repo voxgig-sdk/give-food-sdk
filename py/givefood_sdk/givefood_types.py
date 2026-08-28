@@ -26,12 +26,7 @@ class Article(TypedDict, total=False):
 
 
 class ArticleListMatch(TypedDict, total=False):
-    foodbank_slug: str
-    id: int
-    published: str
-    source: str
-    title: str
-    url: str
+    format: str
 
 
 class Donationpoint(TypedDict, total=False):
@@ -46,20 +41,16 @@ class Donationpoint(TypedDict, total=False):
     type: str
 
 
-class DonationpointLoadMatch(TypedDict):
+class DonationpointLoadMatchRequired(TypedDict):
     id: str
+
+
+class DonationpointLoadMatch(DonationpointLoadMatchRequired, total=False):
+    format: str
 
 
 class DonationpointListMatch(TypedDict, total=False):
-    address: str
-    foodbank_slug: str
-    id: str
-    latitude: float
-    longitude: float
-    name: str
-    postcode: str
-    slug: str
-    type: str
+    format: str
 
 
 class Foodbank(TypedDict, total=False):
@@ -79,25 +70,16 @@ class Foodbank(TypedDict, total=False):
     url: str
 
 
-class FoodbankLoadMatch(TypedDict):
+class FoodbankLoadMatchRequired(TypedDict):
     id: str
+
+
+class FoodbankLoadMatch(FoodbankLoadMatchRequired, total=False):
+    format: str
 
 
 class FoodbankListMatch(TypedDict, total=False):
-    address: str
-    email: str
-    id: str
-    items_needed: list
-    latitude: float
-    longitude: float
-    name: str
-    needs: dict
-    phone: str
-    postcode: str
-    shopping_list_url: str
-    slug: str
-    updated: str
-    url: str
+    format: str
 
 
 class Item(TypedDict, total=False):
@@ -109,8 +91,4 @@ class Item(TypedDict, total=False):
 
 
 class ItemListMatch(TypedDict, total=False):
-    created: str
-    foodbank_slug: str
-    id: int
-    item: str
-    updated: str
+    format: str

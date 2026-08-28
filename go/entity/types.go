@@ -24,12 +24,7 @@ type Article struct {
 
 // ArticleListMatch is the typed request payload for Article.ListTyped.
 type ArticleListMatch struct {
-	FoodbankSlug *string `json:"foodbank_slug,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Published *string `json:"published,omitempty"`
-	Source *string `json:"source,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Format *string `json:"format,omitempty"`
 }
 
 // Donationpoint is the typed data model for the donationpoint entity.
@@ -48,19 +43,12 @@ type Donationpoint struct {
 // DonationpointLoadMatch is the typed request payload for Donationpoint.LoadTyped.
 type DonationpointLoadMatch struct {
 	Id string `json:"id"`
+	Format *string `json:"format,omitempty"`
 }
 
 // DonationpointListMatch is the typed request payload for Donationpoint.ListTyped.
 type DonationpointListMatch struct {
-	Address *string `json:"address,omitempty"`
-	FoodbankSlug *string `json:"foodbank_slug,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Latitude *float64 `json:"latitude,omitempty"`
-	Longitude *float64 `json:"longitude,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Postcode *string `json:"postcode,omitempty"`
-	Slug *string `json:"slug,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Format *string `json:"format,omitempty"`
 }
 
 // Foodbank is the typed data model for the foodbank entity.
@@ -84,24 +72,12 @@ type Foodbank struct {
 // FoodbankLoadMatch is the typed request payload for Foodbank.LoadTyped.
 type FoodbankLoadMatch struct {
 	Id string `json:"id"`
+	Format *string `json:"format,omitempty"`
 }
 
 // FoodbankListMatch is the typed request payload for Foodbank.ListTyped.
 type FoodbankListMatch struct {
-	Address *string `json:"address,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Id *string `json:"id,omitempty"`
-	ItemsNeeded *[]any `json:"items_needed,omitempty"`
-	Latitude *float64 `json:"latitude,omitempty"`
-	Longitude *float64 `json:"longitude,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Needs *map[string]any `json:"needs,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Postcode *string `json:"postcode,omitempty"`
-	ShoppingListUrl *string `json:"shopping_list_url,omitempty"`
-	Slug *string `json:"slug,omitempty"`
-	Updated *string `json:"updated,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Format *string `json:"format,omitempty"`
 }
 
 // Item is the typed data model for the item entity.
@@ -115,11 +91,7 @@ type Item struct {
 
 // ItemListMatch is the typed request payload for Item.ListTyped.
 type ItemListMatch struct {
-	Created *string `json:"created,omitempty"`
-	FoodbankSlug *string `json:"foodbank_slug,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Item *string `json:"item,omitempty"`
-	Updated *string `json:"updated,omitempty"`
+	Format *string `json:"format,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

@@ -15,12 +15,7 @@ export interface Article {
 }
 
 export interface ArticleListMatch {
-  foodbank_slug?: string
-  id?: number
-  published?: string
-  source?: string
-  title?: string
-  url?: string
+  format?: string
 }
 
 export interface Donationpoint {
@@ -37,18 +32,11 @@ export interface Donationpoint {
 
 export interface DonationpointLoadMatch {
   id: string
+  format?: string
 }
 
 export interface DonationpointListMatch {
-  address?: string
-  foodbank_slug?: string
-  id?: string
-  latitude?: number
-  longitude?: number
-  name?: string
-  postcode?: string
-  slug?: string
-  type?: string
+  format?: string
 }
 
 export interface Foodbank {
@@ -70,23 +58,11 @@ export interface Foodbank {
 
 export interface FoodbankLoadMatch {
   id: string
+  format?: string
 }
 
 export interface FoodbankListMatch {
-  address?: string
-  email?: string
-  id?: string
-  items_needed?: any[]
-  latitude?: number
-  longitude?: number
-  name?: string
-  needs?: Record<string, any>
-  phone?: string
-  postcode?: string
-  shopping_list_url?: string
-  slug?: string
-  updated?: string
-  url?: string
+  format?: string
 }
 
 export interface Item {
@@ -98,10 +74,6 @@ export interface Item {
 }
 
 export interface ItemListMatch {
-  created?: string
-  foodbank_slug?: string
-  id?: number
-  item?: string
-  updated?: string
+  format?: string
 }
 

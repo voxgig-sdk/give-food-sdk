@@ -39,30 +39,10 @@ Article = Struct.new(
 
 # Request payload for Article#list.
 #
-# @!attribute [rw] foodbank_slug
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] published
-#   @return [String, nil]
-#
-# @!attribute [rw] source
-#   @return [String, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] url
+# @!attribute [rw] format
 #   @return [String, nil]
 ArticleListMatch = Struct.new(
-  :foodbank_slug,
-  :id,
-  :published,
-  :source,
-  :title,
-  :url,
+  :format,
   keyword_init: true
 )
 
@@ -111,49 +91,21 @@ Donationpoint = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] format
+#   @return [String, nil]
 DonationpointLoadMatch = Struct.new(
   :id,
+  :format,
   keyword_init: true
 )
 
 # Request payload for Donationpoint#list.
 #
-# @!attribute [rw] address
-#   @return [String, nil]
-#
-# @!attribute [rw] foodbank_slug
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] latitude
-#   @return [Float, nil]
-#
-# @!attribute [rw] longitude
-#   @return [Float, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] postcode
-#   @return [String, nil]
-#
-# @!attribute [rw] slug
-#   @return [String, nil]
-#
-# @!attribute [rw] type
+# @!attribute [rw] format
 #   @return [String, nil]
 DonationpointListMatch = Struct.new(
-  :address,
-  :foodbank_slug,
-  :id,
-  :latitude,
-  :longitude,
-  :name,
-  :postcode,
-  :slug,
-  :type,
+  :format,
   keyword_init: true
 )
 
@@ -222,69 +174,21 @@ Foodbank = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] format
+#   @return [String, nil]
 FoodbankLoadMatch = Struct.new(
   :id,
+  :format,
   keyword_init: true
 )
 
 # Request payload for Foodbank#list.
 #
-# @!attribute [rw] address
-#   @return [String, nil]
-#
-# @!attribute [rw] email
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] items_needed
-#   @return [Array, nil]
-#
-# @!attribute [rw] latitude
-#   @return [Float, nil]
-#
-# @!attribute [rw] longitude
-#   @return [Float, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] needs
-#   @return [Hash, nil]
-#
-# @!attribute [rw] phone
-#   @return [String, nil]
-#
-# @!attribute [rw] postcode
-#   @return [String, nil]
-#
-# @!attribute [rw] shopping_list_url
-#   @return [String, nil]
-#
-# @!attribute [rw] slug
-#   @return [String, nil]
-#
-# @!attribute [rw] updated
-#   @return [String, nil]
-#
-# @!attribute [rw] url
+# @!attribute [rw] format
 #   @return [String, nil]
 FoodbankListMatch = Struct.new(
-  :address,
-  :email,
-  :id,
-  :items_needed,
-  :latitude,
-  :longitude,
-  :name,
-  :needs,
-  :phone,
-  :postcode,
-  :shopping_list_url,
-  :slug,
-  :updated,
-  :url,
+  :format,
   keyword_init: true
 )
 
@@ -315,26 +219,10 @@ Item = Struct.new(
 
 # Request payload for Item#list.
 #
-# @!attribute [rw] created
-#   @return [String, nil]
-#
-# @!attribute [rw] foodbank_slug
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] item
-#   @return [String, nil]
-#
-# @!attribute [rw] updated
+# @!attribute [rw] format
 #   @return [String, nil]
 ItemListMatch = Struct.new(
-  :created,
-  :foodbank_slug,
-  :id,
-  :item,
-  :updated,
+  :format,
   keyword_init: true
 )
 

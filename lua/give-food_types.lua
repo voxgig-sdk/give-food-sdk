@@ -15,12 +15,7 @@
 ---@field url? string
 
 ---@class ArticleListMatch
----@field foodbank_slug? string
----@field id? number
----@field published? string
----@field source? string
----@field title? string
----@field url? string
+---@field format? string
 
 ---@class Donationpoint
 ---@field address? string
@@ -35,17 +30,10 @@
 
 ---@class DonationpointLoadMatch
 ---@field id string
+---@field format? string
 
 ---@class DonationpointListMatch
----@field address? string
----@field foodbank_slug? string
----@field id? string
----@field latitude? number
----@field longitude? number
----@field name? string
----@field postcode? string
----@field slug? string
----@field type? string
+---@field format? string
 
 ---@class Foodbank
 ---@field address? string
@@ -65,22 +53,10 @@
 
 ---@class FoodbankLoadMatch
 ---@field id string
+---@field format? string
 
 ---@class FoodbankListMatch
----@field address? string
----@field email? string
----@field id? string
----@field items_needed? table
----@field latitude? number
----@field longitude? number
----@field name? string
----@field needs? table
----@field phone? string
----@field postcode? string
----@field shopping_list_url? string
----@field slug? string
----@field updated? string
----@field url? string
+---@field format? string
 
 ---@class Item
 ---@field created? string
@@ -90,11 +66,7 @@
 ---@field updated? string
 
 ---@class ItemListMatch
----@field created? string
----@field foodbank_slug? string
----@field id? number
----@field item? string
----@field updated? string
+---@field format? string
 
 local M = {}
 
