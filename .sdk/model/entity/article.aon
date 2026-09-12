@@ -18,6 +18,7 @@ main: kit: entity: article: {
       type: "`$INTEGER`"
     }
     {
+      format: "date-time"
       name: "published"
       req: false
       short: "Publication date"
@@ -36,6 +37,7 @@ main: kit: entity: article: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "url"
       req: false
       short: "URL to the article"
@@ -68,8 +70,10 @@ main: kit: entity: article: {
           }
           method: "GET"
           orig: "/articles/"
-          parts: [
-            "articles"
+          segments: [
+            {
+              lit: "articles"
+            }
           ]
           select: {
             exist: [

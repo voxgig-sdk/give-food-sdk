@@ -49,6 +49,7 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "published",
 						"short": "Publication date",
 						"type": "`$STRING`",
@@ -64,10 +65,15 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "url",
 						"short": "URL to the article",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "article",
 				"op": map[string]any{
@@ -90,8 +96,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/articles/",
-								"parts": []any{
-									"articles",
+								"segments": []any{
+									map[string]any{
+										"lit": "articles",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -101,6 +109,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"articles",
 								},
 							},
 						},
@@ -127,11 +138,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "latitude",
 						"short": "Latitude coordinate",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "longitude",
 						"short": "Longitude coordinate",
 						"type": "`$NUMBER`",
@@ -157,6 +170,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "donationpoint",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -178,8 +195,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/donationpoints/",
-								"parts": []any{
-									"donationpoints",
+								"segments": []any{
+									map[string]any{
+										"lit": "donationpoints",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -189,6 +208,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"donationpoints",
 								},
 							},
 						},
@@ -221,13 +243,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/donationpoints/{slug}/",
-								"parts": []any{
-									"donationpoints",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"slug": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "donationpoints",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -239,6 +265,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"donationpoints",
+									"{id}",
 								},
 							},
 						},
@@ -256,6 +286,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "email",
 						"name": "email",
 						"short": "Contact email address",
 						"type": "`$STRING`",
@@ -270,11 +301,13 @@ func MakeConfig() map[string]any {
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "latitude",
 						"short": "Latitude coordinate",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "longitude",
 						"short": "Longitude coordinate",
 						"type": "`$NUMBER`",
@@ -300,6 +333,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "shopping_list_url",
 						"short": "URL to the food bank's detailed shopping list",
 						"type": "`$STRING`",
@@ -310,15 +344,21 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "updated",
 						"short": "Last update timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "url",
 						"short": "Website URL",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "foodbank",
 				"op": map[string]any{
@@ -341,8 +381,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/foodbanks/",
-								"parts": []any{
-									"foodbanks",
+								"segments": []any{
+									map[string]any{
+										"lit": "foodbanks",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -352,6 +394,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"foodbanks",
 								},
 							},
 						},
@@ -384,13 +429,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/foodbanks/{slug}/",
-								"parts": []any{
-									"foodbanks",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"slug": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "foodbanks",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -403,6 +452,10 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"foodbanks",
+									"{id}",
+								},
 							},
 						},
 					},
@@ -414,6 +467,7 @@ func MakeConfig() map[string]any {
 			"item": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "date-time",
 						"name": "created",
 						"short": "When this need was recorded",
 						"type": "`$STRING`",
@@ -434,10 +488,15 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "updated",
 						"short": "Last update timestamp",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "item",
 				"op": map[string]any{
@@ -460,8 +519,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/items/",
-								"parts": []any{
-									"items",
+								"segments": []any{
+									map[string]any{
+										"lit": "items",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -471,6 +532,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"items",
 								},
 							},
 						},
@@ -482,6 +546,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

@@ -23,12 +23,14 @@ main: kit: entity: donationpoint: {
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "latitude"
       req: false
       short: "Latitude coordinate"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "longitude"
       req: false
       short: "Longitude coordinate"
@@ -85,8 +87,10 @@ main: kit: entity: donationpoint: {
           }
           method: "GET"
           orig: "/donationpoints/"
-          parts: [
-            "donationpoints"
+          segments: [
+            {
+              lit: "donationpoints"
+            }
           ]
           select: {
             exist: [
@@ -127,15 +131,19 @@ main: kit: entity: donationpoint: {
           }
           method: "GET"
           orig: "/donationpoints/{slug}/"
-          parts: [
-            "donationpoints"
-            "{id}"
-          ]
           rename: {
             param: {
               slug: "id"
             }
           }
+          segments: [
+            {
+              lit: "donationpoints"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "format"

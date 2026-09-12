@@ -45,6 +45,7 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "published",
             ["short"] = "Publication date",
             ["type"] = "`$STRING`",
@@ -60,10 +61,15 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "url",
             ["short"] = "URL to the article",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "article",
         ["op"] = {
@@ -86,8 +92,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/articles/",
-                ["parts"] = {
-                  "articles",
+                ["segments"] = {
+                  {
+                    ["lit"] = "articles",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -97,6 +105,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "articles",
                 },
               },
             },
@@ -123,11 +134,13 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "double",
             ["name"] = "latitude",
             ["short"] = "Latitude coordinate",
             ["type"] = "`$NUMBER`",
           },
           {
+            ["format"] = "double",
             ["name"] = "longitude",
             ["short"] = "Longitude coordinate",
             ["type"] = "`$NUMBER`",
@@ -153,6 +166,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "donationpoint",
         ["op"] = {
           ["list"] = {
@@ -174,8 +191,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/donationpoints/",
-                ["parts"] = {
-                  "donationpoints",
+                ["segments"] = {
+                  {
+                    ["lit"] = "donationpoints",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -185,6 +204,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "donationpoints",
                 },
               },
             },
@@ -217,13 +239,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/donationpoints/{slug}/",
-                ["parts"] = {
-                  "donationpoints",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["slug"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "donationpoints",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -235,6 +261,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "donationpoints",
+                  "{id}",
                 },
               },
             },
@@ -252,6 +282,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "email",
             ["name"] = "email",
             ["short"] = "Contact email address",
             ["type"] = "`$STRING`",
@@ -266,11 +297,13 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "double",
             ["name"] = "latitude",
             ["short"] = "Latitude coordinate",
             ["type"] = "`$NUMBER`",
           },
           {
+            ["format"] = "double",
             ["name"] = "longitude",
             ["short"] = "Longitude coordinate",
             ["type"] = "`$NUMBER`",
@@ -296,6 +329,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "shopping_list_url",
             ["short"] = "URL to the food bank's detailed shopping list",
             ["type"] = "`$STRING`",
@@ -306,15 +340,21 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "updated",
             ["short"] = "Last update timestamp",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "url",
             ["short"] = "Website URL",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "foodbank",
         ["op"] = {
@@ -337,8 +377,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/foodbanks/",
-                ["parts"] = {
-                  "foodbanks",
+                ["segments"] = {
+                  {
+                    ["lit"] = "foodbanks",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -348,6 +390,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "foodbanks",
                 },
               },
             },
@@ -380,13 +425,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/foodbanks/{slug}/",
-                ["parts"] = {
-                  "foodbanks",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["slug"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "foodbanks",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -399,6 +448,10 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "foodbanks",
+                  "{id}",
+                },
               },
             },
           },
@@ -410,6 +463,7 @@ local function make_config()
       ["item"] = {
         ["fields"] = {
           {
+            ["format"] = "date-time",
             ["name"] = "created",
             ["short"] = "When this need was recorded",
             ["type"] = "`$STRING`",
@@ -430,10 +484,15 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "updated",
             ["short"] = "Last update timestamp",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "item",
         ["op"] = {
@@ -456,8 +515,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/items/",
-                ["parts"] = {
-                  "items",
+                ["segments"] = {
+                  {
+                    ["lit"] = "items",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -467,6 +528,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "items",
                 },
               },
             },

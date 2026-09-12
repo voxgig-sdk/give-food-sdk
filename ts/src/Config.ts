@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -86,6 +97,7 @@ class Config {
           "type": "`$INTEGER`"
         },
         {
+          "format": "date-time",
           "name": "published",
           "short": "Publication date",
           "type": "`$STRING`"
@@ -101,11 +113,16 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "url",
           "short": "URL to the article",
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "article",
       "op": {
         "list": {
@@ -127,8 +144,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/articles/",
-              "parts": [
-                "articles"
+              "segments": [
+                {
+                  "lit": "articles"
+                }
               ],
               "select": {
                 "exist": [
@@ -138,7 +157,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "articles"
+              ]
             }
           ]
         }
@@ -164,11 +186,13 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "double",
           "name": "latitude",
           "short": "Latitude coordinate",
           "type": "`$NUMBER`"
         },
         {
+          "format": "double",
           "name": "longitude",
           "short": "Longitude coordinate",
           "type": "`$NUMBER`"
@@ -194,6 +218,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "donationpoint",
       "op": {
         "list": {
@@ -215,8 +243,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/donationpoints/",
-              "parts": [
-                "donationpoints"
+              "segments": [
+                {
+                  "lit": "donationpoints"
+                }
               ],
               "select": {
                 "exist": [
@@ -226,7 +256,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "donationpoints"
+              ]
             }
           ]
         },
@@ -258,15 +291,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/donationpoints/{slug}/",
-              "parts": [
-                "donationpoints",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "slug": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "donationpoints"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "format",
@@ -276,7 +313,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "donationpoints",
+                "{id}"
+              ]
             }
           ]
         }
@@ -293,6 +334,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "email",
           "name": "email",
           "short": "Contact email address",
           "type": "`$STRING`"
@@ -307,11 +349,13 @@ class Config {
           "type": "`$ARRAY`"
         },
         {
+          "format": "double",
           "name": "latitude",
           "short": "Latitude coordinate",
           "type": "`$NUMBER`"
         },
         {
+          "format": "double",
           "name": "longitude",
           "short": "Longitude coordinate",
           "type": "`$NUMBER`"
@@ -337,6 +381,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "shopping_list_url",
           "short": "URL to the food bank's detailed shopping list",
           "type": "`$STRING`"
@@ -347,16 +392,22 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "updated",
           "short": "Last update timestamp",
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "url",
           "short": "Website URL",
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "foodbank",
       "op": {
         "list": {
@@ -378,8 +429,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/foodbanks/",
-              "parts": [
-                "foodbanks"
+              "segments": [
+                {
+                  "lit": "foodbanks"
+                }
               ],
               "select": {
                 "exist": [
@@ -389,7 +442,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "foodbanks"
+              ]
             }
           ]
         },
@@ -421,15 +477,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/foodbanks/{slug}/",
-              "parts": [
-                "foodbanks",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "slug": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "foodbanks"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "format",
@@ -439,7 +499,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "foodbanks",
+                "{id}"
+              ]
             }
           ]
         }
@@ -451,6 +515,7 @@ class Config {
     "item": {
       "fields": [
         {
+          "format": "date-time",
           "name": "created",
           "short": "When this need was recorded",
           "type": "`$STRING`"
@@ -471,11 +536,16 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "updated",
           "short": "Last update timestamp",
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "item",
       "op": {
         "list": {
@@ -497,8 +567,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/items/",
-              "parts": [
-                "items"
+              "segments": [
+                {
+                  "lit": "items"
+                }
               ],
               "select": {
                 "exist": [
@@ -508,7 +580,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "items"
+              ]
             }
           ]
         }
@@ -524,6 +599,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

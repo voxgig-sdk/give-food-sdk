@@ -1,6 +1,14 @@
 # GiveFood SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -66,6 +74,7 @@ def make_config():
             "type": "`$INTEGER`",
           },
           {
+            "format": "date-time",
             "name": "published",
             "short": "Publication date",
             "type": "`$STRING`",
@@ -81,11 +90,16 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "url",
             "short": "URL to the article",
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "article",
         "op": {
           "list": {
@@ -107,8 +121,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/articles/",
-                "parts": [
-                  "articles",
+                "segments": [
+                  {
+                    "lit": "articles",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -119,6 +135,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "articles",
+                ],
               },
             ],
           },
@@ -144,11 +163,13 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "double",
             "name": "latitude",
             "short": "Latitude coordinate",
             "type": "`$NUMBER`",
           },
           {
+            "format": "double",
             "name": "longitude",
             "short": "Longitude coordinate",
             "type": "`$NUMBER`",
@@ -174,6 +195,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "donationpoint",
         "op": {
           "list": {
@@ -195,8 +220,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/donationpoints/",
-                "parts": [
-                  "donationpoints",
+                "segments": [
+                  {
+                    "lit": "donationpoints",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -207,6 +234,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "donationpoints",
+                ],
               },
             ],
           },
@@ -238,15 +268,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/donationpoints/{slug}/",
-                "parts": [
-                  "donationpoints",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "slug": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "donationpoints",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "format",
@@ -257,6 +291,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "donationpoints",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -273,6 +311,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "email",
             "name": "email",
             "short": "Contact email address",
             "type": "`$STRING`",
@@ -287,11 +326,13 @@ def make_config():
             "type": "`$ARRAY`",
           },
           {
+            "format": "double",
             "name": "latitude",
             "short": "Latitude coordinate",
             "type": "`$NUMBER`",
           },
           {
+            "format": "double",
             "name": "longitude",
             "short": "Longitude coordinate",
             "type": "`$NUMBER`",
@@ -317,6 +358,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "shopping_list_url",
             "short": "URL to the food bank's detailed shopping list",
             "type": "`$STRING`",
@@ -327,16 +369,22 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "updated",
             "short": "Last update timestamp",
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "url",
             "short": "Website URL",
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "foodbank",
         "op": {
           "list": {
@@ -358,8 +406,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/foodbanks/",
-                "parts": [
-                  "foodbanks",
+                "segments": [
+                  {
+                    "lit": "foodbanks",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -370,6 +420,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "foodbanks",
+                ],
               },
             ],
           },
@@ -401,15 +454,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/foodbanks/{slug}/",
-                "parts": [
-                  "foodbanks",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "slug": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "foodbanks",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "format",
@@ -420,6 +477,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "foodbanks",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -431,6 +492,7 @@ def make_config():
       "item": {
         "fields": [
           {
+            "format": "date-time",
             "name": "created",
             "short": "When this need was recorded",
             "type": "`$STRING`",
@@ -451,11 +513,16 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "updated",
             "short": "Last update timestamp",
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "item",
         "op": {
           "list": {
@@ -477,8 +544,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/items/",
-                "parts": [
-                  "items",
+                "segments": [
+                  {
+                    "lit": "items",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -489,6 +558,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "items",
+                ],
               },
             ],
           },

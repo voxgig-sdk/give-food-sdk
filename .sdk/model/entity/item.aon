@@ -6,6 +6,7 @@ main: kit: entity: item: {
 
   fields: [
     {
+      format: "date-time"
       name: "created"
       req: false
       short: "When this need was recorded"
@@ -30,6 +31,7 @@ main: kit: entity: item: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "updated"
       req: false
       short: "Last update timestamp"
@@ -62,8 +64,10 @@ main: kit: entity: item: {
           }
           method: "GET"
           orig: "/items/"
-          parts: [
-            "items"
+          segments: [
+            {
+              lit: "items"
+            }
           ]
           select: {
             exist: [

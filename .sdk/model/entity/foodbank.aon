@@ -12,6 +12,7 @@ main: kit: entity: foodbank: {
       type: "`$STRING`"
     }
     {
+      format: "email"
       name: "email"
       req: false
       short: "Contact email address"
@@ -29,12 +30,14 @@ main: kit: entity: foodbank: {
       type: "`$ARRAY`"
     }
     {
+      format: "double"
       name: "latitude"
       req: false
       short: "Latitude coordinate"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "longitude"
       req: false
       short: "Longitude coordinate"
@@ -65,6 +68,7 @@ main: kit: entity: foodbank: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "shopping_list_url"
       req: false
       short: "URL to the food bank's detailed shopping list"
@@ -77,12 +81,14 @@ main: kit: entity: foodbank: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "updated"
       req: false
       short: "Last update timestamp"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "url"
       req: false
       short: "Website URL"
@@ -115,8 +121,10 @@ main: kit: entity: foodbank: {
           }
           method: "GET"
           orig: "/foodbanks/"
-          parts: [
-            "foodbanks"
+          segments: [
+            {
+              lit: "foodbanks"
+            }
           ]
           select: {
             exist: [
@@ -157,15 +165,19 @@ main: kit: entity: foodbank: {
           }
           method: "GET"
           orig: "/foodbanks/{slug}/"
-          parts: [
-            "foodbanks"
-            "{id}"
-          ]
           rename: {
             param: {
               slug: "id"
             }
           }
+          segments: [
+            {
+              lit: "foodbanks"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "format"
