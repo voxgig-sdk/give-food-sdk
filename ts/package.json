@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/give-food",
+  "name": "@voxgig-sdk/give-food-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the Give Food public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [

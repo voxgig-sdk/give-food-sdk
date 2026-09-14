@@ -105,7 +105,7 @@ local results, err = client:Article():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/give-food` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/releases) |
+| TypeScript | `@voxgig-sdk/give-food-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/releases) |
 | Python | `voxgig-sdk-give-food` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/releases) |
 | PHP | `voxgig-sdk/give-food` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/give-food-sdk/go` | `go get github.com/voxgig-sdk/give-food-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Article():list()
 ### TypeScript
 
 ```ts
-import { GiveFoodSDK } from '@voxgig-sdk/give-food'
+import { GiveFoodSDK } from '@voxgig-sdk/give-food-sdk'
 
 const client = new GiveFoodSDK()
 

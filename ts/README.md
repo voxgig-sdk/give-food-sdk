@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { GiveFoodSDK } from '@voxgig-sdk/give-food'
+import { GiveFoodSDK } from '@voxgig-sdk/give-food-sdk'
 
 const client = new GiveFoodSDK()
 ```
@@ -581,7 +581,7 @@ give-food/
 Import the SDK from the package root:
 
 ```ts
-import { GiveFoodSDK } from '@voxgig-sdk/give-food'
+import { GiveFoodSDK } from '@voxgig-sdk/give-food-sdk'
 ```
 
 ### Entity state
