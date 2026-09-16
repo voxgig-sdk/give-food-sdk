@@ -33,5 +33,81 @@
         "updated": "scc"
       }
     }
+  },
+  "requests": {
+    "GET /items/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listItems",
+        "parameters": [
+          {
+            "description": "Response format",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "default": "json",
+              "enum": [
+                "json",
+                "xml",
+                "yaml"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "created": {
+                        "description": "When this need was recorded",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "foodbank_slug": {
+                        "description": "Food bank identifier",
+                        "type": "string"
+                      },
+                      "id": {
+                        "description": "Unique identifier for the item need record",
+                        "type": "integer"
+                      },
+                      "item": {
+                        "description": "Name of the item needed",
+                        "type": "string"
+                      },
+                      "updated": {
+                        "description": "Last update timestamp",
+                        "format": "date-time",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "application/x-yaml": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

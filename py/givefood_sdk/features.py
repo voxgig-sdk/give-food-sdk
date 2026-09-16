@@ -1,12 +1,18 @@
 # GiveFood SDK feature factory
 
 from givefood_sdk.feature.base_feature import GiveFoodBaseFeature
+from givefood_sdk.feature.ratelimit_feature import GiveFoodRatelimitFeature
+from givefood_sdk.feature.retry_feature import GiveFoodRetryFeature
 from givefood_sdk.feature.test_feature import GiveFoodTestFeature
+from givefood_sdk.feature.timeout_feature import GiveFoodTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: GiveFoodBaseFeature(),
+    "ratelimit": lambda: GiveFoodRatelimitFeature(),
+    "retry": lambda: GiveFoodRetryFeature(),
     "test": lambda: GiveFoodTestFeature(),
+    "timeout": lambda: GiveFoodTimeoutFeature(),
 }
 
 

@@ -4,7 +4,10 @@ declare(strict_types=1);
 // GiveFood SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class GiveFoodFeatures
@@ -14,8 +17,14 @@ class GiveFoodFeatures
         switch ($name) {
             case "base":
                 return new GiveFoodBaseFeature();
+            case "ratelimit":
+                return new GiveFoodRatelimitFeature();
+            case "retry":
+                return new GiveFoodRetryFeature();
             case "test":
                 return new GiveFoodTestFeature();
+            case "timeout":
+                return new GiveFoodTimeoutFeature();
             default:
                 return new GiveFoodBaseFeature();
         }
@@ -31,7 +40,10 @@ class GiveFoodFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

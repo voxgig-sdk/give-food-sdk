@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.GIVE_FOOD_TEST_LIVE;
         for (const op of ['list', 'load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'donationpoint.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'donationpoint.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set GIVE_FOOD_TEST_DONATIONPOINT_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "address", "req": false, "short": "Physical address", "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "foodbank_slug", "req": false, "short": "Associated food bank identifier", "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "id", "req": false, "type": "`$STRING`", "index$": 2 }, { "active": true, "format": "double", "name": "latitude", "req": false, "short": "Latitude coordinate", "type": "`$NUMBER`", "index$": 3 }, { "active": true, "format": "double", "name": "longitude", "req": false, "short": "Longitude coordinate", "type": "`$NUMBER`", "index$": 4 }, { "active": true, "name": "name", "req": false, "short": "Name of the donation point", "type": "`$STRING`", "index$": 5 }, { "active": true, "name": "postcode", "req": false, "short": "Postal code", "type": "`$STRING`", "index$": 6 }, { "active": true, "name": "slug", "req": false, "short": "Unique identifier for the donation point", "type": "`$STRING`", "index$": 7 }, { "active": true, "name": "type", "req": false, "short": "Type of donation point (e.g., supermarket, collection point)", "type": "`$STRING`", "index$": 8 }], "id": { "field": "id", "name": "id" }, "name": "donationpoint", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "query": [{ "active": true, "example": "json", "kind": "query", "name": "format", "orig": "format", "reqd": false, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /donationpoints/", "json": "{\"operationId\":\"listDonationPoints\",\"parameters\":[{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"geojson\",\"xml\",\"yaml\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/geo+json\":{\"schema\":{\"properties\":{\"features\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"type\":{\"example\":\"FeatureCollection\",\"type\":\"string\"}},\"type\":\"object\"}},\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"address\":{\"description\":\"Physical address\",\"type\":\"string\"},\"foodbank_slug\":{\"description\":\"Associated food bank identifier\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the donation point\",\"type\":\"string\"},\"postcode\":{\"description\":\"Postal code\",\"type\":\"string\"},\"slug\":{\"description\":\"Unique identifier for the donation point\",\"type\":\"string\"},\"type\":{\"description\":\"Type of donation point (e.g., supermarket, collection point)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"application/x-yaml\":{\"schema\":{\"type\":\"object\"}},\"application/xml\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/donationpoints/", "segments": [{ "lit": "donationpoints" }], "select": { "exist": ["format"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "id", "orig": "slug", "reqd": true, "type": "`$STRING`", "index$": 0 }], "query": [{ "active": true, "example": "json", "kind": "query", "name": "format", "orig": "format", "reqd": false, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /donationpoints/{slug}/", "json": "{\"operationId\":\"getDonationPoint\",\"parameters\":[{\"description\":\"Unique identifier for the donation point\",\"in\":\"path\",\"name\":\"slug\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"xml\",\"yaml\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"address\":{\"description\":\"Physical address\",\"type\":\"string\"},\"foodbank_slug\":{\"description\":\"Associated food bank identifier\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the donation point\",\"type\":\"string\"},\"postcode\":{\"description\":\"Postal code\",\"type\":\"string\"},\"slug\":{\"description\":\"Unique identifier for the donation point\",\"type\":\"string\"},\"type\":{\"description\":\"Type of donation point (e.g., supermarket, collection point)\",\"type\":\"string\"}},\"type\":\"object\"}},\"application/x-yaml\":{\"schema\":{\"properties\":{\"address\":{\"description\":\"Physical address\",\"type\":\"string\"},\"foodbank_slug\":{\"description\":\"Associated food bank identifier\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the donation point\",\"type\":\"string\"},\"postcode\":{\"description\":\"Postal code\",\"type\":\"string\"},\"slug\":{\"description\":\"Unique identifier for the donation point\",\"type\":\"string\"},\"type\":{\"description\":\"Type of donation point (e.g., supermarket, collection point)\",\"type\":\"string\"}},\"type\":\"object\"}},\"application/xml\":{\"schema\":{\"properties\":{\"address\":{\"description\":\"Physical address\",\"type\":\"string\"},\"foodbank_slug\":{\"description\":\"Associated food bank identifier\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the donation point\",\"type\":\"string\"},\"postcode\":{\"description\":\"Postal code\",\"type\":\"string\"},\"slug\":{\"description\":\"Unique identifier for the donation point\",\"type\":\"string\"},\"type\":{\"description\":\"Type of donation point (e.g., supermarket, collection point)\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Donation point not found\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/donationpoints/{slug}/", "rename": { "param": { "slug": "id" } }, "segments": [{ "lit": "donationpoints" }, { "var": "id" }], "select": { "exist": ["format", "id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "donationpoint", "name__orig": "donationpoint", "Name": "Donationpoint", "name_": "donationpoint", "name-": "donationpoint", "NAME": "DONATIONPOINT", "index$": 1 }, { "active": true, "entity": "donationpoint", "key$": "BasicDonationpointFlow", "kind": "basic", "name": "BasicDonationpointFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "donationpoint_ref01" } }], "index$": 0 }, { "active": true, "data": {}, "input": { "ref": "donationpoint_ref01", "srcdatavar": "donationpoint_ref01_data", "suffix": "_dt0" }, "match": { "id": "donationpoint01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-donationpoint_ref01" } }], "index$": 1 }] }, 'Donationpoint');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -106,12 +104,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['GIVE_FOOD_TEST_DONATIONPOINT_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'GIVE_FOOD_TEST_DONATIONPOINT_ENTID': idmap,
         'GIVE_FOOD_TEST_LIVE': 'FALSE',
@@ -119,7 +111,13 @@ function basicSetup(extra) {
     });
     idmap = env['GIVE_FOOD_TEST_DONATIONPOINT_ENTID'];
     const live = 'TRUE' === env.GIVE_FOOD_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['GIVE_FOOD_TEST_DONATIONPOINT_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.GiveFoodSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -130,7 +128,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -142,7 +141,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.GIVE_FOOD_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

@@ -68,6 +68,12 @@ main: kit: entity: article: {
               }
             ]
           }
+          contract: {
+            id: "GET /articles/"
+            json: "{\"operationId\":\"listArticles\",\"parameters\":[{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"xml\",\"yaml\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"foodbank_slug\":{\"description\":\"Related food bank identifier\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the article\",\"type\":\"integer\"},\"published\":{\"description\":\"Publication date\",\"format\":\"date-time\",\"type\":\"string\"},\"source\":{\"description\":\"Publication source\",\"type\":\"string\"},\"title\":{\"description\":\"Article title\",\"type\":\"string\"},\"url\":{\"description\":\"URL to the article\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"application/x-yaml\":{\"schema\":{\"type\":\"object\"}},\"application/xml\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/articles/"
           segments: [

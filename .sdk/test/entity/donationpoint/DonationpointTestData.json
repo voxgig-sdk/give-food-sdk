@@ -49,5 +49,278 @@
         "type": "s170"
       }
     }
+  },
+  "requests": {
+    "GET /donationpoints/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listDonationPoints",
+        "parameters": [
+          {
+            "description": "Response format",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "default": "json",
+              "enum": [
+                "json",
+                "geojson",
+                "xml",
+                "yaml"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/geo+json": {
+                "schema": {
+                  "properties": {
+                    "features": {
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "example": "FeatureCollection",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "address": {
+                        "description": "Physical address",
+                        "type": "string"
+                      },
+                      "foodbank_slug": {
+                        "description": "Associated food bank identifier",
+                        "type": "string"
+                      },
+                      "latitude": {
+                        "description": "Latitude coordinate",
+                        "format": "double",
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "description": "Longitude coordinate",
+                        "format": "double",
+                        "type": "number"
+                      },
+                      "name": {
+                        "description": "Name of the donation point",
+                        "type": "string"
+                      },
+                      "postcode": {
+                        "description": "Postal code",
+                        "type": "string"
+                      },
+                      "slug": {
+                        "description": "Unique identifier for the donation point",
+                        "type": "string"
+                      },
+                      "type": {
+                        "description": "Type of donation point (e.g., supermarket, collection point)",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "application/x-yaml": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /donationpoints/{slug}/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getDonationPoint",
+        "parameters": [
+          {
+            "description": "Unique identifier for the donation point",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Response format",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "default": "json",
+              "enum": [
+                "json",
+                "xml",
+                "yaml"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "address": {
+                      "description": "Physical address",
+                      "type": "string"
+                    },
+                    "foodbank_slug": {
+                      "description": "Associated food bank identifier",
+                      "type": "string"
+                    },
+                    "latitude": {
+                      "description": "Latitude coordinate",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "description": "Longitude coordinate",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "name": {
+                      "description": "Name of the donation point",
+                      "type": "string"
+                    },
+                    "postcode": {
+                      "description": "Postal code",
+                      "type": "string"
+                    },
+                    "slug": {
+                      "description": "Unique identifier for the donation point",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "Type of donation point (e.g., supermarket, collection point)",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/x-yaml": {
+                "schema": {
+                  "properties": {
+                    "address": {
+                      "description": "Physical address",
+                      "type": "string"
+                    },
+                    "foodbank_slug": {
+                      "description": "Associated food bank identifier",
+                      "type": "string"
+                    },
+                    "latitude": {
+                      "description": "Latitude coordinate",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "description": "Longitude coordinate",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "name": {
+                      "description": "Name of the donation point",
+                      "type": "string"
+                    },
+                    "postcode": {
+                      "description": "Postal code",
+                      "type": "string"
+                    },
+                    "slug": {
+                      "description": "Unique identifier for the donation point",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "Type of donation point (e.g., supermarket, collection point)",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "address": {
+                      "description": "Physical address",
+                      "type": "string"
+                    },
+                    "foodbank_slug": {
+                      "description": "Associated food bank identifier",
+                      "type": "string"
+                    },
+                    "latitude": {
+                      "description": "Latitude coordinate",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "description": "Longitude coordinate",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "name": {
+                      "description": "Name of the donation point",
+                      "type": "string"
+                    },
+                    "postcode": {
+                      "description": "Postal code",
+                      "type": "string"
+                    },
+                    "slug": {
+                      "description": "Unique identifier for the donation point",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "Type of donation point (e.g., supermarket, collection point)",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Donation point not found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }
