@@ -11,22 +11,20 @@ guide: {
     }
   }
 
-  entity: donationpoint: {
+  entity: donation_point: {
     path: "/donationpoints/": {
       op: list: method: *GET
     }
     path: "/donationpoints/{slug}/": {
-      rename: param: "slug": *"id"
       op: load: method: *GET
     }
   }
 
-  entity: foodbank: {
+  entity: food_bank: {
     path: "/foodbanks/": {
       op: list: method: *GET
     }
     path: "/foodbanks/{slug}/": {
-      rename: param: "slug": *"id"
       op: load: method: *GET
     }
   }

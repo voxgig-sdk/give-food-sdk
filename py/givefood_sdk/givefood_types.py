@@ -29,10 +29,9 @@ class ArticleListMatch(TypedDict, total=False):
     format: str
 
 
-class Donationpoint(TypedDict, total=False):
+class DonationPoint(TypedDict, total=False):
     address: str
     foodbank_slug: str
-    id: str
     latitude: float
     longitude: float
     name: str
@@ -41,22 +40,21 @@ class Donationpoint(TypedDict, total=False):
     type: str
 
 
-class DonationpointLoadMatchRequired(TypedDict):
-    id: str
+class DonationPointLoadMatchRequired(TypedDict):
+    slug: str
 
 
-class DonationpointLoadMatch(DonationpointLoadMatchRequired, total=False):
+class DonationPointLoadMatch(DonationPointLoadMatchRequired, total=False):
     format: str
 
 
-class DonationpointListMatch(TypedDict, total=False):
+class DonationPointListMatch(TypedDict, total=False):
     format: str
 
 
-class Foodbank(TypedDict, total=False):
+class FoodBank(TypedDict, total=False):
     address: str
     email: str
-    id: str
     items_needed: list
     latitude: float
     longitude: float
@@ -70,15 +68,15 @@ class Foodbank(TypedDict, total=False):
     url: str
 
 
-class FoodbankLoadMatchRequired(TypedDict):
-    id: str
+class FoodBankLoadMatchRequired(TypedDict):
+    slug: str
 
 
-class FoodbankLoadMatch(FoodbankLoadMatchRequired, total=False):
+class FoodBankLoadMatch(FoodBankLoadMatchRequired, total=False):
     format: str
 
 
-class FoodbankListMatch(TypedDict, total=False):
+class FoodBankListMatch(TypedDict, total=False):
     format: str
 
 

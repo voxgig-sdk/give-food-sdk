@@ -70,8 +70,8 @@ declare class Config {
         };
         entity: {
             article: {};
-            donationpoint: {};
-            foodbank: {};
+            donation_point: {};
+            food_bank: {};
             item: {};
         };
     };
@@ -128,16 +128,11 @@ declare class Config {
                 ancestors: never[];
             };
         };
-        donationpoint: {
+        donation_point: {
             fields: ({
                 name: string;
                 short: string;
                 type: string;
-                format?: undefined;
-            } | {
-                name: string;
-                type: string;
-                short?: undefined;
                 format?: undefined;
             } | {
                 format: string;
@@ -145,10 +140,6 @@ declare class Config {
                 short: string;
                 type: string;
             })[];
-            id: {
-                field: string;
-                name: string;
-            };
             name: string;
             op: {
                 list: {
@@ -203,11 +194,6 @@ declare class Config {
                         kind: string;
                         method: string;
                         orig: string;
-                        rename: {
-                            param: {
-                                slug: string;
-                            };
-                        };
                         segments: ({
                             lit: string;
                             var?: undefined;
@@ -227,10 +213,10 @@ declare class Config {
                 };
             };
             relations: {
-                ancestors: never[];
+                ancestors: string[][];
             };
         };
-        foodbank: {
+        food_bank: {
             fields: ({
                 name: string;
                 short: string;
@@ -241,16 +227,7 @@ declare class Config {
                 name: string;
                 short: string;
                 type: string;
-            } | {
-                name: string;
-                type: string;
-                short?: undefined;
-                format?: undefined;
             })[];
-            id: {
-                field: string;
-                name: string;
-            };
             name: string;
             op: {
                 list: {
@@ -305,11 +282,6 @@ declare class Config {
                         kind: string;
                         method: string;
                         orig: string;
-                        rename: {
-                            param: {
-                                slug: string;
-                            };
-                        };
                         segments: ({
                             lit: string;
                             var?: undefined;
@@ -329,7 +301,7 @@ declare class Config {
                 };
             };
             relations: {
-                ancestors: never[];
+                ancestors: string[][];
             };
         };
         item: {

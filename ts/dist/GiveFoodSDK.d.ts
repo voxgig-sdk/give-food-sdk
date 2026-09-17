@@ -1,6 +1,6 @@
 import { ArticleEntity } from './entity/ArticleEntity';
-import { DonationpointEntity } from './entity/DonationpointEntity';
-import { FoodbankEntity } from './entity/FoodbankEntity';
+import { DonationPointEntity } from './entity/DonationPointEntity';
+import { FoodBankEntity } from './entity/FoodBankEntity';
 import { ItemEntity } from './entity/ItemEntity';
 export type * from './GiveFoodTypes';
 import { inspect } from 'node:util';
@@ -48,8 +48,8 @@ declare class GiveFoodSDK {
     }>;
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
     Article(entopts?: Record<string, any>): ArticleEntity;
-    Donationpoint(entopts?: Record<string, any>): DonationpointEntity;
-    Foodbank(entopts?: Record<string, any>): FoodbankEntity;
+    DonationPoint(entopts?: Record<string, any>): DonationPointEntity;
+    FoodBank(entopts?: Record<string, any>): FoodBankEntity;
     Item(entopts?: Record<string, any>): ItemEntity;
     static test(testoptsarg?: any, sdkoptsarg?: any): GiveFoodSDK;
     tester(testopts?: any, sdkopts?: any): GiveFoodSDK;

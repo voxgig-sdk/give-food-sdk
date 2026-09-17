@@ -84,8 +84,8 @@ func MakeConfig() map[string]any {
 			},
 			"entity": map[string]any{
 				"article": map[string]any{},
-				"donationpoint": map[string]any{},
-				"foodbank": map[string]any{},
+				"donation_point": map[string]any{},
+				"food_bank": map[string]any{},
 				"item": map[string]any{},
 			},
 		},
@@ -175,7 +175,7 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"donationpoint": map[string]any{
+			"donation_point": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "address",
@@ -185,10 +185,6 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "foodbank_slug",
 						"short": "Associated food bank identifier",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -224,11 +220,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "donationpoint",
+				"name": "donation_point",
 				"op": map[string]any{
 					"list": map[string]any{
 						"input": "data",
@@ -278,7 +270,7 @@ func MakeConfig() map[string]any {
 									"params": []any{
 										map[string]any{
 											"kind": "param",
-											"name": "id",
+											"name": "slug",
 											"orig": "slug",
 											"reqd": true,
 											"type": "`$STRING`",
@@ -297,23 +289,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/donationpoints/{slug}/",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"slug": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "donationpoints",
 									},
 									map[string]any{
-										"var": "id",
+										"var": "slug",
 									},
 								},
 								"select": map[string]any{
 									"exist": []any{
 										"format",
-										"id",
+										"slug",
 									},
 								},
 								"transform": map[string]any{
@@ -322,17 +309,21 @@ func MakeConfig() map[string]any {
 								},
 								"parts": []any{
 									"donationpoints",
-									"{id}",
+									"{slug}",
 								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{},
+					"ancestors": []any{
+						[]any{
+							"donationpoint",
+						},
+					},
 				},
 			},
-			"foodbank": map[string]any{
+			"food_bank": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "address",
@@ -343,10 +334,6 @@ func MakeConfig() map[string]any {
 						"format": "email",
 						"name": "email",
 						"short": "Contact email address",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -410,11 +397,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "foodbank",
+				"name": "food_bank",
 				"op": map[string]any{
 					"list": map[string]any{
 						"input": "data",
@@ -464,7 +447,7 @@ func MakeConfig() map[string]any {
 									"params": []any{
 										map[string]any{
 											"kind": "param",
-											"name": "id",
+											"name": "slug",
 											"orig": "slug",
 											"reqd": true,
 											"type": "`$STRING`",
@@ -483,23 +466,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/foodbanks/{slug}/",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"slug": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "foodbanks",
 									},
 									map[string]any{
-										"var": "id",
+										"var": "slug",
 									},
 								},
 								"select": map[string]any{
 									"exist": []any{
 										"format",
-										"id",
+										"slug",
 									},
 								},
 								"transform": map[string]any{
@@ -508,14 +486,18 @@ func MakeConfig() map[string]any {
 								},
 								"parts": []any{
 									"foodbanks",
-									"{id}",
+									"{slug}",
 								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{},
+					"ancestors": []any{
+						[]any{
+							"foodbank",
+						},
+					},
 				},
 			},
 			"item": map[string]any{

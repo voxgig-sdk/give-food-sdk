@@ -46,6 +46,20 @@ try {
 }
 ```
 
+### 3. Load a donationpoint
+
+DonationPoint is nested under slug, so provide the `slug`.
+
+```php
+try {
+    // load() returns the ENTITY — call data_get() for the DonationPoint record (throws on error).
+    $donationpoint = $client->DonationPoint()->load(["slug" => "example_slug"]);
+    print_r($donationpoint->data_get());
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
 
 ## Error handling
 
@@ -121,18 +135,15 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = GiveFoodSDK::test([
-    "entity" => ["donationpoint" => ["test01" => ["id" => "test01"]]],
-]);
+$client = GiveFoodSDK::test();
 
 // list() returns entity instances (throws on error);
 // call data_get() for the mock record.
-$donationpoint = $client->Donationpoint()->list();
-print_r(array_map(fn($item) => $item->data_get(), $donationpoint));
+$article = $client->Article()->list();
+print_r(array_map(fn($item) => $item->data_get(), $article));
 ```
 
 ### Use a custom fetch function
@@ -212,8 +223,8 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
 | `Article` | `($data): ArticleEntity` | Create an Article entity instance. |
-| `Donationpoint` | `($data): DonationpointEntity` | Create a Donationpoint entity instance. |
-| `Foodbank` | `($data): FoodbankEntity` | Create a Foodbank entity instance. |
+| `DonationPoint` | `($data): DonationPointEntity` | Create a DonationPoint entity instance. |
+| `FoodBank` | `($data): FoodBankEntity` | Create a FoodBank entity instance. |
 | `Item` | `($data): ItemEntity` | Create an Item entity instance. |
 
 ### Entity interface
@@ -266,13 +277,12 @@ Operations: List.
 
 API path: `/articles/`
 
-#### Donationpoint
+#### DonationPoint
 
 | Field | Description |
 | --- | --- |
 | `address` | Physical address |
 | `foodbank_slug` | Associated food bank identifier |
-| `id` |  |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
 | `name` | Name of the donation point |
@@ -284,13 +294,12 @@ Operations: List, Load.
 
 API path: `/donationpoints/`
 
-#### Foodbank
+#### FoodBank
 
 | Field | Description |
 | --- | --- |
 | `address` | Physical address of the food bank |
 | `email` | Contact email address |
-| `id` |  |
 | `items_needed` | List of items currently needed for donation |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
@@ -355,9 +364,9 @@ $articles = $client->Article()->list();
 ```
 
 
-### Donationpoint
+### DonationPoint
 
-Create an instance: `$donationpoint = $client->Donationpoint();`
+Create an instance: `$donation_point = $client->DonationPoint();`
 
 #### Operations
 
@@ -372,7 +381,6 @@ Create an instance: `$donationpoint = $client->Donationpoint();`
 | --- | --- | --- |
 | `address` | `string` | Physical address |
 | `foodbank_slug` | `string` | Associated food bank identifier |
-| `id` | `string` |  |
 | `latitude` | `float` | Latitude coordinate |
 | `longitude` | `float` | Longitude coordinate |
 | `name` | `string` | Name of the donation point |
@@ -383,21 +391,21 @@ Create an instance: `$donationpoint = $client->Donationpoint();`
 #### Example: Load
 
 ```php
-// load() returns the ENTITY — call data_get() for the Donationpoint record (throws on error).
-$donationpoint = $client->Donationpoint()->load(["id" => "donationpoint_id"]);
+// load() returns the ENTITY — call data_get() for the DonationPoint record (throws on error).
+$donation_point = $client->DonationPoint()->load(["slug" => "slug"]);
 ```
 
 #### Example: List
 
 ```php
-// list() returns an array of Donationpoint records (throws on error).
-$donationpoints = $client->Donationpoint()->list();
+// list() returns an array of DonationPoint records (throws on error).
+$donation_points = $client->DonationPoint()->list();
 ```
 
 
-### Foodbank
+### FoodBank
 
-Create an instance: `$foodbank = $client->Foodbank();`
+Create an instance: `$food_bank = $client->FoodBank();`
 
 #### Operations
 
@@ -412,7 +420,6 @@ Create an instance: `$foodbank = $client->Foodbank();`
 | --- | --- | --- |
 | `address` | `string` | Physical address of the food bank |
 | `email` | `string` | Contact email address |
-| `id` | `string` |  |
 | `items_needed` | `array` | List of items currently needed for donation |
 | `latitude` | `float` | Latitude coordinate |
 | `longitude` | `float` | Longitude coordinate |
@@ -428,15 +435,15 @@ Create an instance: `$foodbank = $client->Foodbank();`
 #### Example: Load
 
 ```php
-// load() returns the ENTITY — call data_get() for the Foodbank record (throws on error).
-$foodbank = $client->Foodbank()->load(["id" => "foodbank_id"]);
+// load() returns the ENTITY — call data_get() for the FoodBank record (throws on error).
+$food_bank = $client->FoodBank()->load(["slug" => "slug"]);
 ```
 
 #### Example: List
 
 ```php
-// list() returns an array of Foodbank records (throws on error).
-$foodbanks = $client->Foodbank()->list();
+// list() returns an array of FoodBank records (throws on error).
+$food_banks = $client->FoodBank()->list();
 ```
 
 
@@ -610,6 +617,7 @@ Use `Helpers::to_map()` to safely validate that a value is an array.
 php/
 ├── givefood_sdk.php          -- Main SDK class
 ├── config.php                     -- Configuration
+├── schema.php                     -- Generated option + entity specs
 ├── features.php                   -- Feature factory
 ├── core/                          -- Core types and context
 ├── entity/                        -- Entity implementations

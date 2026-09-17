@@ -1,0 +1,460 @@
+{
+  "existing": {
+    "food_bank": {
+      "FOOD_BANK00": {
+        "address": "s82",
+        "email": "s83",
+        "items_needed": [],
+        "latitude": 133,
+        "longitude": 134,
+        "name": "s87",
+        "needs": {},
+        "phone": "s89",
+        "postcode": "s8a",
+        "shopping_list_url": "s8b",
+        "slug": "s8c",
+        "updated": "s8d",
+        "url": "s8e",
+        "id": "FOOD_BANK00"
+      },
+      "FOOD_BANK01": {
+        "address": "s104",
+        "email": "s105",
+        "items_needed": [],
+        "latitude": 263,
+        "longitude": 264,
+        "name": "s109",
+        "needs": {},
+        "phone": "s10b",
+        "postcode": "s10c",
+        "shopping_list_url": "s10d",
+        "slug": "s10e",
+        "updated": "s10f",
+        "url": "s110",
+        "id": "FOOD_BANK01"
+      },
+      "FOOD_BANK02": {
+        "address": "s186",
+        "email": "s187",
+        "items_needed": [],
+        "latitude": 393,
+        "longitude": 394,
+        "name": "s18b",
+        "needs": {},
+        "phone": "s18d",
+        "postcode": "s18e",
+        "shopping_list_url": "s18f",
+        "slug": "s190",
+        "updated": "s191",
+        "url": "s192",
+        "id": "FOOD_BANK02"
+      }
+    }
+  },
+  "new": {
+    "food_bank": {
+      "food_bank_ref01": {
+        "address": "s208",
+        "email": "s209",
+        "items_needed": [],
+        "latitude": 523,
+        "longitude": 524,
+        "name": "s20d",
+        "needs": {},
+        "phone": "s20f",
+        "postcode": "s210",
+        "shopping_list_url": "s211",
+        "slug": "s212",
+        "updated": "s213",
+        "url": "s214"
+      }
+    }
+  },
+  "requests": {
+    "GET /foodbanks/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listFoodBanks",
+        "parameters": [
+          {
+            "description": "Response format",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "default": "json",
+              "enum": [
+                "json",
+                "geojson",
+                "xml",
+                "yaml"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/geo+json": {
+                "schema": {
+                  "properties": {
+                    "features": {
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "example": "FeatureCollection",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "address": {
+                        "description": "Physical address of the food bank",
+                        "type": "string"
+                      },
+                      "email": {
+                        "description": "Contact email address",
+                        "format": "email",
+                        "type": "string"
+                      },
+                      "latitude": {
+                        "description": "Latitude coordinate",
+                        "format": "double",
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "description": "Longitude coordinate",
+                        "format": "double",
+                        "type": "number"
+                      },
+                      "name": {
+                        "description": "Name of the food bank",
+                        "type": "string"
+                      },
+                      "phone": {
+                        "description": "Contact phone number",
+                        "type": "string"
+                      },
+                      "postcode": {
+                        "description": "Postal code",
+                        "type": "string"
+                      },
+                      "slug": {
+                        "description": "Unique identifier for the food bank",
+                        "type": "string"
+                      },
+                      "url": {
+                        "description": "Website URL",
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "application/x-yaml": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /foodbanks/{slug}/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getFoodBank",
+        "parameters": [
+          {
+            "description": "Unique identifier for the food bank",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Response format",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "default": "json",
+              "enum": [
+                "json",
+                "xml",
+                "yaml"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "address": {
+                          "description": "Physical address of the food bank",
+                          "type": "string"
+                        },
+                        "email": {
+                          "description": "Contact email address",
+                          "format": "email",
+                          "type": "string"
+                        },
+                        "latitude": {
+                          "description": "Latitude coordinate",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "longitude": {
+                          "description": "Longitude coordinate",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "name": {
+                          "description": "Name of the food bank",
+                          "type": "string"
+                        },
+                        "phone": {
+                          "description": "Contact phone number",
+                          "type": "string"
+                        },
+                        "postcode": {
+                          "description": "Postal code",
+                          "type": "string"
+                        },
+                        "slug": {
+                          "description": "Unique identifier for the food bank",
+                          "type": "string"
+                        },
+                        "url": {
+                          "description": "Website URL",
+                          "format": "uri",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "items_needed": {
+                          "description": "List of items currently needed for donation",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "needs": {
+                          "description": "Current needs status",
+                          "type": "object"
+                        },
+                        "shopping_list_url": {
+                          "description": "URL to the food bank's detailed shopping list",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "updated": {
+                          "description": "Last update timestamp",
+                          "format": "date-time",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                }
+              },
+              "application/x-yaml": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "address": {
+                          "description": "Physical address of the food bank",
+                          "type": "string"
+                        },
+                        "email": {
+                          "description": "Contact email address",
+                          "format": "email",
+                          "type": "string"
+                        },
+                        "latitude": {
+                          "description": "Latitude coordinate",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "longitude": {
+                          "description": "Longitude coordinate",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "name": {
+                          "description": "Name of the food bank",
+                          "type": "string"
+                        },
+                        "phone": {
+                          "description": "Contact phone number",
+                          "type": "string"
+                        },
+                        "postcode": {
+                          "description": "Postal code",
+                          "type": "string"
+                        },
+                        "slug": {
+                          "description": "Unique identifier for the food bank",
+                          "type": "string"
+                        },
+                        "url": {
+                          "description": "Website URL",
+                          "format": "uri",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "items_needed": {
+                          "description": "List of items currently needed for donation",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "needs": {
+                          "description": "Current needs status",
+                          "type": "object"
+                        },
+                        "shopping_list_url": {
+                          "description": "URL to the food bank's detailed shopping list",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "updated": {
+                          "description": "Last update timestamp",
+                          "format": "date-time",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "address": {
+                          "description": "Physical address of the food bank",
+                          "type": "string"
+                        },
+                        "email": {
+                          "description": "Contact email address",
+                          "format": "email",
+                          "type": "string"
+                        },
+                        "latitude": {
+                          "description": "Latitude coordinate",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "longitude": {
+                          "description": "Longitude coordinate",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "name": {
+                          "description": "Name of the food bank",
+                          "type": "string"
+                        },
+                        "phone": {
+                          "description": "Contact phone number",
+                          "type": "string"
+                        },
+                        "postcode": {
+                          "description": "Postal code",
+                          "type": "string"
+                        },
+                        "slug": {
+                          "description": "Unique identifier for the food bank",
+                          "type": "string"
+                        },
+                        "url": {
+                          "description": "Website URL",
+                          "format": "uri",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "items_needed": {
+                          "description": "List of items currently needed for donation",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "needs": {
+                          "description": "Current needs status",
+                          "type": "object"
+                        },
+                        "shopping_list_url": {
+                          "description": "URL to the food bank's detailed shopping list",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "updated": {
+                          "description": "Last update timestamp",
+                          "format": "date-time",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Food bank not found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
+  }
+}

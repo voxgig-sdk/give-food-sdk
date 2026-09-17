@@ -296,17 +296,17 @@ class GiveFoodSDK
   end
 
 
-  # Canonical facade: client.Donationpoint.list / client.Donationpoint.load({ "id" => ... })
-  def Donationpoint(data = nil)
-    require_relative 'entity/donationpoint_entity'
-    DonationpointEntity.new(self, data)
+  # Canonical facade: client.DonationPoint.list / client.DonationPoint.load({ "id" => ... })
+  def DonationPoint(data = nil)
+    require_relative 'entity/donation_point_entity'
+    DonationPointEntity.new(self, data)
   end
 
 
-  # Canonical facade: client.Foodbank.list / client.Foodbank.load({ "id" => ... })
-  def Foodbank(data = nil)
-    require_relative 'entity/foodbank_entity'
-    FoodbankEntity.new(self, data)
+  # Canonical facade: client.FoodBank.list / client.FoodBank.load({ "id" => ... })
+  def FoodBank(data = nil)
+    require_relative 'entity/food_bank_entity'
+    FoodBankEntity.new(self, data)
   end
 
 

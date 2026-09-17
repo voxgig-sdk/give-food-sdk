@@ -3,8 +3,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SDK = exports.GiveFoodSDK = exports.GiveFoodEntityBase = exports.BaseFeature = exports.config = exports.stdutil = void 0;
 const ArticleEntity_1 = require("./entity/ArticleEntity");
-const DonationpointEntity_1 = require("./entity/DonationpointEntity");
-const FoodbankEntity_1 = require("./entity/FoodbankEntity");
+const DonationPointEntity_1 = require("./entity/DonationPointEntity");
+const FoodBankEntity_1 = require("./entity/FoodBankEntity");
 const ItemEntity_1 = require("./entity/ItemEntity");
 const node_util_1 = require("node:util");
 const Config_1 = require("./Config");
@@ -235,19 +235,19 @@ class GiveFoodSDK {
         const self = this;
         return new ArticleEntity_1.ArticleEntity(self, entopts);
     }
-    // Entity access: `client.Donationpoint().list()` / `client.Donationpoint().load({ id })`.
+    // Entity access: `client.DonationPoint().list()` / `client.DonationPoint().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    Donationpoint(entopts) {
+    DonationPoint(entopts) {
         const self = this;
-        return new DonationpointEntity_1.DonationpointEntity(self, entopts);
+        return new DonationPointEntity_1.DonationPointEntity(self, entopts);
     }
-    // Entity access: `client.Foodbank().list()` / `client.Foodbank().load({ id })`.
+    // Entity access: `client.FoodBank().list()` / `client.FoodBank().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    Foodbank(entopts) {
+    FoodBank(entopts) {
         const self = this;
-        return new FoodbankEntity_1.FoodbankEntity(self, entopts);
+        return new FoodBankEntity_1.FoodBankEntity(self, entopts);
     }
     // Entity access: `client.Item().list()` / `client.Item().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity

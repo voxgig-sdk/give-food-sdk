@@ -313,16 +313,16 @@ class GiveFoodSDK:
         return ArticleEntity(self, data)
 
 
-    def Donationpoint(self, data=None) -> "DonationpointEntity":
-        """Entity factory: client.Donationpoint().list() / client.Donationpoint().load({"id": ...})."""
-        from givefood_sdk.entity.donationpoint_entity import DonationpointEntity
-        return DonationpointEntity(self, data)
+    def DonationPoint(self, data=None) -> "DonationPointEntity":
+        """Entity factory: client.DonationPoint().list() / client.DonationPoint().load({"id": ...})."""
+        from givefood_sdk.entity.donation_point_entity import DonationPointEntity
+        return DonationPointEntity(self, data)
 
 
-    def Foodbank(self, data=None) -> "FoodbankEntity":
-        """Entity factory: client.Foodbank().list() / client.Foodbank().load({"id": ...})."""
-        from givefood_sdk.entity.foodbank_entity import FoodbankEntity
-        return FoodbankEntity(self, data)
+    def FoodBank(self, data=None) -> "FoodBankEntity":
+        """Entity factory: client.FoodBank().list() / client.FoodBank().load({"id": ...})."""
+        from givefood_sdk.entity.food_bank_entity import FoodBankEntity
+        return FoodBankEntity(self, data)
 
 
     def Item(self, data=None) -> "ItemEntity":
@@ -359,6 +359,6 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from givefood_sdk.entity.article_entity import ArticleEntity
-    from givefood_sdk.entity.donationpoint_entity import DonationpointEntity
-    from givefood_sdk.entity.foodbank_entity import FoodbankEntity
+    from givefood_sdk.entity.donation_point_entity import DonationPointEntity
+    from givefood_sdk.entity.food_bank_entity import FoodBankEntity
     from givefood_sdk.entity.item_entity import ItemEntity

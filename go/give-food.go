@@ -44,11 +44,11 @@ func init() {
 	core.NewArticleEntityFunc = func(client *core.GiveFoodSDK, entopts map[string]any) core.GiveFoodEntity {
 		return entity.NewArticleEntity(client, entopts)
 	}
-	core.NewDonationpointEntityFunc = func(client *core.GiveFoodSDK, entopts map[string]any) core.GiveFoodEntity {
-		return entity.NewDonationpointEntity(client, entopts)
+	core.NewDonationPointEntityFunc = func(client *core.GiveFoodSDK, entopts map[string]any) core.GiveFoodEntity {
+		return entity.NewDonationPointEntity(client, entopts)
 	}
-	core.NewFoodbankEntityFunc = func(client *core.GiveFoodSDK, entopts map[string]any) core.GiveFoodEntity {
-		return entity.NewFoodbankEntity(client, entopts)
+	core.NewFoodBankEntityFunc = func(client *core.GiveFoodSDK, entopts map[string]any) core.GiveFoodEntity {
+		return entity.NewFoodBankEntity(client, entopts)
 	}
 	core.NewItemEntityFunc = func(client *core.GiveFoodSDK, entopts map[string]any) core.GiveFoodEntity {
 		return entity.NewItemEntity(client, entopts)

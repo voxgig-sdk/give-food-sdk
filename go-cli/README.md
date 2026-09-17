@@ -20,7 +20,7 @@ export GIVE_FOOD_APIKEY=sk_live_xxx
 
 # 4. Each command line is ONE boru expression, run against the API:
 ./give-food-cli list article
-./give-food-cli list donationpoint
+./give-food-cli list donation_point
 
 # 5. Override the API base URL for a single call
 GIVE_FOOD_BASE=https://api.example.com ./give-food-cli list article
@@ -162,7 +162,7 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 The 4 entities this SDK exposes (any is valid as `<entity>`):
 
-article donationpoint foodbank item
+article donation_point food_bank item
 
 ## Explanation
 

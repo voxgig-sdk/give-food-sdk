@@ -47,6 +47,22 @@ for (const article of articles) {
 }
 ```
 
+### 3. Load a donationpoint
+
+DonationPoint is nested under slug, so provide the `slug`.
+`load()` returns the entity directly and throws on failure:
+
+```ts
+try {
+  const donationpoint = await client.DonationPoint().load({
+    slug: 'example_slug',
+  })
+  console.log(donationpoint)
+} catch (err) {
+  console.error('load failed:', err)
+}
+```
+
 
 ## Error handling
 
@@ -223,8 +239,8 @@ new GiveFoodSDK(options?: {
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
 | `Article(data?)` | `ArticleEntity` | Create an Article entity instance. |
-| `Donationpoint(data?)` | `DonationpointEntity` | Create a Donationpoint entity instance. |
-| `Foodbank(data?)` | `FoodbankEntity` | Create a Foodbank entity instance. |
+| `DonationPoint(data?)` | `DonationPointEntity` | Create a DonationPoint entity instance. |
+| `FoodBank(data?)` | `FoodBankEntity` | Create a FoodBank entity instance. |
 | `Item(data?)` | `ItemEntity` | Create an Item entity instance. |
 | `tester(testopts?, sdkopts?)` | `GiveFoodSDK` | Create a test-mode client instance. |
 
@@ -308,13 +324,12 @@ Operations: list.
 
 API path: `/articles/`
 
-#### Donationpoint
+#### DonationPoint
 
 | Field | Description |
 | --- | --- |
 | `address` | Physical address |
 | `foodbank_slug` | Associated food bank identifier |
-| `id` |  |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
 | `name` | Name of the donation point |
@@ -326,13 +341,12 @@ Operations: list, load.
 
 API path: `/donationpoints/`
 
-#### Foodbank
+#### FoodBank
 
 | Field | Description |
 | --- | --- |
 | `address` | Physical address of the food bank |
 | `email` | Contact email address |
-| `id` |  |
 | `items_needed` | List of items currently needed for donation |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
@@ -396,9 +410,9 @@ const articles = await client.Article().list()
 ```
 
 
-### Donationpoint
+### DonationPoint
 
-Create an instance: `const donationpoint = client.Donationpoint()`
+Create an instance: `const donation_point = client.DonationPoint()`
 
 #### Operations
 
@@ -413,7 +427,6 @@ Create an instance: `const donationpoint = client.Donationpoint()`
 | --- | --- | --- |
 | `address` | `string` | Physical address |
 | `foodbank_slug` | `string` | Associated food bank identifier |
-| `id` | `string` |  |
 | `latitude` | `number` | Latitude coordinate |
 | `longitude` | `number` | Longitude coordinate |
 | `name` | `string` | Name of the donation point |
@@ -424,19 +437,19 @@ Create an instance: `const donationpoint = client.Donationpoint()`
 #### Example: Load
 
 ```ts
-const donationpoint = await client.Donationpoint().load({ id: 'donationpoint_id' })
+const donation_point = await client.DonationPoint().load({ slug: 'slug' })
 ```
 
 #### Example: List
 
 ```ts
-const donationpoints = await client.Donationpoint().list()
+const donation_points = await client.DonationPoint().list()
 ```
 
 
-### Foodbank
+### FoodBank
 
-Create an instance: `const foodbank = client.Foodbank()`
+Create an instance: `const food_bank = client.FoodBank()`
 
 #### Operations
 
@@ -451,7 +464,6 @@ Create an instance: `const foodbank = client.Foodbank()`
 | --- | --- | --- |
 | `address` | `string` | Physical address of the food bank |
 | `email` | `string` | Contact email address |
-| `id` | `string` |  |
 | `items_needed` | `any[]` | List of items currently needed for donation |
 | `latitude` | `number` | Latitude coordinate |
 | `longitude` | `number` | Longitude coordinate |
@@ -467,13 +479,13 @@ Create an instance: `const foodbank = client.Foodbank()`
 #### Example: Load
 
 ```ts
-const foodbank = await client.Foodbank().load({ id: 'foodbank_id' })
+const food_bank = await client.FoodBank().load({ slug: 'slug' })
 ```
 
 #### Example: List
 
 ```ts
-const foodbanks = await client.Foodbank().list()
+const food_banks = await client.FoodBank().list()
 ```
 
 

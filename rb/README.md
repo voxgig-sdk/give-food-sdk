@@ -44,6 +44,20 @@ rescue => err
 end
 ```
 
+### 3. Load a donationpoint
+
+DonationPoint is nested under slug, so provide the `slug`.
+
+```ruby
+begin
+  # load returns the ENTITY — call data_get for the DonationPoint record (raises on error).
+  donationpoint = client.DonationPoint.load({ "slug" => "example_slug" })
+  puts donationpoint
+rescue => err
+  warn "load failed: #{err}"
+end
+```
+
 
 ## Error handling
 
@@ -199,8 +213,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `Article` | `(data) -> ArticleEntity` | Create an Article entity instance. |
-| `Donationpoint` | `(data) -> DonationpointEntity` | Create a Donationpoint entity instance. |
-| `Foodbank` | `(data) -> FoodbankEntity` | Create a Foodbank entity instance. |
+| `DonationPoint` | `(data) -> DonationPointEntity` | Create a DonationPoint entity instance. |
+| `FoodBank` | `(data) -> FoodBankEntity` | Create a FoodBank entity instance. |
 | `Item` | `(data) -> ItemEntity` | Create an Item entity instance. |
 
 ### Entity interface
@@ -252,13 +266,12 @@ Operations: List.
 
 API path: `/articles/`
 
-#### Donationpoint
+#### DonationPoint
 
 | Field | Description |
 | --- | --- |
 | `address` | Physical address |
 | `foodbank_slug` | Associated food bank identifier |
-| `id` |  |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
 | `name` | Name of the donation point |
@@ -270,13 +283,12 @@ Operations: List, Load.
 
 API path: `/donationpoints/`
 
-#### Foodbank
+#### FoodBank
 
 | Field | Description |
 | --- | --- |
 | `address` | Physical address of the food bank |
 | `email` | Contact email address |
-| `id` |  |
 | `items_needed` | List of items currently needed for donation |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
@@ -341,9 +353,9 @@ articles = client.Article.list
 ```
 
 
-### Donationpoint
+### DonationPoint
 
-Create an instance: `donationpoint = client.Donationpoint`
+Create an instance: `donation_point = client.DonationPoint`
 
 #### Operations
 
@@ -358,7 +370,6 @@ Create an instance: `donationpoint = client.Donationpoint`
 | --- | --- | --- |
 | `address` | `String` | Physical address |
 | `foodbank_slug` | `String` | Associated food bank identifier |
-| `id` | `String` |  |
 | `latitude` | `Float` | Latitude coordinate |
 | `longitude` | `Float` | Longitude coordinate |
 | `name` | `String` | Name of the donation point |
@@ -369,21 +380,21 @@ Create an instance: `donationpoint = client.Donationpoint`
 #### Example: Load
 
 ```ruby
-# load returns the ENTITY — call data_get for the Donationpoint record (raises on error).
-donationpoint = client.Donationpoint.load({ "id" => "donationpoint_id" })
+# load returns the ENTITY — call data_get for the DonationPoint record (raises on error).
+donation_point = client.DonationPoint.load({ "slug" => "slug" })
 ```
 
 #### Example: List
 
 ```ruby
-# list returns an Array of Donationpoint records (raises on error).
-donationpoints = client.Donationpoint.list
+# list returns an Array of DonationPoint records (raises on error).
+donation_points = client.DonationPoint.list
 ```
 
 
-### Foodbank
+### FoodBank
 
-Create an instance: `foodbank = client.Foodbank`
+Create an instance: `food_bank = client.FoodBank`
 
 #### Operations
 
@@ -398,7 +409,6 @@ Create an instance: `foodbank = client.Foodbank`
 | --- | --- | --- |
 | `address` | `String` | Physical address of the food bank |
 | `email` | `String` | Contact email address |
-| `id` | `String` |  |
 | `items_needed` | `Array` | List of items currently needed for donation |
 | `latitude` | `Float` | Latitude coordinate |
 | `longitude` | `Float` | Longitude coordinate |
@@ -414,15 +424,15 @@ Create an instance: `foodbank = client.Foodbank`
 #### Example: Load
 
 ```ruby
-# load returns the ENTITY — call data_get for the Foodbank record (raises on error).
-foodbank = client.Foodbank.load({ "id" => "foodbank_id" })
+# load returns the ENTITY — call data_get for the FoodBank record (raises on error).
+food_bank = client.FoodBank.load({ "slug" => "slug" })
 ```
 
 #### Example: List
 
 ```ruby
-# list returns an Array of Foodbank records (raises on error).
-foodbanks = client.Foodbank.list
+# list returns an Array of FoodBank records (raises on error).
+food_banks = client.FoodBank.list
 ```
 
 
@@ -596,6 +606,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── GiveFood_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations

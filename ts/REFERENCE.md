@@ -60,21 +60,9 @@ Create a new `Article` entity instance.
 
 **Returns:** `ArticleEntity` instance.
 
-#### `Donationpoint(data?: object)`
+#### `DonationPoint(data?: object)`
 
-Create a new `Donationpoint` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `DonationpointEntity` instance.
-
-#### `Foodbank(data?: object)`
-
-Create a new `Foodbank` entity instance.
+Create a new `DonationPoint` entity instance.
 
 **Parameters:**
 
@@ -82,7 +70,19 @@ Create a new `Foodbank` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `FoodbankEntity` instance.
+**Returns:** `DonationPointEntity` instance.
+
+#### `FoodBank(data?: object)`
+
+Create a new `FoodBank` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `FoodBankEntity` instance.
 
 #### `Item(data?: object)`
 
@@ -197,10 +197,10 @@ Return a copy of the entity options.
 
 ---
 
-## DonationpointEntity
+## DonationPointEntity
 
 ```ts
-const donationpoint = client.Donationpoint()
+const donation_point = client.DonationPoint()
 ```
 
 ### Fields
@@ -209,7 +209,6 @@ const donationpoint = client.Donationpoint()
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address |
 | `foodbank_slug` | `string` | No | Associated food bank identifier |
-| `id` | `string` | No |  |
 | `latitude` | `number` | No | Latitude coordinate |
 | `longitude` | `number` | No | Longitude coordinate |
 | `name` | `string` | No | Name of the donation point |
@@ -224,7 +223,7 @@ const donationpoint = client.Donationpoint()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Donationpoint().list()
+const results = await client.DonationPoint().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -232,7 +231,7 @@ const results = await client.Donationpoint().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Donationpoint().load({ id: 'donationpoint_id' })
+const result = await client.DonationPoint().load({ slug: 'slug' })
 ```
 
 ### Common Methods
@@ -249,7 +248,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `DonationpointEntity` instance with the same client and
+Create a new `DonationPointEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -263,10 +262,10 @@ Return a copy of the entity options.
 
 ---
 
-## FoodbankEntity
+## FoodBankEntity
 
 ```ts
-const foodbank = client.Foodbank()
+const food_bank = client.FoodBank()
 ```
 
 ### Fields
@@ -275,7 +274,6 @@ const foodbank = client.Foodbank()
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address of the food bank |
 | `email` | `string` | No | Contact email address |
-| `id` | `string` | No |  |
 | `items_needed` | `any[]` | No | List of items currently needed for donation |
 | `latitude` | `number` | No | Latitude coordinate |
 | `longitude` | `number` | No | Longitude coordinate |
@@ -295,7 +293,7 @@ const foodbank = client.Foodbank()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Foodbank().list()
+const results = await client.FoodBank().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -303,7 +301,7 @@ const results = await client.Foodbank().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Foodbank().load({ id: 'foodbank_id' })
+const result = await client.FoodBank().load({ slug: 'slug' })
 ```
 
 ### Common Methods
@@ -320,7 +318,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `FoodbankEntity` instance with the same client and
+Create a new `FoodBankEntity` instance with the same client and
 options.
 
 #### `client()`

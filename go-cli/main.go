@@ -20,7 +20,7 @@ import (
 const prompt = "give-food"
 
 // entitiesHelp is the space-separated entity list shown by /help.
-const entitiesHelp = "article donationpoint foodbank item"
+const entitiesHelp = "article donation_point food_bank item"
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr))

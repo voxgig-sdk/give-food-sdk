@@ -109,8 +109,8 @@ def make_config():
       },
             "entity": {
                 "article": {},
-                "donationpoint": {},
-                "foodbank": {},
+                "donation_point": {},
+                "food_bank": {},
                 "item": {},
             },
         },
@@ -200,7 +200,7 @@ def make_config():
           "ancestors": [],
         },
       },
-      "donationpoint": {
+      "donation_point": {
         "fields": [
           {
             "name": "address",
@@ -210,10 +210,6 @@ def make_config():
           {
             "name": "foodbank_slug",
             "short": "Associated food bank identifier",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "id",
             "type": "`$STRING`",
           },
           {
@@ -249,11 +245,7 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
-        "name": "donationpoint",
+        "name": "donation_point",
         "op": {
           "list": {
             "input": "data",
@@ -303,7 +295,7 @@ def make_config():
                   "params": [
                     {
                       "kind": "param",
-                      "name": "id",
+                      "name": "slug",
                       "orig": "slug",
                       "reqd": True,
                       "type": "`$STRING`",
@@ -322,23 +314,18 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/donationpoints/{slug}/",
-                "rename": {
-                  "param": {
-                    "slug": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "donationpoints",
                   },
                   {
-                    "var": "id",
+                    "var": "slug",
                   },
                 ],
                 "select": {
                   "exist": [
                     "format",
-                    "id",
+                    "slug",
                   ],
                 },
                 "transform": {
@@ -347,17 +334,21 @@ def make_config():
                 },
                 "parts": [
                   "donationpoints",
-                  "{id}",
+                  "{slug}",
                 ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [],
+          "ancestors": [
+            [
+              "donationpoint",
+            ],
+          ],
         },
       },
-      "foodbank": {
+      "food_bank": {
         "fields": [
           {
             "name": "address",
@@ -368,10 +359,6 @@ def make_config():
             "format": "email",
             "name": "email",
             "short": "Contact email address",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "id",
             "type": "`$STRING`",
           },
           {
@@ -435,11 +422,7 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
-        "name": "foodbank",
+        "name": "food_bank",
         "op": {
           "list": {
             "input": "data",
@@ -489,7 +472,7 @@ def make_config():
                   "params": [
                     {
                       "kind": "param",
-                      "name": "id",
+                      "name": "slug",
                       "orig": "slug",
                       "reqd": True,
                       "type": "`$STRING`",
@@ -508,23 +491,18 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/foodbanks/{slug}/",
-                "rename": {
-                  "param": {
-                    "slug": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "foodbanks",
                   },
                   {
-                    "var": "id",
+                    "var": "slug",
                   },
                 ],
                 "select": {
                   "exist": [
                     "format",
-                    "id",
+                    "slug",
                   ],
                 },
                 "transform": {
@@ -533,14 +511,18 @@ def make_config():
                 },
                 "parts": [
                   "foodbanks",
-                  "{id}",
+                  "{slug}",
                 ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [],
+          "ancestors": [
+            [
+              "foodbank",
+            ],
+          ],
         },
       },
       "item": {

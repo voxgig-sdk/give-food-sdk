@@ -29,12 +29,11 @@ class ArticleListMatch
     public ?string $format = null;
 }
 
-/** Donationpoint entity data model. */
-class Donationpoint
+/** DonationPoint entity data model. */
+class DonationPoint
 {
     public ?string $address = null;
     public ?string $foodbank_slug = null;
-    public ?string $id = null;
     public ?float $latitude = null;
     public ?float $longitude = null;
     public ?string $name = null;
@@ -43,25 +42,24 @@ class Donationpoint
     public ?string $type = null;
 }
 
-/** Request payload for Donationpoint#load. */
-class DonationpointLoadMatch
+/** Request payload for DonationPoint#load. */
+class DonationPointLoadMatch
 {
-    public string $id;
+    public string $slug;
     public ?string $format = null;
 }
 
-/** Request payload for Donationpoint#list. */
-class DonationpointListMatch
+/** Request payload for DonationPoint#list. */
+class DonationPointListMatch
 {
     public ?string $format = null;
 }
 
-/** Foodbank entity data model. */
-class Foodbank
+/** FoodBank entity data model. */
+class FoodBank
 {
     public ?string $address = null;
     public ?string $email = null;
-    public ?string $id = null;
     public ?array $items_needed = null;
     public ?float $latitude = null;
     public ?float $longitude = null;
@@ -75,15 +73,15 @@ class Foodbank
     public ?string $url = null;
 }
 
-/** Request payload for Foodbank#load. */
-class FoodbankLoadMatch
+/** Request payload for FoodBank#load. */
+class FoodBankLoadMatch
 {
-    public string $id;
+    public string $slug;
     public ?string $format = null;
 }
 
-/** Request payload for Foodbank#list. */
-class FoodbankListMatch
+/** Request payload for FoodBank#list. */
+class FoodBankListMatch
 {
     public ?string $format = null;
 }

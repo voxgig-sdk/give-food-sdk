@@ -45,13 +45,13 @@ client = GiveFoodSDK.test
 
 Create a new `Article` entity instance. Pass `nil` for no initial data.
 
-#### `Donationpoint(data = nil)`
+#### `DonationPoint(data = nil)`
 
-Create a new `Donationpoint` entity instance. Pass `nil` for no initial data.
+Create a new `DonationPoint` entity instance. Pass `nil` for no initial data.
 
-#### `Foodbank(data = nil)`
+#### `FoodBank(data = nil)`
 
-Create a new `Foodbank` entity instance. Pass `nil` for no initial data.
+Create a new `FoodBank` entity instance. Pass `nil` for no initial data.
 
 #### `Item(data = nil)`
 
@@ -152,10 +152,10 @@ Return the entity name.
 
 ---
 
-## DonationpointEntity
+## DonationPointEntity
 
 ```ruby
-donationpoint = client.Donationpoint
+donation_point = client.DonationPoint
 ```
 
 ### Fields
@@ -164,7 +164,6 @@ donationpoint = client.Donationpoint
 | --- | --- | --- | --- |
 | `address` | `String` | No | Physical address |
 | `foodbank_slug` | `String` | No | Associated food bank identifier |
-| `id` | `String` | No |  |
 | `latitude` | `Float` | No | Latitude coordinate |
 | `longitude` | `Float` | No | Longitude coordinate |
 | `name` | `String` | No | Name of the donation point |
@@ -179,7 +178,7 @@ donationpoint = client.Donationpoint
 List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Donationpoint.list
+results = client.DonationPoint.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -187,7 +186,7 @@ results = client.Donationpoint.list
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Donationpoint.load({ "id" => "donationpoint_id" })
+result = client.DonationPoint.load({ "slug" => "slug" })
 ```
 
 ### Common Methods
@@ -210,7 +209,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `DonationpointEntity` instance with the same client and
+Create a new `DonationPointEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -220,10 +219,10 @@ Return the entity name.
 
 ---
 
-## FoodbankEntity
+## FoodBankEntity
 
 ```ruby
-foodbank = client.Foodbank
+food_bank = client.FoodBank
 ```
 
 ### Fields
@@ -232,7 +231,6 @@ foodbank = client.Foodbank
 | --- | --- | --- | --- |
 | `address` | `String` | No | Physical address of the food bank |
 | `email` | `String` | No | Contact email address |
-| `id` | `String` | No |  |
 | `items_needed` | `Array` | No | List of items currently needed for donation |
 | `latitude` | `Float` | No | Latitude coordinate |
 | `longitude` | `Float` | No | Longitude coordinate |
@@ -252,7 +250,7 @@ foodbank = client.Foodbank
 List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Foodbank.list
+results = client.FoodBank.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -260,7 +258,7 @@ results = client.Foodbank.list
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Foodbank.load({ "id" => "foodbank_id" })
+result = client.FoodBank.load({ "slug" => "slug" })
 ```
 
 ### Common Methods
@@ -283,7 +281,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `FoodbankEntity` instance with the same client and
+Create a new `FoodBankEntity` instance with the same client and
 options.
 
 #### `get_name -> String`

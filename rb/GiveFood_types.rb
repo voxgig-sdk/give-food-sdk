@@ -46,15 +46,12 @@ ArticleListMatch = Struct.new(
   keyword_init: true
 )
 
-# Donationpoint entity data model.
+# DonationPoint entity data model.
 #
 # @!attribute [rw] address
 #   @return [String, nil]
 #
 # @!attribute [rw] foodbank_slug
-#   @return [String, nil]
-#
-# @!attribute [rw] id
 #   @return [String, nil]
 #
 # @!attribute [rw] latitude
@@ -74,10 +71,9 @@ ArticleListMatch = Struct.new(
 #
 # @!attribute [rw] type
 #   @return [String, nil]
-Donationpoint = Struct.new(
+DonationPoint = Struct.new(
   :address,
   :foodbank_slug,
-  :id,
   :latitude,
   :longitude,
   :name,
@@ -87,37 +83,34 @@ Donationpoint = Struct.new(
   keyword_init: true
 )
 
-# Request payload for Donationpoint#load.
+# Request payload for DonationPoint#load.
 #
-# @!attribute [rw] id
+# @!attribute [rw] slug
 #   @return [String]
 #
 # @!attribute [rw] format
 #   @return [String, nil]
-DonationpointLoadMatch = Struct.new(
-  :id,
+DonationPointLoadMatch = Struct.new(
+  :slug,
   :format,
   keyword_init: true
 )
 
-# Request payload for Donationpoint#list.
+# Request payload for DonationPoint#list.
 #
 # @!attribute [rw] format
 #   @return [String, nil]
-DonationpointListMatch = Struct.new(
+DonationPointListMatch = Struct.new(
   :format,
   keyword_init: true
 )
 
-# Foodbank entity data model.
+# FoodBank entity data model.
 #
 # @!attribute [rw] address
 #   @return [String, nil]
 #
 # @!attribute [rw] email
-#   @return [String, nil]
-#
-# @!attribute [rw] id
 #   @return [String, nil]
 #
 # @!attribute [rw] items_needed
@@ -152,10 +145,9 @@ DonationpointListMatch = Struct.new(
 #
 # @!attribute [rw] url
 #   @return [String, nil]
-Foodbank = Struct.new(
+FoodBank = Struct.new(
   :address,
   :email,
-  :id,
   :items_needed,
   :latitude,
   :longitude,
@@ -170,24 +162,24 @@ Foodbank = Struct.new(
   keyword_init: true
 )
 
-# Request payload for Foodbank#load.
+# Request payload for FoodBank#load.
 #
-# @!attribute [rw] id
+# @!attribute [rw] slug
 #   @return [String]
 #
 # @!attribute [rw] format
 #   @return [String, nil]
-FoodbankLoadMatch = Struct.new(
-  :id,
+FoodBankLoadMatch = Struct.new(
+  :slug,
   :format,
   keyword_init: true
 )
 
-# Request payload for Foodbank#list.
+# Request payload for FoodBank#list.
 #
 # @!attribute [rw] format
 #   @return [String, nil]
-FoodbankListMatch = Struct.new(
+FoodBankListMatch = Struct.new(
   :format,
   keyword_init: true
 )

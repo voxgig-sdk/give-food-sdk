@@ -346,19 +346,19 @@ func (sdk *GiveFoodSDK) Article(data map[string]any) GiveFoodEntity {
 }
 
 
-// Donationpoint returns a Donationpoint entity bound to this client.
-// Idiomatic usage: client.Donationpoint(nil).List(nil, nil) or
-// client.Donationpoint(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *GiveFoodSDK) Donationpoint(data map[string]any) GiveFoodEntity {
-	return NewDonationpointEntityFunc(sdk, data)
+// DonationPoint returns a DonationPoint entity bound to this client.
+// Idiomatic usage: client.DonationPoint(nil).List(nil, nil) or
+// client.DonationPoint(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *GiveFoodSDK) DonationPoint(data map[string]any) GiveFoodEntity {
+	return NewDonationPointEntityFunc(sdk, data)
 }
 
 
-// Foodbank returns a Foodbank entity bound to this client.
-// Idiomatic usage: client.Foodbank(nil).List(nil, nil) or
-// client.Foodbank(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *GiveFoodSDK) Foodbank(data map[string]any) GiveFoodEntity {
-	return NewFoodbankEntityFunc(sdk, data)
+// FoodBank returns a FoodBank entity bound to this client.
+// Idiomatic usage: client.FoodBank(nil).List(nil, nil) or
+// client.FoodBank(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *GiveFoodSDK) FoodBank(data map[string]any) GiveFoodEntity {
+	return NewFoodBankEntityFunc(sdk, data)
 }
 
 

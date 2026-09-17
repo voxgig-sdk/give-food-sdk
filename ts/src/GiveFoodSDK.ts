@@ -1,8 +1,8 @@
 // GiveFood Ts SDK
 
 import { ArticleEntity } from './entity/ArticleEntity'
-import { DonationpointEntity } from './entity/DonationpointEntity'
-import { FoodbankEntity } from './entity/FoodbankEntity'
+import { DonationPointEntity } from './entity/DonationPointEntity'
+import { FoodBankEntity } from './entity/FoodBankEntity'
 import { ItemEntity } from './entity/ItemEntity'
 
 export type * from './GiveFoodTypes'
@@ -309,21 +309,21 @@ class GiveFoodSDK {
   }
 
 
-  // Entity access: `client.Donationpoint().list()` / `client.Donationpoint().load({ id })`.
+  // Entity access: `client.DonationPoint().list()` / `client.DonationPoint().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
-  Donationpoint(entopts?: Record<string, any>) {
+  DonationPoint(entopts?: Record<string, any>) {
     const self = this
-    return new DonationpointEntity(self, entopts)
+    return new DonationPointEntity(self, entopts)
   }
 
 
-  // Entity access: `client.Foodbank().list()` / `client.Foodbank().load({ id })`.
+  // Entity access: `client.FoodBank().list()` / `client.FoodBank().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
-  Foodbank(entopts?: Record<string, any>) {
+  FoodBank(entopts?: Record<string, any>) {
     const self = this
-    return new FoodbankEntity(self, entopts)
+    return new FoodBankEntity(self, entopts)
   }
 
 

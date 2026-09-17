@@ -45,13 +45,13 @@ client = GiveFoodSDK.test()
 
 Create a new `ArticleEntity` instance. Pass `None` for no initial data.
 
-#### `Donationpoint(data=None)`
+#### `DonationPoint(data=None)`
 
-Create a new `DonationpointEntity` instance. Pass `None` for no initial data.
+Create a new `DonationPointEntity` instance. Pass `None` for no initial data.
 
-#### `Foodbank(data=None)`
+#### `FoodBank(data=None)`
 
-Create a new `FoodbankEntity` instance. Pass `None` for no initial data.
+Create a new `FoodBankEntity` instance. Pass `None` for no initial data.
 
 #### `Item(data=None)`
 
@@ -147,10 +147,10 @@ Return the entity name.
 
 ---
 
-## DonationpointEntity
+## DonationPointEntity
 
 ```python
-donationpoint = client.Donationpoint()
+donation_point = client.DonationPoint()
 ```
 
 ### Fields
@@ -159,7 +159,6 @@ donationpoint = client.Donationpoint()
 | --- | --- | --- | --- |
 | `address` | `str` | No | Physical address |
 | `foodbank_slug` | `str` | No | Associated food bank identifier |
-| `id` | `str` | No |  |
 | `latitude` | `float` | No | Latitude coordinate |
 | `longitude` | `float` | No | Longitude coordinate |
 | `name` | `str` | No | Name of the donation point |
@@ -174,9 +173,9 @@ donationpoint = client.Donationpoint()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Donationpoint().list()
-for donationpoint in results:
-    print(donationpoint)
+results = client.DonationPoint().list()
+for donation_point in results:
+    print(donation_point)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -184,7 +183,7 @@ for donationpoint in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Donationpoint().load({"id": "donationpoint_id"})
+result = client.DonationPoint().load({"slug": "slug"})
 ```
 
 ### Common Methods
@@ -207,7 +206,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `DonationpointEntity` instance with the same options.
+Create a new `DonationPointEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -216,10 +215,10 @@ Return the entity name.
 
 ---
 
-## FoodbankEntity
+## FoodBankEntity
 
 ```python
-foodbank = client.Foodbank()
+food_bank = client.FoodBank()
 ```
 
 ### Fields
@@ -228,7 +227,6 @@ foodbank = client.Foodbank()
 | --- | --- | --- | --- |
 | `address` | `str` | No | Physical address of the food bank |
 | `email` | `str` | No | Contact email address |
-| `id` | `str` | No |  |
 | `items_needed` | `list` | No | List of items currently needed for donation |
 | `latitude` | `float` | No | Latitude coordinate |
 | `longitude` | `float` | No | Longitude coordinate |
@@ -248,9 +246,9 @@ foodbank = client.Foodbank()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Foodbank().list()
-for foodbank in results:
-    print(foodbank)
+results = client.FoodBank().list()
+for food_bank in results:
+    print(food_bank)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -258,7 +256,7 @@ for foodbank in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Foodbank().load({"id": "foodbank_id"})
+result = client.FoodBank().load({"slug": "slug"})
 ```
 
 ### Common Methods
@@ -281,7 +279,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `FoodbankEntity` instance with the same options.
+Create a new `FoodBankEntity` instance with the same options.
 
 #### `get_name() -> str`
 

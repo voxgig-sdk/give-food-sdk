@@ -17,10 +17,9 @@
 ---@class ArticleListMatch
 ---@field format? string
 
----@class Donationpoint
+---@class DonationPoint
 ---@field address? string
 ---@field foodbank_slug? string
----@field id? string
 ---@field latitude? number
 ---@field longitude? number
 ---@field name? string
@@ -28,17 +27,16 @@
 ---@field slug? string
 ---@field type? string
 
----@class DonationpointLoadMatch
----@field id string
+---@class DonationPointLoadMatch
+---@field slug string
 ---@field format? string
 
----@class DonationpointListMatch
+---@class DonationPointListMatch
 ---@field format? string
 
----@class Foodbank
+---@class FoodBank
 ---@field address? string
 ---@field email? string
----@field id? string
 ---@field items_needed? table
 ---@field latitude? number
 ---@field longitude? number
@@ -51,11 +49,11 @@
 ---@field updated? string
 ---@field url? string
 
----@class FoodbankLoadMatch
----@field id string
+---@class FoodBankLoadMatch
+---@field slug string
 ---@field format? string
 
----@class FoodbankListMatch
+---@class FoodBankListMatch
 ---@field format? string
 
 ---@class Item

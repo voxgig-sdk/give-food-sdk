@@ -1,0 +1,44 @@
+# BasicDonationPointFlow
+
+main: kit: flow: BasicDonationPointFlow:
+{
+  entity: "donation_point",
+  kind: "basic",
+  name: "BasicDonationPointFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "donation_point_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "donation_point_ref01",
+        srcdatavar: "donation_point_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "donation_point01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-donation_point_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDonationPointFlow"
+}

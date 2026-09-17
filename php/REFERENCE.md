@@ -45,13 +45,13 @@ $client = GiveFoodSDK::test();
 
 Create a new `ArticleEntity` instance. Pass `null` for no initial data.
 
-#### `Donationpoint($data = null)`
+#### `DonationPoint($data = null)`
 
-Create a new `DonationpointEntity` instance. Pass `null` for no initial data.
+Create a new `DonationPointEntity` instance. Pass `null` for no initial data.
 
-#### `Foodbank($data = null)`
+#### `FoodBank($data = null)`
 
-Create a new `FoodbankEntity` instance. Pass `null` for no initial data.
+Create a new `FoodBankEntity` instance. Pass `null` for no initial data.
 
 #### `Item($data = null)`
 
@@ -151,10 +151,10 @@ Return the entity name.
 
 ---
 
-## DonationpointEntity
+## DonationPointEntity
 
 ```php
-$donationpoint = $client->Donationpoint();
+$donation_point = $client->DonationPoint();
 ```
 
 ### Fields
@@ -163,7 +163,6 @@ $donationpoint = $client->Donationpoint();
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address |
 | `foodbank_slug` | `string` | No | Associated food bank identifier |
-| `id` | `string` | No |  |
 | `latitude` | `float` | No | Latitude coordinate |
 | `longitude` | `float` | No | Longitude coordinate |
 | `name` | `string` | No | Name of the donation point |
@@ -178,7 +177,7 @@ $donationpoint = $client->Donationpoint();
 List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Donationpoint()->list();
+$results = $client->DonationPoint()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -186,7 +185,7 @@ $results = $client->Donationpoint()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Donationpoint()->load(["id" => "donationpoint_id"]);
+$result = $client->DonationPoint()->load(["slug" => "slug"]);
 ```
 
 ### Common Methods
@@ -207,9 +206,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): DonationpointEntity`
+#### `make(): DonationPointEntity`
 
-Create a new `DonationpointEntity` instance with the same client and
+Create a new `DonationPointEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -219,10 +218,10 @@ Return the entity name.
 
 ---
 
-## FoodbankEntity
+## FoodBankEntity
 
 ```php
-$foodbank = $client->Foodbank();
+$food_bank = $client->FoodBank();
 ```
 
 ### Fields
@@ -231,7 +230,6 @@ $foodbank = $client->Foodbank();
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address of the food bank |
 | `email` | `string` | No | Contact email address |
-| `id` | `string` | No |  |
 | `items_needed` | `array` | No | List of items currently needed for donation |
 | `latitude` | `float` | No | Latitude coordinate |
 | `longitude` | `float` | No | Longitude coordinate |
@@ -251,7 +249,7 @@ $foodbank = $client->Foodbank();
 List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Foodbank()->list();
+$results = $client->FoodBank()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -259,7 +257,7 @@ $results = $client->Foodbank()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Foodbank()->load(["id" => "foodbank_id"]);
+$result = $client->FoodBank()->load(["slug" => "slug"]);
 ```
 
 ### Common Methods
@@ -280,9 +278,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): FoodbankEntity`
+#### `make(): FoodBankEntity`
 
-Create a new `FoodbankEntity` instance with the same client and
+Create a new `FoodBankEntity` instance with the same client and
 options.
 
 #### `get_name(): string`

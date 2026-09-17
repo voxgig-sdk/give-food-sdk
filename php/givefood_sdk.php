@@ -359,39 +359,39 @@ class GiveFoodSDK
     }
 
 
-    private $_donationpoint = null;
+    private $_donation_point = null;
 
-    // Canonical facade: $client->Donationpoint()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->donationpoint()
+    // Canonical facade: $client->DonationPoint()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->donation_point()
     // resolves here too.
-    public function Donationpoint($data = null)
+    public function DonationPoint($data = null)
     {
-        require_once __DIR__ . '/entity/donationpoint_entity.php';
+        require_once __DIR__ . '/entity/donation_point_entity.php';
         if ($data === null) {
-            if ($this->_donationpoint === null) {
-                $this->_donationpoint = new DonationpointEntity($this, null);
+            if ($this->_donation_point === null) {
+                $this->_donation_point = new DonationPointEntity($this, null);
             }
-            return $this->_donationpoint;
+            return $this->_donation_point;
         }
-        return new DonationpointEntity($this, $data);
+        return new DonationPointEntity($this, $data);
     }
 
 
-    private $_foodbank = null;
+    private $_food_bank = null;
 
-    // Canonical facade: $client->Foodbank()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->foodbank()
+    // Canonical facade: $client->FoodBank()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->food_bank()
     // resolves here too.
-    public function Foodbank($data = null)
+    public function FoodBank($data = null)
     {
-        require_once __DIR__ . '/entity/foodbank_entity.php';
+        require_once __DIR__ . '/entity/food_bank_entity.php';
         if ($data === null) {
-            if ($this->_foodbank === null) {
-                $this->_foodbank = new FoodbankEntity($this, null);
+            if ($this->_food_bank === null) {
+                $this->_food_bank = new FoodBankEntity($this, null);
             }
-            return $this->_foodbank;
+            return $this->_food_bank;
         }
-        return new FoodbankEntity($this, $data);
+        return new FoodBankEntity($this, $data);
     }
 
 

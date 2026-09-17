@@ -47,6 +47,16 @@ for _, item in ipairs(articles) do
 end
 ```
 
+### 3. Load a donationpoint
+
+DonationPoint is nested under slug, so provide the `slug`.
+
+```lua
+local donationpoint, err = client:DonationPoint():load({ slug = "example_slug" })
+if err then error(err) end
+print(donationpoint)
+```
+
 
 ## Error handling
 
@@ -192,8 +202,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
 | `Article` | `(data) -> ArticleEntity` | Create an Article entity instance. |
-| `Donationpoint` | `(data) -> DonationpointEntity` | Create a Donationpoint entity instance. |
-| `Foodbank` | `(data) -> FoodbankEntity` | Create a Foodbank entity instance. |
+| `DonationPoint` | `(data) -> DonationPointEntity` | Create a DonationPoint entity instance. |
+| `FoodBank` | `(data) -> FoodBankEntity` | Create a FoodBank entity instance. |
 | `Item` | `(data) -> ItemEntity` | Create an Item entity instance. |
 
 ### Entity interface
@@ -223,9 +233,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local donationpoint, err = client:Donationpoint():load({ id = "example_id" })
+    local donation_point, err = client:DonationPoint():load()
     if err then error(err) end
-    -- donationpoint is the loaded record
+    -- donation_point is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -247,13 +257,12 @@ Operations: List.
 
 API path: `/articles/`
 
-#### Donationpoint
+#### DonationPoint
 
 | Field | Description |
 | --- | --- |
 | `address` | Physical address |
 | `foodbank_slug` | Associated food bank identifier |
-| `id` |  |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
 | `name` | Name of the donation point |
@@ -265,13 +274,12 @@ Operations: List, Load.
 
 API path: `/donationpoints/`
 
-#### Foodbank
+#### FoodBank
 
 | Field | Description |
 | --- | --- |
 | `address` | Physical address of the food bank |
 | `email` | Contact email address |
-| `id` |  |
 | `items_needed` | List of items currently needed for donation |
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
@@ -335,9 +343,9 @@ local articles, err = client:Article():list()
 ```
 
 
-### Donationpoint
+### DonationPoint
 
-Create an instance: `local donationpoint = client:Donationpoint(nil)`
+Create an instance: `local donation_point = client:DonationPoint(nil)`
 
 #### Operations
 
@@ -352,7 +360,6 @@ Create an instance: `local donationpoint = client:Donationpoint(nil)`
 | --- | --- | --- |
 | `address` | `string` | Physical address |
 | `foodbank_slug` | `string` | Associated food bank identifier |
-| `id` | `string` |  |
 | `latitude` | `number` | Latitude coordinate |
 | `longitude` | `number` | Longitude coordinate |
 | `name` | `string` | Name of the donation point |
@@ -363,19 +370,19 @@ Create an instance: `local donationpoint = client:Donationpoint(nil)`
 #### Example: Load
 
 ```lua
-local donationpoint, err = client:Donationpoint():load({ id = "donationpoint_id" })
+local donation_point, err = client:DonationPoint():load({ slug = "slug" })
 ```
 
 #### Example: List
 
 ```lua
-local donationpoints, err = client:Donationpoint():list()
+local donation_points, err = client:DonationPoint():list()
 ```
 
 
-### Foodbank
+### FoodBank
 
-Create an instance: `local foodbank = client:Foodbank(nil)`
+Create an instance: `local food_bank = client:FoodBank(nil)`
 
 #### Operations
 
@@ -390,7 +397,6 @@ Create an instance: `local foodbank = client:Foodbank(nil)`
 | --- | --- | --- |
 | `address` | `string` | Physical address of the food bank |
 | `email` | `string` | Contact email address |
-| `id` | `string` |  |
 | `items_needed` | `table` | List of items currently needed for donation |
 | `latitude` | `number` | Latitude coordinate |
 | `longitude` | `number` | Longitude coordinate |
@@ -406,13 +412,13 @@ Create an instance: `local foodbank = client:Foodbank(nil)`
 #### Example: Load
 
 ```lua
-local foodbank, err = client:Foodbank():load({ id = "foodbank_id" })
+local food_bank, err = client:FoodBank():load({ slug = "slug" })
 ```
 
 #### Example: List
 
 ```lua
-local foodbanks, err = client:Foodbank():list()
+local food_banks, err = client:FoodBank():list()
 ```
 
 
@@ -585,6 +591,7 @@ Use `helpers.to_map()` to safely validate that a value is a table.
 lua/
 ├── give-food_sdk.lua    -- Main SDK module
 ├── config.lua               -- Configuration
+├── schema.lua               -- Generated option + entity specs
 ├── features.lua             -- Feature factory
 ├── core/                    -- Core types and context
 ├── entity/                  -- Entity implementations

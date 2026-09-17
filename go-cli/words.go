@@ -91,10 +91,10 @@ func entityFor(client *sdk.GiveFoodSDK, name string) (sdk.GiveFoodEntity, error)
 	switch strings.ToLower(name) {
 	case "article":
 		return client.Article(nil), nil
-	case "donationpoint":
-		return client.Donationpoint(nil), nil
-	case "foodbank":
-		return client.Foodbank(nil), nil
+	case "donation_point":
+		return client.DonationPoint(nil), nil
+	case "food_bank":
+		return client.FoodBank(nil), nil
 	case "item":
 		return client.Item(nil), nil
 

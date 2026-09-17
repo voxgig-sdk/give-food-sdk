@@ -44,13 +44,13 @@ local client = sdk.test()
 
 Create a new `Article` entity instance. Pass `nil` for no initial data.
 
-#### `Donationpoint(data)`
+#### `DonationPoint(data)`
 
-Create a new `Donationpoint` entity instance. Pass `nil` for no initial data.
+Create a new `DonationPoint` entity instance. Pass `nil` for no initial data.
 
-#### `Foodbank(data)`
+#### `FoodBank(data)`
 
-Create a new `Foodbank` entity instance. Pass `nil` for no initial data.
+Create a new `FoodBank` entity instance. Pass `nil` for no initial data.
 
 #### `Item(data)`
 
@@ -149,10 +149,10 @@ Return the entity name.
 
 ---
 
-## DonationpointEntity
+## DonationPointEntity
 
 ```lua
-local donationpoint = client:Donationpoint(nil)
+local donation_point = client:DonationPoint(nil)
 ```
 
 ### Fields
@@ -161,7 +161,6 @@ local donationpoint = client:Donationpoint(nil)
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address |
 | `foodbank_slug` | `string` | No | Associated food bank identifier |
-| `id` | `string` | No |  |
 | `latitude` | `number` | No | Latitude coordinate |
 | `longitude` | `number` | No | Longitude coordinate |
 | `name` | `string` | No | Name of the donation point |
@@ -176,7 +175,7 @@ local donationpoint = client:Donationpoint(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Donationpoint():list()
+local results, err = client:DonationPoint():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -184,7 +183,7 @@ local results, err = client:Donationpoint():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Donationpoint():load({ id = "donationpoint_id" })
+local result, err = client:DonationPoint():load({ slug = "slug" })
 ```
 
 ### Common Methods
@@ -207,7 +206,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `DonationpointEntity` instance with the same client and
+Create a new `DonationPointEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -217,10 +216,10 @@ Return the entity name.
 
 ---
 
-## FoodbankEntity
+## FoodBankEntity
 
 ```lua
-local foodbank = client:Foodbank(nil)
+local food_bank = client:FoodBank(nil)
 ```
 
 ### Fields
@@ -229,7 +228,6 @@ local foodbank = client:Foodbank(nil)
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address of the food bank |
 | `email` | `string` | No | Contact email address |
-| `id` | `string` | No |  |
 | `items_needed` | `table` | No | List of items currently needed for donation |
 | `latitude` | `number` | No | Latitude coordinate |
 | `longitude` | `number` | No | Longitude coordinate |
@@ -249,7 +247,7 @@ local foodbank = client:Foodbank(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Foodbank():list()
+local results, err = client:FoodBank():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -257,7 +255,7 @@ local results, err = client:Foodbank():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Foodbank():load({ id = "foodbank_id" })
+local result, err = client:FoodBank():load({ slug = "slug" })
 ```
 
 ### Common Methods
@@ -280,7 +278,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `FoodbankEntity` instance with the same client and
+Create a new `FoodBankEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`

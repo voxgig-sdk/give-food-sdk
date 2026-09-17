@@ -18,10 +18,9 @@ export interface ArticleListMatch {
   format?: string
 }
 
-export interface Donationpoint {
+export interface DonationPoint {
   address?: string
   foodbank_slug?: string
-  id?: string
   latitude?: number
   longitude?: number
   name?: string
@@ -30,19 +29,18 @@ export interface Donationpoint {
   type?: string
 }
 
-export interface DonationpointLoadMatch {
-  id: string
+export interface DonationPointLoadMatch {
+  slug: string
   format?: string
 }
 
-export interface DonationpointListMatch {
+export interface DonationPointListMatch {
   format?: string
 }
 
-export interface Foodbank {
+export interface FoodBank {
   address?: string
   email?: string
-  id?: string
   items_needed?: any[]
   latitude?: number
   longitude?: number
@@ -56,12 +54,12 @@ export interface Foodbank {
   url?: string
 }
 
-export interface FoodbankLoadMatch {
-  id: string
+export interface FoodBankLoadMatch {
+  slug: string
   format?: string
 }
 
-export interface FoodbankListMatch {
+export interface FoodBankListMatch {
   format?: string
 }
 

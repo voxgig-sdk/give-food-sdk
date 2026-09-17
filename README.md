@@ -20,7 +20,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 ## Entities, not endpoints
 
-This SDK exposes the API as a small set of **semantic entities** — Article, Donationpoint, Foodbank and Item — that you
+This SDK exposes the API as a small set of **semantic entities** — Article, DonationPoint, FoodBank and Item — that you
 call directly, instead of assembling URL paths and query strings. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`list`, `load`):
@@ -105,12 +105,12 @@ local results, err = client:Article():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/give-food-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/releases) |
-| Python | `voxgig-sdk-give-food` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/releases) |
-| PHP | `voxgig-sdk/give-food` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/releases) |
+| TypeScript | `@voxgig-sdk/give-food-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/tags) |
+| Python | `voxgig-sdk-give-food` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/tags) |
+| PHP | `voxgig-sdk/give-food` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/give-food-sdk/go` | `go get github.com/voxgig-sdk/give-food-sdk/go@latest` |
-| Ruby | `voxgig-sdk-give-food` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/releases) |
-| Lua | `voxgig-sdk-give-food` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/releases) |
+| Ruby | `voxgig-sdk-give-food` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/tags) |
+| Lua | `voxgig-sdk-give-food` | publish pending — [install from git tag](https://github.com/voxgig-sdk/give-food-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/give-food-sdk/go-cli` | `go install github.com/voxgig-sdk/give-food-sdk/go-cli/cmd/give-food@latest` |
 | Go MCP server | `github.com/voxgig-sdk/give-food-sdk/go-mcp` | `go get github.com/voxgig-sdk/give-food-sdk/go-mcp@latest` |
 
@@ -128,6 +128,12 @@ const articles = await client.Article().list()
 for (const article of articles) {
   console.log(article)
 }
+
+// Load a specific donationpoint (returns a DonationPoint)
+const donationpoint = await client.DonationPoint().load({
+  slug: 'example_slug',
+})
+console.log(donationpoint)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -169,8 +175,8 @@ The API exposes 4 entities:
 | Entity | Description | API path |
 | --- | --- | --- |
 | **Article** | The Article entity (list). | `/articles/` |
-| **Donationpoint** | The Donationpoint entity (list, load). | `/donationpoints/` |
-| **Foodbank** | The Foodbank entity (list, load). | `/foodbanks/` |
+| **DonationPoint** | The DonationPoint entity (list, load). | `/donationpoints/` |
+| **FoodBank** | The FoodBank entity (list, load). | `/foodbanks/` |
 | **Item** | The Item entity (list). | `/items/` |
 
 The operations available across these entities are **load**, **list** — see each entity's
@@ -217,6 +223,15 @@ if err != nil {
     panic(err)
 }
 fmt.Println(articles)
+
+// Load a specific donationpoint
+donationPoint, err := client.DonationPoint(nil).Load(
+    map[string]any{"slug": "example_slug"}, nil,
+)
+if err != nil {
+    panic(err)
+}
+fmt.Println(donationPoint)
 ```
 
 ### Ruby

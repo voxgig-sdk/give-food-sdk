@@ -37,7 +37,7 @@ const SDK_NAME = 'GiveFoodSDK'
 
 // A fixture for every entity, so list()/load() resolve offline with no
 // network. Snippet client construction is rewritten to seed this.
-const TEST_SEED = {"entity":{"article":{"test01":{"id":"test01"}},"donationpoint":{"test01":{"id":"test01"}},"foodbank":{"test01":{"id":"test01"}},"item":{"test01":{"id":"test01"}}}}
+const TEST_SEED = {"entity":{"article":{"test01":{"id":"test01"}},"donation_point":{"test01":{"id":"test01"}},"food_bank":{"test01":{"id":"test01"}},"item":{"test01":{"id":"test01"}}}}
 const SEED_ARG = JSON.stringify(TEST_SEED)
 const SEEDED_CTOR = SDK_NAME + '.test(' + SEED_ARG + ')'
 

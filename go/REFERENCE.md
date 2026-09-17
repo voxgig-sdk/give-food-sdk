@@ -51,13 +51,13 @@ client := sdk.TestSDK(testopts, sdkopts)
 
 Create a new `Article` entity instance. Pass `nil` for no initial data.
 
-#### `Donationpoint(data map[string]any) GiveFoodEntity`
+#### `DonationPoint(data map[string]any) GiveFoodEntity`
 
-Create a new `Donationpoint` entity instance. Pass `nil` for no initial data.
+Create a new `DonationPoint` entity instance. Pass `nil` for no initial data.
 
-#### `Foodbank(data map[string]any) GiveFoodEntity`
+#### `FoodBank(data map[string]any) GiveFoodEntity`
 
-Create a new `Foodbank` entity instance. Pass `nil` for no initial data.
+Create a new `FoodBank` entity instance. Pass `nil` for no initial data.
 
 #### `Item(data map[string]any) GiveFoodEntity`
 
@@ -155,11 +155,11 @@ Return the entity name.
 
 ---
 
-## DonationpointEntity
+## DonationPointEntity
 
 ```go
-donationpoint := client.Donationpoint(nil)
-fmt.Println(donationpoint.GetName()) // "donationpoint"
+donationPoint := client.DonationPoint(nil)
+fmt.Println(donationPoint.GetName()) // "donation_point"
 ```
 
 ### Fields
@@ -168,7 +168,6 @@ fmt.Println(donationpoint.GetName()) // "donationpoint"
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address |
 | `foodbank_slug` | `string` | No | Associated food bank identifier |
-| `id` | `string` | No |  |
 | `latitude` | `float64` | No | Latitude coordinate |
 | `longitude` | `float64` | No | Longitude coordinate |
 | `name` | `string` | No | Name of the donation point |
@@ -183,7 +182,7 @@ fmt.Println(donationpoint.GetName()) // "donationpoint"
 List entities matching the given criteria. Returns an array.
 
 ```go
-results, err := client.Donationpoint(nil).List(nil, nil)
+results, err := client.DonationPoint(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -195,7 +194,7 @@ fmt.Println(results)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Donationpoint(nil).Load(map[string]any{"id": "donationpoint_id"}, nil)
+result, err := client.DonationPoint(nil).Load(map[string]any{"slug": "slug"}, nil)
 if err != nil {
     panic(err)
 }
@@ -216,7 +215,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `DonationpointEntity` instance with the same client and
+Create a new `DonationPointEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -226,11 +225,11 @@ Return the entity name.
 
 ---
 
-## FoodbankEntity
+## FoodBankEntity
 
 ```go
-foodbank := client.Foodbank(nil)
-fmt.Println(foodbank.GetName()) // "foodbank"
+foodBank := client.FoodBank(nil)
+fmt.Println(foodBank.GetName()) // "food_bank"
 ```
 
 ### Fields
@@ -239,7 +238,6 @@ fmt.Println(foodbank.GetName()) // "foodbank"
 | --- | --- | --- | --- |
 | `address` | `string` | No | Physical address of the food bank |
 | `email` | `string` | No | Contact email address |
-| `id` | `string` | No |  |
 | `items_needed` | `[]any` | No | List of items currently needed for donation |
 | `latitude` | `float64` | No | Latitude coordinate |
 | `longitude` | `float64` | No | Longitude coordinate |
@@ -259,7 +257,7 @@ fmt.Println(foodbank.GetName()) // "foodbank"
 List entities matching the given criteria. Returns an array.
 
 ```go
-results, err := client.Foodbank(nil).List(nil, nil)
+results, err := client.FoodBank(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -271,7 +269,7 @@ fmt.Println(results)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Foodbank(nil).Load(map[string]any{"id": "foodbank_id"}, nil)
+result, err := client.FoodBank(nil).Load(map[string]any{"slug": "slug"}, nil)
 if err != nil {
     panic(err)
 }
@@ -292,7 +290,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `FoodbankEntity` instance with the same client and
+Create a new `FoodBankEntity` instance with the same client and
 options.
 
 #### `GetName() string`

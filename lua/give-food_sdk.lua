@@ -363,29 +363,29 @@ function GiveFoodSDK:Article(data)
 end
 
 
--- Idiomatic facade: client:Donationpoint():list() / client:Donationpoint():load({ id = ... })
+-- Idiomatic facade: client:DonationPoint():list() / client:DonationPoint():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function GiveFoodSDK:Donationpoint(data)
-  local EntityMod = require("entity.donationpoint_entity")
+function GiveFoodSDK:DonationPoint(data)
+  local EntityMod = require("entity.donation_point_entity")
   if data == nil then
-    if self._donationpoint == nil then
-      self._donationpoint = EntityMod.new(self, nil)
+    if self._donation_point == nil then
+      self._donation_point = EntityMod.new(self, nil)
     end
-    return self._donationpoint
+    return self._donation_point
   end
   return EntityMod.new(self, data)
 end
 
 
--- Idiomatic facade: client:Foodbank():list() / client:Foodbank():load({ id = ... })
+-- Idiomatic facade: client:FoodBank():list() / client:FoodBank():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function GiveFoodSDK:Foodbank(data)
-  local EntityMod = require("entity.foodbank_entity")
+function GiveFoodSDK:FoodBank(data)
+  local EntityMod = require("entity.food_bank_entity")
   if data == nil then
-    if self._foodbank == nil then
-      self._foodbank = EntityMod.new(self, nil)
+    if self._food_bank == nil then
+      self._food_bank = EntityMod.new(self, nil)
     end
-    return self._foodbank
+    return self._food_bank
   end
   return EntityMod.new(self, data)
 end

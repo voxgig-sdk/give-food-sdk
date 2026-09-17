@@ -24,71 +24,6 @@
         "repr": "auto"
       },
       "contributor": {},
-      "doc": {
-        "active": true,
-        "assets": {
-          "path": ".sdk/doc/assets"
-        },
-        "brand": {
-          "label": "",
-          "notice": "",
-          "shortNotice": "",
-          "url": ""
-        },
-        "ci": {
-          "active": true,
-          "branch": "main"
-        },
-        "content": {
-          "path": ".sdk/doc/content"
-        },
-        "edition": {
-          "summary": {
-            "active": true,
-            "base": "node_modules/@voxgig/docgen/project/.sdk",
-            "brand": {},
-            "filter": {
-              "entities": [],
-              "features": [],
-              "targets": []
-            },
-            "kind": "summary",
-            "name": "summary",
-            "origname": "",
-            "output": {
-              "path": "SUMMARY.md"
-            },
-            "package": "@voxgig/docgen",
-            "site": {
-              "active": true
-            },
-            "style": {},
-            "title": ""
-          }
-        },
-        "qa": {
-          "vocabulary": []
-        },
-        "style": {
-          "color": {
-            "accent": "#00c6d8",
-            "background": "#f5f5f9",
-            "darkBackground": "#0f1117",
-            "darkText": "#e6edf3",
-            "primary": "#e70042",
-            "text": "#0a0a0a"
-          },
-          "font": "Nunito, system-ui, sans-serif",
-          "fontFile": "",
-          "headingFont": "Nunito, system-ui, sans-serif",
-          "headingFontFile": "",
-          "logo": "",
-          "mode": "light",
-          "mono": "ui-monospace, monospace",
-          "monoFile": ""
-        },
-        "target": {}
-      },
       "entity": {
         "article": {
           "active": true,
@@ -197,7 +132,7 @@
             "ancestors": []
           }
         },
-        "donationpoint": {
+        "donation_point": {
           "active": true,
           "alias": {
             "field": {}
@@ -215,12 +150,6 @@
               "name": "foodbank_slug",
               "req": false,
               "short": "Associated food bank identifier",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
               "type": "`$STRING`"
             },
             {
@@ -268,11 +197,7 @@
               "type": "`$STRING`"
             }
           ],
-          "id": {
-            "field": "id",
-            "name": "id"
-          },
-          "name": "donationpoint",
+          "name": "donation_point",
           "op": {
             "list": {
               "input": "data",
@@ -330,7 +255,7 @@
                       {
                         "active": true,
                         "kind": "param",
-                        "name": "id",
+                        "name": "slug",
                         "orig": "slug",
                         "reqd": true,
                         "type": "`$STRING`"
@@ -357,23 +282,18 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/donationpoints/{slug}/",
-                  "rename": {
-                    "param": {
-                      "slug": "id"
-                    }
-                  },
                   "segments": [
                     {
                       "lit": "donationpoints"
                     },
                     {
-                      "var": "id"
+                      "var": "slug"
                     }
                   ],
                   "select": {
                     "exist": [
                       "format",
-                      "id"
+                      "slug"
                     ]
                   },
                   "transform": {
@@ -385,10 +305,14 @@
             }
           },
           "relations": {
-            "ancestors": []
+            "ancestors": [
+              [
+                "donationpoint"
+              ]
+            ]
           }
         },
-        "foodbank": {
+        "food_bank": {
           "active": true,
           "alias": {
             "field": {}
@@ -407,12 +331,6 @@
               "name": "email",
               "req": false,
               "short": "Contact email address",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
               "type": "`$STRING`"
             },
             {
@@ -498,11 +416,7 @@
               "type": "`$STRING`"
             }
           ],
-          "id": {
-            "field": "id",
-            "name": "id"
-          },
-          "name": "foodbank",
+          "name": "food_bank",
           "op": {
             "list": {
               "input": "data",
@@ -560,7 +474,7 @@
                       {
                         "active": true,
                         "kind": "param",
-                        "name": "id",
+                        "name": "slug",
                         "orig": "slug",
                         "reqd": true,
                         "type": "`$STRING`"
@@ -587,23 +501,18 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/foodbanks/{slug}/",
-                  "rename": {
-                    "param": {
-                      "slug": "id"
-                    }
-                  },
                   "segments": [
                     {
                       "lit": "foodbanks"
                     },
                     {
-                      "var": "id"
+                      "var": "slug"
                     }
                   ],
                   "select": {
                     "exist": [
                       "format",
-                      "id"
+                      "slug"
                     ]
                   },
                   "transform": {
@@ -615,7 +524,11 @@
             }
           },
           "relations": {
-            "ancestors": []
+            "ancestors": [
+              [
+                "foodbank"
+              ]
+            ]
           }
         },
         "item": {
@@ -1152,12 +1065,12 @@
             }
           ]
         },
-        "BasicDonationpointFlow": {
+        "BasicDonationPointFlow": {
           "active": true,
-          "entity": "donationpoint",
-          "key$": "BasicDonationpointFlow",
+          "entity": "donation_point",
+          "key$": "BasicDonationPointFlow",
           "kind": "basic",
-          "name": "BasicDonationpointFlow",
+          "name": "BasicDonationPointFlow",
           "param": {},
           "step": [
             {
@@ -1171,7 +1084,7 @@
                 {
                   "apply": "ItemExists",
                   "def": {
-                    "ref": "donationpoint_ref01"
+                    "ref": "donation_point_ref01"
                   }
                 }
               ]
@@ -1180,12 +1093,12 @@
               "active": true,
               "data": {},
               "input": {
-                "ref": "donationpoint_ref01",
-                "srcdatavar": "donationpoint_ref01_data",
+                "ref": "donation_point_ref01",
+                "srcdatavar": "donation_point_ref01_data",
                 "suffix": "_dt0"
               },
               "match": {
-                "id": "donationpoint01"
+                "id": "donation_point01"
               },
               "op": "load",
               "spec": [],
@@ -1193,19 +1106,19 @@
                 {
                   "apply": "TextFieldMark",
                   "def": {
-                    "mark": "Mark01-donationpoint_ref01"
+                    "mark": "Mark01-donation_point_ref01"
                   }
                 }
               ]
             }
           ]
         },
-        "BasicFoodbankFlow": {
+        "BasicFoodBankFlow": {
           "active": true,
-          "entity": "foodbank",
-          "key$": "BasicFoodbankFlow",
+          "entity": "food_bank",
+          "key$": "BasicFoodBankFlow",
           "kind": "basic",
-          "name": "BasicFoodbankFlow",
+          "name": "BasicFoodBankFlow",
           "param": {},
           "step": [
             {
@@ -1219,7 +1132,7 @@
                 {
                   "apply": "ItemExists",
                   "def": {
-                    "ref": "foodbank_ref01"
+                    "ref": "food_bank_ref01"
                   }
                 }
               ]
@@ -1228,12 +1141,12 @@
               "active": true,
               "data": {},
               "input": {
-                "ref": "foodbank_ref01",
-                "srcdatavar": "foodbank_ref01_data",
+                "ref": "food_bank_ref01",
+                "srcdatavar": "food_bank_ref01_data",
                 "suffix": "_dt0"
               },
               "match": {
-                "id": "foodbank01"
+                "id": "food_bank01"
               },
               "op": "load",
               "spec": [],
@@ -1241,7 +1154,7 @@
                 {
                   "apply": "TextFieldMark",
                   "def": {
-                    "mark": "Mark01-foodbank_ref01"
+                    "mark": "Mark01-food_bank_ref01"
                   }
                 }
               ]
@@ -1307,6 +1220,8 @@
         "apikey": "",
         "auth": {
           "basic": false,
+          "in": "",
+          "name": "",
           "prefix": ""
         },
         "base": "http://localhost:8000",
@@ -1381,6 +1296,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1607,6 +1523,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1672,6 +1589,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1743,6 +1661,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1819,6 +1738,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {

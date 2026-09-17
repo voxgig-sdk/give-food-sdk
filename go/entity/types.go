@@ -27,11 +27,10 @@ type ArticleListMatch struct {
 	Format *string `json:"format,omitempty"`
 }
 
-// Donationpoint is the typed data model for the donationpoint entity.
-type Donationpoint struct {
+// DonationPoint is the typed data model for the donation_point entity.
+type DonationPoint struct {
 	Address *string `json:"address,omitempty"`
 	FoodbankSlug *string `json:"foodbank_slug,omitempty"`
-	Id *string `json:"id,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -40,22 +39,21 @@ type Donationpoint struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// DonationpointLoadMatch is the typed request payload for Donationpoint.LoadTyped.
-type DonationpointLoadMatch struct {
-	Id string `json:"id"`
+// DonationPointLoadMatch is the typed request payload for DonationPoint.LoadTyped.
+type DonationPointLoadMatch struct {
+	Slug string `json:"slug"`
 	Format *string `json:"format,omitempty"`
 }
 
-// DonationpointListMatch is the typed request payload for Donationpoint.ListTyped.
-type DonationpointListMatch struct {
+// DonationPointListMatch is the typed request payload for DonationPoint.ListTyped.
+type DonationPointListMatch struct {
 	Format *string `json:"format,omitempty"`
 }
 
-// Foodbank is the typed data model for the foodbank entity.
-type Foodbank struct {
+// FoodBank is the typed data model for the food_bank entity.
+type FoodBank struct {
 	Address *string `json:"address,omitempty"`
 	Email *string `json:"email,omitempty"`
-	Id *string `json:"id,omitempty"`
 	ItemsNeeded *[]any `json:"items_needed,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
@@ -69,14 +67,14 @@ type Foodbank struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// FoodbankLoadMatch is the typed request payload for Foodbank.LoadTyped.
-type FoodbankLoadMatch struct {
-	Id string `json:"id"`
+// FoodBankLoadMatch is the typed request payload for FoodBank.LoadTyped.
+type FoodBankLoadMatch struct {
+	Slug string `json:"slug"`
 	Format *string `json:"format,omitempty"`
 }
 
-// FoodbankListMatch is the typed request payload for Foodbank.ListTyped.
-type FoodbankListMatch struct {
+// FoodBankListMatch is the typed request payload for FoodBank.ListTyped.
+type FoodBankListMatch struct {
 	Format *string `json:"format,omitempty"`
 }
 

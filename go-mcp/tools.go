@@ -16,7 +16,7 @@ import (
 // reqdata map passed through to the SDK. For load, `query` should be
 // `{"id": <value>}`. For list, omit `query` or pass an empty map.
 type Args struct {
-	Entity string         `json:"entity" jsonschema:"article | donationpoint | foodbank | item"`
+	Entity string         `json:"entity" jsonschema:"article | donation_point | food_bank | item"`
 	Query  map[string]any `json:"query,omitempty" jsonschema:"optional match map e.g. {\"id\":1} for load, omit for list"`
 }
 
@@ -79,10 +79,10 @@ func entityFor(client *sdk.GiveFoodSDK, name string) (sdk.GiveFoodEntity, error)
 	switch strings.ToLower(name) {
 	case "article":
 		return client.Article(nil), nil
-	case "donationpoint":
-		return client.Donationpoint(nil), nil
-	case "foodbank":
-		return client.Foodbank(nil), nil
+	case "donation_point":
+		return client.DonationPoint(nil), nil
+	case "food_bank":
+		return client.FoodBank(nil), nil
 	case "item":
 		return client.Item(nil), nil
 

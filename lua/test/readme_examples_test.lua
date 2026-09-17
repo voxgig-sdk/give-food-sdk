@@ -20,7 +20,7 @@ local SDK_MODULE = "give-food_sdk"
 -- A test-mode client seeded with a fixture for every entity. The constructor
 -- of each runnable snippet is rewritten to this form so the offline mock has
 -- data to return.
-local TEST_SEED = '{ entity = { ["article"] = { ["test01"] = { id = "test01" } }, ["donationpoint"] = { ["test01"] = { id = "test01" } }, ["foodbank"] = { ["test01"] = { id = "test01" } }, ["item"] = { ["test01"] = { id = "test01" } } } }'
+local TEST_SEED = '{ entity = { ["article"] = { ["test01"] = { id = "test01" } }, ["donation_point"] = { ["test01"] = { id = "test01" } }, ["food_bank"] = { ["test01"] = { id = "test01" } }, ["item"] = { ["test01"] = { id = "test01" } } } }'
 local TEST_CTOR = "sdk.test(" .. TEST_SEED .. ")"
 
 local function script_dir()

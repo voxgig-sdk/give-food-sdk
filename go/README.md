@@ -221,8 +221,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
 | `Article` | `(data map[string]any) GiveFoodEntity` | Create an Article entity instance. |
-| `Donationpoint` | `(data map[string]any) GiveFoodEntity` | Create a Donationpoint entity instance. |
-| `Foodbank` | `(data map[string]any) GiveFoodEntity` | Create a Foodbank entity instance. |
+| `DonationPoint` | `(data map[string]any) GiveFoodEntity` | Create a DonationPoint entity instance. |
+| `FoodBank` | `(data map[string]any) GiveFoodEntity` | Create a FoodBank entity instance. |
 | `Item` | `(data map[string]any) GiveFoodEntity` | Create an Item entity instance. |
 
 ### Entity interface (GiveFoodEntity)
@@ -276,13 +276,12 @@ Operations: List.
 
 API path: `/articles/`
 
-#### Donationpoint
+#### DonationPoint
 
 | Field | Description |
 | --- | --- |
 | `"address"` | Physical address |
 | `"foodbank_slug"` | Associated food bank identifier |
-| `"id"` |  |
 | `"latitude"` | Latitude coordinate |
 | `"longitude"` | Longitude coordinate |
 | `"name"` | Name of the donation point |
@@ -294,13 +293,12 @@ Operations: List, Load.
 
 API path: `/donationpoints/`
 
-#### Foodbank
+#### FoodBank
 
 | Field | Description |
 | --- | --- |
 | `"address"` | Physical address of the food bank |
 | `"email"` | Contact email address |
-| `"id"` |  |
 | `"items_needed"` | List of items currently needed for donation |
 | `"latitude"` | Latitude coordinate |
 | `"longitude"` | Longitude coordinate |
@@ -368,9 +366,9 @@ fmt.Println(articles) // the array of records
 ```
 
 
-### Donationpoint
+### DonationPoint
 
-Create an instance: `donationpoint := client.Donationpoint(nil)`
+Create an instance: `donationPoint := client.DonationPoint(nil)`
 
 #### Operations
 
@@ -385,7 +383,6 @@ Create an instance: `donationpoint := client.Donationpoint(nil)`
 | --- | --- | --- |
 | `address` | `string` | Physical address |
 | `foodbank_slug` | `string` | Associated food bank identifier |
-| `id` | `string` |  |
 | `latitude` | `float64` | Latitude coordinate |
 | `longitude` | `float64` | Longitude coordinate |
 | `name` | `string` | Name of the donation point |
@@ -396,27 +393,27 @@ Create an instance: `donationpoint := client.Donationpoint(nil)`
 #### Example: Load
 
 ```go
-donationpoint, err := client.Donationpoint(nil).Load(map[string]any{"id": "donationpoint_id"}, nil)
+donationPoint, err := client.DonationPoint(nil).Load(map[string]any{"slug": "slug"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(donationpoint) // the loaded record
+fmt.Println(donationPoint) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-donationpoints, err := client.Donationpoint(nil).List(nil, nil)
+donationPoints, err := client.DonationPoint(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(donationpoints) // the array of records
+fmt.Println(donationPoints) // the array of records
 ```
 
 
-### Foodbank
+### FoodBank
 
-Create an instance: `foodbank := client.Foodbank(nil)`
+Create an instance: `foodBank := client.FoodBank(nil)`
 
 #### Operations
 
@@ -431,7 +428,6 @@ Create an instance: `foodbank := client.Foodbank(nil)`
 | --- | --- | --- |
 | `address` | `string` | Physical address of the food bank |
 | `email` | `string` | Contact email address |
-| `id` | `string` |  |
 | `items_needed` | `[]any` | List of items currently needed for donation |
 | `latitude` | `float64` | Latitude coordinate |
 | `longitude` | `float64` | Longitude coordinate |
@@ -447,21 +443,21 @@ Create an instance: `foodbank := client.Foodbank(nil)`
 #### Example: Load
 
 ```go
-foodbank, err := client.Foodbank(nil).Load(map[string]any{"id": "foodbank_id"}, nil)
+foodBank, err := client.FoodBank(nil).Load(map[string]any{"slug": "slug"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(foodbank) // the loaded record
+fmt.Println(foodBank) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-foodbanks, err := client.Foodbank(nil).List(nil, nil)
+foodBanks, err := client.FoodBank(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(foodbanks) // the array of records
+fmt.Println(foodBanks) // the array of records
 ```
 
 
