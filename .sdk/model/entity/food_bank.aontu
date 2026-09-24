@@ -1,0 +1,206 @@
+# Entity: food_bank
+
+main: kit: entity: food_bank: {
+
+  alias: field: {}
+
+  fields: {
+    address: {
+      h: "Address"
+      n: "address"
+      r: false
+      sh: "Physical address of the food bank"
+      t: "`$STRING`"
+    }
+    email: {
+      fo: "email"
+      h: "Email"
+      n: "email"
+      r: false
+      sh: "Contact email address"
+      t: "`$STRING`"
+    }
+    items_needed: {
+      h: "Items Needed"
+      n: "items_needed"
+      r: false
+      sh: "List of items currently needed for donation"
+      t: "`$ARRAY`"
+    }
+    latitude: {
+      fo: "double"
+      h: "Latitude"
+      n: "latitude"
+      r: false
+      sh: "Latitude coordinate"
+      t: "`$NUMBER`"
+    }
+    longitude: {
+      fo: "double"
+      h: "Longitude"
+      n: "longitude"
+      r: false
+      sh: "Longitude coordinate"
+      t: "`$NUMBER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Name of the food bank"
+      t: "`$STRING`"
+    }
+    needs: {
+      h: "Needs"
+      n: "needs"
+      r: false
+      sh: "Current needs status"
+      t: "`$OBJECT`"
+    }
+    phone: {
+      h: "Phone"
+      n: "phone"
+      r: false
+      sh: "Contact phone number"
+      t: "`$STRING`"
+    }
+    postcode: {
+      h: "Postcode"
+      n: "postcode"
+      r: false
+      sh: "Postal code"
+      t: "`$STRING`"
+    }
+    shopping_list_url: {
+      fo: "uri"
+      h: "Shopping List Url"
+      n: "shopping_list_url"
+      r: false
+      sh: "URL to the food bank's detailed shopping list"
+      t: "`$STRING`"
+    }
+    slug: {
+      h: "Slug"
+      n: "slug"
+      r: false
+      sh: "Unique identifier for the food bank"
+      t: "`$STRING`"
+    }
+    updated: {
+      fo: "date-time"
+      h: "Updated"
+      n: "updated"
+      r: false
+      sh: "Last update timestamp"
+      t: "`$STRING`"
+    }
+    url: {
+      fo: "uri"
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "Website URL"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "food_bank"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /foodbanks/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "json"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/foodbanks/"
+          q: {
+            exist: [
+              "format"
+            ]
+          }
+          s: [
+            {
+              lit: "foodbanks"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /foodbanks/{slug}/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "slug"
+                or: "slug"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "json"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/foodbanks/{slug}/"
+          q: {
+            exist: [
+              "format"
+              "slug"
+            ]
+          }
+          s: [
+            {
+              lit: "foodbanks"
+            }
+            {
+              var: "slug"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -148,35 +141,41 @@ class Config {
       "fields": [
         {
           "name": "foodbank_slug",
-          "short": "Related food bank identifier",
-          "type": "`$STRING`"
+          "title": "Foodbank Slug",
+          "type": "`$STRING`",
+          "short": "Related food bank identifier"
         },
         {
           "name": "id",
-          "short": "Unique identifier for the article",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "Unique identifier for the article"
         },
         {
-          "format": "date-time",
           "name": "published",
+          "title": "Published",
+          "type": "`$STRING`",
           "short": "Publication date",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
           "name": "source",
-          "short": "Publication source",
-          "type": "`$STRING`"
+          "title": "Source",
+          "type": "`$STRING`",
+          "short": "Publication source"
         },
         {
           "name": "title",
-          "short": "Article title",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "Article title"
         },
         {
-          "format": "uri",
           "name": "url",
+          "title": "Url",
+          "type": "`$STRING`",
           "short": "URL to the article",
-          "type": "`$STRING`"
+          "format": "uri"
         }
       ],
       "id": {
@@ -190,17 +189,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "json",
-                    "kind": "query",
-                    "name": "format",
-                    "orig": "format",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/articles/",
@@ -209,18 +197,30 @@ class Config {
                   "lit": "articles"
                 }
               ],
-              "select": {
-                "exist": [
-                  "format"
-                ]
-              },
+              "parts": [
+                "articles"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "articles"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "format",
+                    "orig": "format",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "json"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "format"
+                ]
+              }
             }
           ]
         }
@@ -233,45 +233,53 @@ class Config {
       "fields": [
         {
           "name": "address",
-          "short": "Physical address",
-          "type": "`$STRING`"
+          "title": "Address",
+          "type": "`$STRING`",
+          "short": "Physical address"
         },
         {
           "name": "foodbank_slug",
-          "short": "Associated food bank identifier",
-          "type": "`$STRING`"
+          "title": "Foodbank Slug",
+          "type": "`$STRING`",
+          "short": "Associated food bank identifier"
         },
         {
-          "format": "double",
           "name": "latitude",
+          "title": "Latitude",
+          "type": "`$NUMBER`",
           "short": "Latitude coordinate",
-          "type": "`$NUMBER`"
+          "format": "double"
         },
         {
-          "format": "double",
           "name": "longitude",
+          "title": "Longitude",
+          "type": "`$NUMBER`",
           "short": "Longitude coordinate",
-          "type": "`$NUMBER`"
+          "format": "double"
         },
         {
           "name": "name",
-          "short": "Name of the donation point",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "Name of the donation point"
         },
         {
           "name": "postcode",
-          "short": "Postal code",
-          "type": "`$STRING`"
+          "title": "Postcode",
+          "type": "`$STRING`",
+          "short": "Postal code"
         },
         {
           "name": "slug",
-          "short": "Unique identifier for the donation point",
-          "type": "`$STRING`"
+          "title": "Slug",
+          "type": "`$STRING`",
+          "short": "Unique identifier for the donation point"
         },
         {
           "name": "type",
-          "short": "Type of donation point (e.g., supermarket, collection point)",
-          "type": "`$STRING`"
+          "title": "Type",
+          "type": "`$STRING`",
+          "short": "Type of donation point (e.g., supermarket, collection point)"
         }
       ],
       "name": "donation_point",
@@ -281,17 +289,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "json",
-                    "kind": "query",
-                    "name": "format",
-                    "orig": "format",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/donationpoints/",
@@ -300,18 +297,30 @@ class Config {
                   "lit": "donationpoints"
                 }
               ],
-              "select": {
-                "exist": [
-                  "format"
-                ]
-              },
+              "parts": [
+                "donationpoints"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "donationpoints"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "format",
+                    "orig": "format",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "json"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "format"
+                ]
+              }
             }
           ]
         },
@@ -320,26 +329,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "slug",
-                    "orig": "slug",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "example": "json",
-                    "kind": "query",
-                    "name": "format",
-                    "orig": "format",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/donationpoints/{slug}/",
@@ -351,104 +340,134 @@ class Config {
                   "var": "slug"
                 }
               ],
+              "parts": [
+                "donationpoints",
+                "{slug}"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "slug",
+                    "orig": "slug",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "format",
+                    "orig": "format",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "json"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "format",
                   "slug"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "donationpoints",
-                "{slug}"
-              ]
+              }
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "donationpoint"
-          ]
-        ]
+        "ancestors": []
       }
     },
     "food_bank": {
       "fields": [
         {
           "name": "address",
-          "short": "Physical address of the food bank",
-          "type": "`$STRING`"
+          "title": "Address",
+          "type": "`$STRING`",
+          "short": "Physical address of the food bank"
         },
         {
-          "format": "email",
           "name": "email",
+          "title": "Email",
+          "type": "`$STRING`",
           "short": "Contact email address",
-          "type": "`$STRING`"
+          "format": "email"
         },
         {
           "name": "items_needed",
-          "short": "List of items currently needed for donation",
-          "type": "`$ARRAY`"
+          "title": "Items Needed",
+          "type": "`$ARRAY`",
+          "short": "List of items currently needed for donation"
         },
         {
-          "format": "double",
           "name": "latitude",
+          "title": "Latitude",
+          "type": "`$NUMBER`",
           "short": "Latitude coordinate",
-          "type": "`$NUMBER`"
+          "format": "double"
         },
         {
-          "format": "double",
           "name": "longitude",
+          "title": "Longitude",
+          "type": "`$NUMBER`",
           "short": "Longitude coordinate",
-          "type": "`$NUMBER`"
+          "format": "double"
         },
         {
           "name": "name",
-          "short": "Name of the food bank",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "Name of the food bank"
         },
         {
           "name": "needs",
-          "short": "Current needs status",
-          "type": "`$OBJECT`"
+          "title": "Needs",
+          "type": "`$OBJECT`",
+          "short": "Current needs status"
         },
         {
           "name": "phone",
-          "short": "Contact phone number",
-          "type": "`$STRING`"
+          "title": "Phone",
+          "type": "`$STRING`",
+          "short": "Contact phone number"
         },
         {
           "name": "postcode",
-          "short": "Postal code",
-          "type": "`$STRING`"
+          "title": "Postcode",
+          "type": "`$STRING`",
+          "short": "Postal code"
         },
         {
-          "format": "uri",
           "name": "shopping_list_url",
+          "title": "Shopping List Url",
+          "type": "`$STRING`",
           "short": "URL to the food bank's detailed shopping list",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "slug",
-          "short": "Unique identifier for the food bank",
-          "type": "`$STRING`"
+          "title": "Slug",
+          "type": "`$STRING`",
+          "short": "Unique identifier for the food bank"
         },
         {
-          "format": "date-time",
           "name": "updated",
+          "title": "Updated",
+          "type": "`$STRING`",
           "short": "Last update timestamp",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
-          "format": "uri",
           "name": "url",
+          "title": "Url",
+          "type": "`$STRING`",
           "short": "Website URL",
-          "type": "`$STRING`"
+          "format": "uri"
         }
       ],
       "name": "food_bank",
@@ -458,17 +477,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "json",
-                    "kind": "query",
-                    "name": "format",
-                    "orig": "format",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/foodbanks/",
@@ -477,18 +485,30 @@ class Config {
                   "lit": "foodbanks"
                 }
               ],
-              "select": {
-                "exist": [
-                  "format"
-                ]
-              },
+              "parts": [
+                "foodbanks"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "foodbanks"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "format",
+                    "orig": "format",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "json"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "format"
+                ]
+              }
             }
           ]
         },
@@ -497,26 +517,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "slug",
-                    "orig": "slug",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "example": "json",
-                    "kind": "query",
-                    "name": "format",
-                    "orig": "format",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/foodbanks/{slug}/",
@@ -528,60 +528,82 @@ class Config {
                   "var": "slug"
                 }
               ],
+              "parts": [
+                "foodbanks",
+                "{slug}"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "slug",
+                    "orig": "slug",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "format",
+                    "orig": "format",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "json"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "format",
                   "slug"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "foodbanks",
-                "{slug}"
-              ]
+              }
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "foodbank"
-          ]
-        ]
+        "ancestors": []
       }
     },
     "item": {
       "fields": [
         {
-          "format": "date-time",
           "name": "created",
+          "title": "Created",
+          "type": "`$STRING`",
           "short": "When this need was recorded",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
           "name": "foodbank_slug",
-          "short": "Food bank identifier",
-          "type": "`$STRING`"
+          "title": "Foodbank Slug",
+          "type": "`$STRING`",
+          "short": "Food bank identifier"
         },
         {
           "name": "id",
-          "short": "Unique identifier for the item need record",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "Unique identifier for the item need record"
         },
         {
           "name": "item",
-          "short": "Name of the item needed",
-          "type": "`$STRING`"
+          "title": "Item",
+          "type": "`$STRING`",
+          "short": "Name of the item needed"
         },
         {
-          "format": "date-time",
           "name": "updated",
+          "title": "Updated",
+          "type": "`$STRING`",
           "short": "Last update timestamp",
-          "type": "`$STRING`"
+          "format": "date-time"
         }
       ],
       "id": {
@@ -595,17 +617,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "json",
-                    "kind": "query",
-                    "name": "format",
-                    "orig": "format",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/items/",
@@ -614,18 +625,30 @@ class Config {
                   "lit": "items"
                 }
               ],
-              "select": {
-                "exist": [
-                  "format"
-                ]
-              },
+              "parts": [
+                "items"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "items"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "format",
+                    "orig": "format",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "json"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "format"
+                ]
+              }
             }
           ]
         }

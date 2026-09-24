@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ArticleEntity = void 0;
 const GiveFoodEntityBase_1 = require("../GiveFoodEntityBase");
-// TODO: needs Entity superclass
 class ArticleEntity extends GiveFoodEntityBase_1.GiveFoodEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

@@ -115,7 +115,7 @@ function donation_point_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["donation_point01", "donation_point02", "donation_point03", "donationpoint01", "donationpoint02", "donationpoint03"] as $k) {
+    foreach (["donation_point01", "donation_point02", "donation_point03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

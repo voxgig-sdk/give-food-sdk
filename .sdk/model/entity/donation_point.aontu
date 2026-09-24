@@ -1,0 +1,167 @@
+# Entity: donation_point
+
+main: kit: entity: donation_point: {
+
+  alias: field: {}
+
+  fields: {
+    address: {
+      h: "Address"
+      n: "address"
+      r: false
+      sh: "Physical address"
+      t: "`$STRING`"
+    }
+    foodbank_slug: {
+      h: "Foodbank Slug"
+      n: "foodbank_slug"
+      r: false
+      sh: "Associated food bank identifier"
+      t: "`$STRING`"
+    }
+    latitude: {
+      fo: "double"
+      h: "Latitude"
+      n: "latitude"
+      r: false
+      sh: "Latitude coordinate"
+      t: "`$NUMBER`"
+    }
+    longitude: {
+      fo: "double"
+      h: "Longitude"
+      n: "longitude"
+      r: false
+      sh: "Longitude coordinate"
+      t: "`$NUMBER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Name of the donation point"
+      t: "`$STRING`"
+    }
+    postcode: {
+      h: "Postcode"
+      n: "postcode"
+      r: false
+      sh: "Postal code"
+      t: "`$STRING`"
+    }
+    slug: {
+      h: "Slug"
+      n: "slug"
+      r: false
+      sh: "Unique identifier for the donation point"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Type of donation point (e.g., supermarket, collection point)"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "donation_point"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /donationpoints/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "json"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/donationpoints/"
+          q: {
+            exist: [
+              "format"
+            ]
+          }
+          s: [
+            {
+              lit: "donationpoints"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /donationpoints/{slug}/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "slug"
+                or: "slug"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "json"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/donationpoints/{slug}/"
+          q: {
+            exist: [
+              "format"
+              "slug"
+            ]
+          }
+          s: [
+            {
+              lit: "donationpoints"
+            }
+            {
+              var: "slug"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

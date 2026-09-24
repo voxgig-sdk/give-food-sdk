@@ -1,0 +1,98 @@
+# Entity: item
+
+main: kit: entity: item: {
+
+  alias: field: {}
+
+  fields: {
+    created: {
+      fo: "date-time"
+      h: "Created"
+      n: "created"
+      r: false
+      sh: "When this need was recorded"
+      t: "`$STRING`"
+    }
+    foodbank_slug: {
+      h: "Foodbank Slug"
+      n: "foodbank_slug"
+      r: false
+      sh: "Food bank identifier"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the item need record"
+      t: "`$INTEGER`"
+    }
+    item: {
+      h: "Item"
+      n: "item"
+      r: false
+      sh: "Name of the item needed"
+      t: "`$STRING`"
+    }
+    updated: {
+      fo: "date-time"
+      h: "Updated"
+      n: "updated"
+      r: false
+      sh: "Last update timestamp"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "item"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /items/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "json"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/items/"
+          q: {
+            exist: [
+              "format"
+            ]
+          }
+          s: [
+            {
+              lit: "items"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -24,58 +24,130 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "article": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "foodbank_slug",
-              "req": false,
-              "short": "Related food bank identifier",
-              "type": "`$STRING`"
+          "fields": {
+            "foodbank_slug": {
+              "a": true,
+              "h": "Foodbank Slug",
+              "n": "foodbank_slug",
+              "r": false,
+              "sh": "Related food bank identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique identifier for the article",
-              "type": "`$INTEGER`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique identifier for the article",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "published",
-              "req": false,
-              "short": "Publication date",
-              "type": "`$STRING`"
+            "published": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Published",
+              "n": "published",
+              "r": false,
+              "sh": "Publication date",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "source",
-              "req": false,
-              "short": "Publication source",
-              "type": "`$STRING`"
+            "source": {
+              "a": true,
+              "h": "Source",
+              "n": "source",
+              "r": false,
+              "sh": "Publication source",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "title",
-              "req": false,
-              "short": "Article title",
-              "type": "`$STRING`"
+            "title": {
+              "a": true,
+              "h": "Title",
+              "n": "title",
+              "r": false,
+              "sh": "Article title",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "url",
-              "req": false,
-              "short": "URL to the article",
-              "type": "`$STRING`"
+            "url": {
+              "a": true,
+              "fo": "uri",
+              "h": "Url",
+              "n": "url",
+              "r": false,
+              "sh": "URL to the article",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -87,40 +159,40 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /articles/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "json",
-                        "kind": "query",
-                        "name": "format",
-                        "orig": "format",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "json",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /articles/",
-                    "json": "{\"operationId\":\"listArticles\",\"parameters\":[{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"xml\",\"yaml\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"foodbank_slug\":{\"description\":\"Related food bank identifier\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the article\",\"type\":\"integer\"},\"published\":{\"description\":\"Publication date\",\"format\":\"date-time\",\"type\":\"string\"},\"source\":{\"description\":\"Publication source\",\"type\":\"string\"},\"title\":{\"description\":\"Article title\",\"type\":\"string\"},\"url\":{\"description\":\"URL to the article\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"application/x-yaml\":{\"schema\":{\"type\":\"object\"}},\"application/xml\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/articles/",
-                  "segments": [
-                    {
-                      "lit": "articles"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/articles/",
+                  "q": {
                     "exist": [
                       "format"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "articles"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -137,66 +209,74 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "address",
-              "req": false,
-              "short": "Physical address",
-              "type": "`$STRING`"
+          "fields": {
+            "address": {
+              "a": true,
+              "h": "Address",
+              "n": "address",
+              "r": false,
+              "sh": "Physical address",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "foodbank_slug",
-              "req": false,
-              "short": "Associated food bank identifier",
-              "type": "`$STRING`"
+            "foodbank_slug": {
+              "a": true,
+              "h": "Foodbank Slug",
+              "n": "foodbank_slug",
+              "r": false,
+              "sh": "Associated food bank identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "double",
-              "name": "latitude",
-              "req": false,
-              "short": "Latitude coordinate",
-              "type": "`$NUMBER`"
+            "latitude": {
+              "a": true,
+              "fo": "double",
+              "h": "Latitude",
+              "n": "latitude",
+              "r": false,
+              "sh": "Latitude coordinate",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "format": "double",
-              "name": "longitude",
-              "req": false,
-              "short": "Longitude coordinate",
-              "type": "`$NUMBER`"
+            "longitude": {
+              "a": true,
+              "fo": "double",
+              "h": "Longitude",
+              "n": "longitude",
+              "r": false,
+              "sh": "Longitude coordinate",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Name of the donation point",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Name of the donation point",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "postcode",
-              "req": false,
-              "short": "Postal code",
-              "type": "`$STRING`"
+            "postcode": {
+              "a": true,
+              "h": "Postcode",
+              "n": "postcode",
+              "r": false,
+              "sh": "Postal code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "slug",
-              "req": false,
-              "short": "Unique identifier for the donation point",
-              "type": "`$STRING`"
+            "slug": {
+              "a": true,
+              "h": "Slug",
+              "n": "slug",
+              "r": false,
+              "sh": "Unique identifier for the donation point",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "short": "Type of donation point (e.g., supermarket, collection point)",
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "sh": "Type of donation point (e.g., supermarket, collection point)",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "donation_point",
           "op": {
             "list": {
@@ -204,40 +284,40 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /donationpoints/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "json",
-                        "kind": "query",
-                        "name": "format",
-                        "orig": "format",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "json",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /donationpoints/",
-                    "json": "{\"operationId\":\"listDonationPoints\",\"parameters\":[{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"geojson\",\"xml\",\"yaml\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/geo+json\":{\"schema\":{\"properties\":{\"features\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"type\":{\"example\":\"FeatureCollection\",\"type\":\"string\"}},\"type\":\"object\"}},\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"address\":{\"description\":\"Physical address\",\"type\":\"string\"},\"foodbank_slug\":{\"description\":\"Associated food bank identifier\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the donation point\",\"type\":\"string\"},\"postcode\":{\"description\":\"Postal code\",\"type\":\"string\"},\"slug\":{\"description\":\"Unique identifier for the donation point\",\"type\":\"string\"},\"type\":{\"description\":\"Type of donation point (e.g., supermarket, collection point)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"application/x-yaml\":{\"schema\":{\"type\":\"object\"}},\"application/xml\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/donationpoints/",
-                  "segments": [
-                    {
-                      "lit": "donationpoints"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/donationpoints/",
+                  "q": {
                     "exist": [
                       "format"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "donationpoints"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -249,40 +329,46 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /donationpoints/{slug}/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "slug",
-                        "orig": "slug",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "slug",
+                        "or": "slug",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "json",
-                        "kind": "query",
-                        "name": "format",
-                        "orig": "format",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "json",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /donationpoints/{slug}/",
-                    "json": "{\"operationId\":\"getDonationPoint\",\"parameters\":[{\"description\":\"Unique identifier for the donation point\",\"in\":\"path\",\"name\":\"slug\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"xml\",\"yaml\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"address\":{\"description\":\"Physical address\",\"type\":\"string\"},\"foodbank_slug\":{\"description\":\"Associated food bank identifier\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the donation point\",\"type\":\"string\"},\"postcode\":{\"description\":\"Postal code\",\"type\":\"string\"},\"slug\":{\"description\":\"Unique identifier for the donation point\",\"type\":\"string\"},\"type\":{\"description\":\"Type of donation point (e.g., supermarket, collection point)\",\"type\":\"string\"}},\"type\":\"object\"}},\"application/x-yaml\":{\"schema\":{\"properties\":{\"address\":{\"description\":\"Physical address\",\"type\":\"string\"},\"foodbank_slug\":{\"description\":\"Associated food bank identifier\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the donation point\",\"type\":\"string\"},\"postcode\":{\"description\":\"Postal code\",\"type\":\"string\"},\"slug\":{\"description\":\"Unique identifier for the donation point\",\"type\":\"string\"},\"type\":{\"description\":\"Type of donation point (e.g., supermarket, collection point)\",\"type\":\"string\"}},\"type\":\"object\"}},\"application/xml\":{\"schema\":{\"properties\":{\"address\":{\"description\":\"Physical address\",\"type\":\"string\"},\"foodbank_slug\":{\"description\":\"Associated food bank identifier\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the donation point\",\"type\":\"string\"},\"postcode\":{\"description\":\"Postal code\",\"type\":\"string\"},\"slug\":{\"description\":\"Unique identifier for the donation point\",\"type\":\"string\"},\"type\":{\"description\":\"Type of donation point (e.g., supermarket, collection point)\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Donation point not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/donationpoints/{slug}/",
+                  "q": {
+                    "exist": [
+                      "format",
+                      "slug"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/donationpoints/{slug}/",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "donationpoints"
                     },
@@ -290,13 +376,7 @@
                       "var": "slug"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "format",
-                      "slug"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -305,11 +385,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "donationpoint"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "food_bank": {
@@ -317,105 +393,118 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "address",
-              "req": false,
-              "short": "Physical address of the food bank",
-              "type": "`$STRING`"
+          "fields": {
+            "address": {
+              "a": true,
+              "h": "Address",
+              "n": "address",
+              "r": false,
+              "sh": "Physical address of the food bank",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "email",
-              "name": "email",
-              "req": false,
-              "short": "Contact email address",
-              "type": "`$STRING`"
+            "email": {
+              "a": true,
+              "fo": "email",
+              "h": "Email",
+              "n": "email",
+              "r": false,
+              "sh": "Contact email address",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "items_needed",
-              "req": false,
-              "short": "List of items currently needed for donation",
-              "type": "`$ARRAY`"
+            "items_needed": {
+              "a": true,
+              "h": "Items Needed",
+              "n": "items_needed",
+              "r": false,
+              "sh": "List of items currently needed for donation",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "format": "double",
-              "name": "latitude",
-              "req": false,
-              "short": "Latitude coordinate",
-              "type": "`$NUMBER`"
+            "latitude": {
+              "a": true,
+              "fo": "double",
+              "h": "Latitude",
+              "n": "latitude",
+              "r": false,
+              "sh": "Latitude coordinate",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "format": "double",
-              "name": "longitude",
-              "req": false,
-              "short": "Longitude coordinate",
-              "type": "`$NUMBER`"
+            "longitude": {
+              "a": true,
+              "fo": "double",
+              "h": "Longitude",
+              "n": "longitude",
+              "r": false,
+              "sh": "Longitude coordinate",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Name of the food bank",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Name of the food bank",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "needs",
-              "req": false,
-              "short": "Current needs status",
-              "type": "`$OBJECT`"
+            "needs": {
+              "a": true,
+              "h": "Needs",
+              "n": "needs",
+              "r": false,
+              "sh": "Current needs status",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "phone",
-              "req": false,
-              "short": "Contact phone number",
-              "type": "`$STRING`"
+            "phone": {
+              "a": true,
+              "h": "Phone",
+              "n": "phone",
+              "r": false,
+              "sh": "Contact phone number",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "postcode",
-              "req": false,
-              "short": "Postal code",
-              "type": "`$STRING`"
+            "postcode": {
+              "a": true,
+              "h": "Postcode",
+              "n": "postcode",
+              "r": false,
+              "sh": "Postal code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "shopping_list_url",
-              "req": false,
-              "short": "URL to the food bank's detailed shopping list",
-              "type": "`$STRING`"
+            "shopping_list_url": {
+              "a": true,
+              "fo": "uri",
+              "h": "Shopping List Url",
+              "n": "shopping_list_url",
+              "r": false,
+              "sh": "URL to the food bank's detailed shopping list",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "slug",
-              "req": false,
-              "short": "Unique identifier for the food bank",
-              "type": "`$STRING`"
+            "slug": {
+              "a": true,
+              "h": "Slug",
+              "n": "slug",
+              "r": false,
+              "sh": "Unique identifier for the food bank",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "updated",
-              "req": false,
-              "short": "Last update timestamp",
-              "type": "`$STRING`"
+            "updated": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Updated",
+              "n": "updated",
+              "r": false,
+              "sh": "Last update timestamp",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "url",
-              "req": false,
-              "short": "Website URL",
-              "type": "`$STRING`"
+            "url": {
+              "a": true,
+              "fo": "uri",
+              "h": "Url",
+              "n": "url",
+              "r": false,
+              "sh": "Website URL",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "food_bank",
           "op": {
             "list": {
@@ -423,40 +512,40 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /foodbanks/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "json",
-                        "kind": "query",
-                        "name": "format",
-                        "orig": "format",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "json",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /foodbanks/",
-                    "json": "{\"operationId\":\"listFoodBanks\",\"parameters\":[{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"geojson\",\"xml\",\"yaml\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/geo+json\":{\"schema\":{\"properties\":{\"features\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"type\":{\"example\":\"FeatureCollection\",\"type\":\"string\"}},\"type\":\"object\"}},\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"address\":{\"description\":\"Physical address of the food bank\",\"type\":\"string\"},\"email\":{\"description\":\"Contact email address\",\"format\":\"email\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the food bank\",\"type\":\"string\"},\"phone\":{\"description\":\"Contact phone number\",\"type\":\"string\"},\"postcode\":{\"description\":\"Postal code\",\"type\":\"string\"},\"slug\":{\"description\":\"Unique identifier for the food bank\",\"type\":\"string\"},\"url\":{\"description\":\"Website URL\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"application/x-yaml\":{\"schema\":{\"type\":\"object\"}},\"application/xml\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/foodbanks/",
-                  "segments": [
-                    {
-                      "lit": "foodbanks"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/foodbanks/",
+                  "q": {
                     "exist": [
                       "format"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "foodbanks"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -468,40 +557,46 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /foodbanks/{slug}/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "slug",
-                        "orig": "slug",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "slug",
+                        "or": "slug",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "json",
-                        "kind": "query",
-                        "name": "format",
-                        "orig": "format",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "json",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /foodbanks/{slug}/",
-                    "json": "{\"operationId\":\"getFoodBank\",\"parameters\":[{\"description\":\"Unique identifier for the food bank\",\"in\":\"path\",\"name\":\"slug\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"xml\",\"yaml\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"allOf\":[{\"properties\":{\"address\":{\"description\":\"Physical address of the food bank\",\"type\":\"string\"},\"email\":{\"description\":\"Contact email address\",\"format\":\"email\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the food bank\",\"type\":\"string\"},\"phone\":{\"description\":\"Contact phone number\",\"type\":\"string\"},\"postcode\":{\"description\":\"Postal code\",\"type\":\"string\"},\"slug\":{\"description\":\"Unique identifier for the food bank\",\"type\":\"string\"},\"url\":{\"description\":\"Website URL\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},{\"properties\":{\"items_needed\":{\"description\":\"List of items currently needed for donation\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"needs\":{\"description\":\"Current needs status\",\"type\":\"object\"},\"shopping_list_url\":{\"description\":\"URL to the food bank's detailed shopping list\",\"format\":\"uri\",\"type\":\"string\"},\"updated\":{\"description\":\"Last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}]}},\"application/x-yaml\":{\"schema\":{\"allOf\":[{\"properties\":{\"address\":{\"description\":\"Physical address of the food bank\",\"type\":\"string\"},\"email\":{\"description\":\"Contact email address\",\"format\":\"email\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the food bank\",\"type\":\"string\"},\"phone\":{\"description\":\"Contact phone number\",\"type\":\"string\"},\"postcode\":{\"description\":\"Postal code\",\"type\":\"string\"},\"slug\":{\"description\":\"Unique identifier for the food bank\",\"type\":\"string\"},\"url\":{\"description\":\"Website URL\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},{\"properties\":{\"items_needed\":{\"description\":\"List of items currently needed for donation\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"needs\":{\"description\":\"Current needs status\",\"type\":\"object\"},\"shopping_list_url\":{\"description\":\"URL to the food bank's detailed shopping list\",\"format\":\"uri\",\"type\":\"string\"},\"updated\":{\"description\":\"Last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}]}},\"application/xml\":{\"schema\":{\"allOf\":[{\"properties\":{\"address\":{\"description\":\"Physical address of the food bank\",\"type\":\"string\"},\"email\":{\"description\":\"Contact email address\",\"format\":\"email\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"format\":\"double\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the food bank\",\"type\":\"string\"},\"phone\":{\"description\":\"Contact phone number\",\"type\":\"string\"},\"postcode\":{\"description\":\"Postal code\",\"type\":\"string\"},\"slug\":{\"description\":\"Unique identifier for the food bank\",\"type\":\"string\"},\"url\":{\"description\":\"Website URL\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},{\"properties\":{\"items_needed\":{\"description\":\"List of items currently needed for donation\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"needs\":{\"description\":\"Current needs status\",\"type\":\"object\"},\"shopping_list_url\":{\"description\":\"URL to the food bank's detailed shopping list\",\"format\":\"uri\",\"type\":\"string\"},\"updated\":{\"description\":\"Last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}]}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Food bank not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/foodbanks/{slug}/",
+                  "q": {
+                    "exist": [
+                      "format",
+                      "slug"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/foodbanks/{slug}/",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "foodbanks"
                     },
@@ -509,13 +604,7 @@
                       "var": "slug"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "format",
-                      "slug"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -524,11 +613,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "foodbank"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "item": {
@@ -536,45 +621,50 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "created",
-              "req": false,
-              "short": "When this need was recorded",
-              "type": "`$STRING`"
+          "fields": {
+            "created": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Created",
+              "n": "created",
+              "r": false,
+              "sh": "When this need was recorded",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "foodbank_slug",
-              "req": false,
-              "short": "Food bank identifier",
-              "type": "`$STRING`"
+            "foodbank_slug": {
+              "a": true,
+              "h": "Foodbank Slug",
+              "n": "foodbank_slug",
+              "r": false,
+              "sh": "Food bank identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique identifier for the item need record",
-              "type": "`$INTEGER`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique identifier for the item need record",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "item",
-              "req": false,
-              "short": "Name of the item needed",
-              "type": "`$STRING`"
+            "item": {
+              "a": true,
+              "h": "Item",
+              "n": "item",
+              "r": false,
+              "sh": "Name of the item needed",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "updated",
-              "req": false,
-              "short": "Last update timestamp",
-              "type": "`$STRING`"
+            "updated": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Updated",
+              "n": "updated",
+              "r": false,
+              "sh": "Last update timestamp",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -586,40 +676,40 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /items/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "json",
-                        "kind": "query",
-                        "name": "format",
-                        "orig": "format",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "json",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /items/",
-                    "json": "{\"operationId\":\"listItems\",\"parameters\":[{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"xml\",\"yaml\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"created\":{\"description\":\"When this need was recorded\",\"format\":\"date-time\",\"type\":\"string\"},\"foodbank_slug\":{\"description\":\"Food bank identifier\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the item need record\",\"type\":\"integer\"},\"item\":{\"description\":\"Name of the item needed\",\"type\":\"string\"},\"updated\":{\"description\":\"Last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"application/x-yaml\":{\"schema\":{\"type\":\"object\"}},\"application/xml\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/items/",
-                  "segments": [
-                    {
-                      "lit": "items"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/items/",
+                  "q": {
                     "exist": [
                       "format"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "items"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1048,13 +1138,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1074,13 +1164,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1090,19 +1180,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "donation_point_ref01",
                 "srcdatavar": "donation_point_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "donation_point01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1122,13 +1212,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1138,19 +1228,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "food_bank_ref01",
                 "srcdatavar": "food_bank_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "food_bank01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1170,13 +1260,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {

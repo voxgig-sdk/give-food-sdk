@@ -158,7 +158,7 @@ func food_bankBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"food_bank01", "food_bank02", "food_bank03", "foodbank01", "foodbank02", "foodbank03"},
+		[]any{"food_bank01", "food_bank02", "food_bank03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

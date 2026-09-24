@@ -1,0 +1,6 @@
+# Entity Models
+
+@"./article.aontu"
+@"./donation_point.aontu"
+@"./food_bank.aontu"
+@"./item.aontu"

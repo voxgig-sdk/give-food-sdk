@@ -44,20 +44,6 @@ rescue => err
 end
 ```
 
-### 3. Load a donationpoint
-
-DonationPoint is nested under slug, so provide the `slug`.
-
-```ruby
-begin
-  # load returns the ENTITY — call data_get for the DonationPoint record (raises on error).
-  donationpoint = client.DonationPoint.load({ "slug" => "example_slug" })
-  puts donationpoint
-rescue => err
-  warn "load failed: #{err}"
-end
-```
-
 
 ## Error handling
 

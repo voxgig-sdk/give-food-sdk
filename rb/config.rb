@@ -102,35 +102,41 @@ module GiveFoodConfig
           "fields" => [
             {
               "name" => "foodbank_slug",
-              "short" => "Related food bank identifier",
+              "title" => "Foodbank Slug",
               "type" => "`$STRING`",
+              "short" => "Related food bank identifier",
             },
             {
               "name" => "id",
-              "short" => "Unique identifier for the article",
+              "title" => "Id",
               "type" => "`$INTEGER`",
+              "short" => "Unique identifier for the article",
             },
             {
-              "format" => "date-time",
               "name" => "published",
-              "short" => "Publication date",
+              "title" => "Published",
               "type" => "`$STRING`",
+              "short" => "Publication date",
+              "format" => "date-time",
             },
             {
               "name" => "source",
-              "short" => "Publication source",
+              "title" => "Source",
               "type" => "`$STRING`",
+              "short" => "Publication source",
             },
             {
               "name" => "title",
-              "short" => "Article title",
+              "title" => "Title",
               "type" => "`$STRING`",
+              "short" => "Article title",
             },
             {
-              "format" => "uri",
               "name" => "url",
-              "short" => "URL to the article",
+              "title" => "Url",
               "type" => "`$STRING`",
+              "short" => "URL to the article",
+              "format" => "uri",
             },
           ],
           "id" => {
@@ -144,17 +150,6 @@ module GiveFoodConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "json",
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/articles/",
@@ -163,18 +158,30 @@ module GiveFoodConfig
                       "lit" => "articles",
                     },
                   ],
+                  "parts" => [
+                    "articles",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "json",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "format",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "articles",
-                  ],
                 },
               ],
             },
@@ -187,45 +194,53 @@ module GiveFoodConfig
           "fields" => [
             {
               "name" => "address",
-              "short" => "Physical address",
+              "title" => "Address",
               "type" => "`$STRING`",
+              "short" => "Physical address",
             },
             {
               "name" => "foodbank_slug",
-              "short" => "Associated food bank identifier",
+              "title" => "Foodbank Slug",
               "type" => "`$STRING`",
+              "short" => "Associated food bank identifier",
             },
             {
-              "format" => "double",
               "name" => "latitude",
-              "short" => "Latitude coordinate",
+              "title" => "Latitude",
               "type" => "`$NUMBER`",
+              "short" => "Latitude coordinate",
+              "format" => "double",
             },
             {
-              "format" => "double",
               "name" => "longitude",
-              "short" => "Longitude coordinate",
+              "title" => "Longitude",
               "type" => "`$NUMBER`",
+              "short" => "Longitude coordinate",
+              "format" => "double",
             },
             {
               "name" => "name",
-              "short" => "Name of the donation point",
+              "title" => "Name",
               "type" => "`$STRING`",
+              "short" => "Name of the donation point",
             },
             {
               "name" => "postcode",
-              "short" => "Postal code",
+              "title" => "Postcode",
               "type" => "`$STRING`",
+              "short" => "Postal code",
             },
             {
               "name" => "slug",
-              "short" => "Unique identifier for the donation point",
+              "title" => "Slug",
               "type" => "`$STRING`",
+              "short" => "Unique identifier for the donation point",
             },
             {
               "name" => "type",
-              "short" => "Type of donation point (e.g., supermarket, collection point)",
+              "title" => "Type",
               "type" => "`$STRING`",
+              "short" => "Type of donation point (e.g., supermarket, collection point)",
             },
           ],
           "name" => "donation_point",
@@ -235,17 +250,6 @@ module GiveFoodConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "json",
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/donationpoints/",
@@ -254,18 +258,30 @@ module GiveFoodConfig
                       "lit" => "donationpoints",
                     },
                   ],
+                  "parts" => [
+                    "donationpoints",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "json",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "format",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "donationpoints",
-                  ],
                 },
               ],
             },
@@ -274,26 +290,6 @@ module GiveFoodConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "slug",
-                        "orig" => "slug",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "example" => "json",
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/donationpoints/{slug}/",
@@ -305,104 +301,134 @@ module GiveFoodConfig
                       "var" => "slug",
                     },
                   ],
+                  "parts" => [
+                    "donationpoints",
+                    "{slug}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "slug",
+                        "orig" => "slug",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "json",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "format",
                       "slug",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "donationpoints",
-                    "{slug}",
-                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "donationpoint",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "food_bank" => {
           "fields" => [
             {
               "name" => "address",
-              "short" => "Physical address of the food bank",
+              "title" => "Address",
               "type" => "`$STRING`",
+              "short" => "Physical address of the food bank",
             },
             {
-              "format" => "email",
               "name" => "email",
-              "short" => "Contact email address",
+              "title" => "Email",
               "type" => "`$STRING`",
+              "short" => "Contact email address",
+              "format" => "email",
             },
             {
               "name" => "items_needed",
-              "short" => "List of items currently needed for donation",
+              "title" => "Items Needed",
               "type" => "`$ARRAY`",
+              "short" => "List of items currently needed for donation",
             },
             {
-              "format" => "double",
               "name" => "latitude",
-              "short" => "Latitude coordinate",
+              "title" => "Latitude",
               "type" => "`$NUMBER`",
+              "short" => "Latitude coordinate",
+              "format" => "double",
             },
             {
-              "format" => "double",
               "name" => "longitude",
-              "short" => "Longitude coordinate",
+              "title" => "Longitude",
               "type" => "`$NUMBER`",
+              "short" => "Longitude coordinate",
+              "format" => "double",
             },
             {
               "name" => "name",
-              "short" => "Name of the food bank",
+              "title" => "Name",
               "type" => "`$STRING`",
+              "short" => "Name of the food bank",
             },
             {
               "name" => "needs",
-              "short" => "Current needs status",
+              "title" => "Needs",
               "type" => "`$OBJECT`",
+              "short" => "Current needs status",
             },
             {
               "name" => "phone",
-              "short" => "Contact phone number",
+              "title" => "Phone",
               "type" => "`$STRING`",
+              "short" => "Contact phone number",
             },
             {
               "name" => "postcode",
-              "short" => "Postal code",
+              "title" => "Postcode",
               "type" => "`$STRING`",
+              "short" => "Postal code",
             },
             {
-              "format" => "uri",
               "name" => "shopping_list_url",
-              "short" => "URL to the food bank's detailed shopping list",
+              "title" => "Shopping List Url",
               "type" => "`$STRING`",
+              "short" => "URL to the food bank's detailed shopping list",
+              "format" => "uri",
             },
             {
               "name" => "slug",
+              "title" => "Slug",
+              "type" => "`$STRING`",
               "short" => "Unique identifier for the food bank",
-              "type" => "`$STRING`",
             },
             {
-              "format" => "date-time",
               "name" => "updated",
-              "short" => "Last update timestamp",
+              "title" => "Updated",
               "type" => "`$STRING`",
+              "short" => "Last update timestamp",
+              "format" => "date-time",
             },
             {
-              "format" => "uri",
               "name" => "url",
-              "short" => "Website URL",
+              "title" => "Url",
               "type" => "`$STRING`",
+              "short" => "Website URL",
+              "format" => "uri",
             },
           ],
           "name" => "food_bank",
@@ -412,17 +438,6 @@ module GiveFoodConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "json",
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/foodbanks/",
@@ -431,18 +446,30 @@ module GiveFoodConfig
                       "lit" => "foodbanks",
                     },
                   ],
+                  "parts" => [
+                    "foodbanks",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "json",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "format",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "foodbanks",
-                  ],
                 },
               ],
             },
@@ -451,26 +478,6 @@ module GiveFoodConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "slug",
-                        "orig" => "slug",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "example" => "json",
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/foodbanks/{slug}/",
@@ -482,60 +489,82 @@ module GiveFoodConfig
                       "var" => "slug",
                     },
                   ],
+                  "parts" => [
+                    "foodbanks",
+                    "{slug}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "slug",
+                        "orig" => "slug",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "json",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "format",
                       "slug",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "foodbanks",
-                    "{slug}",
-                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "foodbank",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "item" => {
           "fields" => [
             {
-              "format" => "date-time",
               "name" => "created",
-              "short" => "When this need was recorded",
+              "title" => "Created",
               "type" => "`$STRING`",
+              "short" => "When this need was recorded",
+              "format" => "date-time",
             },
             {
               "name" => "foodbank_slug",
-              "short" => "Food bank identifier",
+              "title" => "Foodbank Slug",
               "type" => "`$STRING`",
+              "short" => "Food bank identifier",
             },
             {
               "name" => "id",
-              "short" => "Unique identifier for the item need record",
+              "title" => "Id",
               "type" => "`$INTEGER`",
+              "short" => "Unique identifier for the item need record",
             },
             {
               "name" => "item",
-              "short" => "Name of the item needed",
+              "title" => "Item",
               "type" => "`$STRING`",
+              "short" => "Name of the item needed",
             },
             {
-              "format" => "date-time",
               "name" => "updated",
-              "short" => "Last update timestamp",
+              "title" => "Updated",
               "type" => "`$STRING`",
+              "short" => "Last update timestamp",
+              "format" => "date-time",
             },
           ],
           "id" => {
@@ -549,17 +578,6 @@ module GiveFoodConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "json",
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/items/",
@@ -568,18 +586,30 @@ module GiveFoodConfig
                       "lit" => "items",
                     },
                   ],
+                  "parts" => [
+                    "items",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "json",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "format",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "items",
-                  ],
                 },
               ],
             },

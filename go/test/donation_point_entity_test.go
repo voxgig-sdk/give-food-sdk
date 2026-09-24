@@ -158,7 +158,7 @@ func donation_pointBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"donation_point01", "donation_point02", "donation_point03", "donationpoint01", "donationpoint02", "donationpoint03"},
+		[]any{"donation_point01", "donation_point02", "donation_point03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

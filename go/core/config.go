@@ -94,35 +94,41 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "foodbank_slug",
-						"short": "Related food bank identifier",
+						"title": "Foodbank Slug",
 						"type": "`$STRING`",
+						"short": "Related food bank identifier",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the article",
+						"title": "Id",
 						"type": "`$INTEGER`",
+						"short": "Unique identifier for the article",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "published",
-						"short": "Publication date",
+						"title": "Published",
 						"type": "`$STRING`",
+						"short": "Publication date",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "source",
-						"short": "Publication source",
+						"title": "Source",
 						"type": "`$STRING`",
+						"short": "Publication source",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "Article title",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "Article title",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "url",
-						"short": "URL to the article",
+						"title": "Url",
 						"type": "`$STRING`",
+						"short": "URL to the article",
+						"format": "uri",
 					},
 				},
 				"id": map[string]any{
@@ -136,17 +142,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "json",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/articles/",
@@ -155,17 +150,29 @@ func MakeConfig() map[string]any {
 										"lit": "articles",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"format",
-									},
+								"parts": []any{
+									"articles",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"articles",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "json",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"format",
+									},
 								},
 							},
 						},
@@ -179,45 +186,53 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "address",
-						"short": "Physical address",
+						"title": "Address",
 						"type": "`$STRING`",
+						"short": "Physical address",
 					},
 					map[string]any{
 						"name": "foodbank_slug",
-						"short": "Associated food bank identifier",
+						"title": "Foodbank Slug",
 						"type": "`$STRING`",
+						"short": "Associated food bank identifier",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "latitude",
-						"short": "Latitude coordinate",
+						"title": "Latitude",
 						"type": "`$NUMBER`",
+						"short": "Latitude coordinate",
+						"format": "double",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "longitude",
-						"short": "Longitude coordinate",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Longitude coordinate",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Name of the donation point",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Name of the donation point",
 					},
 					map[string]any{
 						"name": "postcode",
-						"short": "Postal code",
+						"title": "Postcode",
 						"type": "`$STRING`",
+						"short": "Postal code",
 					},
 					map[string]any{
 						"name": "slug",
-						"short": "Unique identifier for the donation point",
+						"title": "Slug",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the donation point",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Type of donation point (e.g., supermarket, collection point)",
+						"title": "Type",
 						"type": "`$STRING`",
+						"short": "Type of donation point (e.g., supermarket, collection point)",
 					},
 				},
 				"name": "donation_point",
@@ -227,17 +242,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "json",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/donationpoints/",
@@ -246,17 +250,29 @@ func MakeConfig() map[string]any {
 										"lit": "donationpoints",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"format",
-									},
+								"parts": []any{
+									"donationpoints",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"donationpoints",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "json",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"format",
+									},
 								},
 							},
 						},
@@ -266,26 +282,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "slug",
-											"orig": "slug",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "json",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/donationpoints/{slug}/",
@@ -297,104 +293,134 @@ func MakeConfig() map[string]any {
 										"var": "slug",
 									},
 								},
+								"parts": []any{
+									"donationpoints",
+									"{slug}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "slug",
+											"orig": "slug",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "json",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"format",
 										"slug",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"donationpoints",
-									"{slug}",
-								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"donationpoint",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"food_bank": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "address",
-						"short": "Physical address of the food bank",
+						"title": "Address",
 						"type": "`$STRING`",
+						"short": "Physical address of the food bank",
 					},
 					map[string]any{
-						"format": "email",
 						"name": "email",
-						"short": "Contact email address",
+						"title": "Email",
 						"type": "`$STRING`",
+						"short": "Contact email address",
+						"format": "email",
 					},
 					map[string]any{
 						"name": "items_needed",
-						"short": "List of items currently needed for donation",
+						"title": "Items Needed",
 						"type": "`$ARRAY`",
+						"short": "List of items currently needed for donation",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "latitude",
-						"short": "Latitude coordinate",
+						"title": "Latitude",
 						"type": "`$NUMBER`",
+						"short": "Latitude coordinate",
+						"format": "double",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "longitude",
-						"short": "Longitude coordinate",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Longitude coordinate",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Name of the food bank",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Name of the food bank",
 					},
 					map[string]any{
 						"name": "needs",
-						"short": "Current needs status",
+						"title": "Needs",
 						"type": "`$OBJECT`",
+						"short": "Current needs status",
 					},
 					map[string]any{
 						"name": "phone",
-						"short": "Contact phone number",
+						"title": "Phone",
 						"type": "`$STRING`",
+						"short": "Contact phone number",
 					},
 					map[string]any{
 						"name": "postcode",
-						"short": "Postal code",
+						"title": "Postcode",
 						"type": "`$STRING`",
+						"short": "Postal code",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "shopping_list_url",
-						"short": "URL to the food bank's detailed shopping list",
+						"title": "Shopping List Url",
 						"type": "`$STRING`",
+						"short": "URL to the food bank's detailed shopping list",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "slug",
+						"title": "Slug",
+						"type": "`$STRING`",
 						"short": "Unique identifier for the food bank",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "updated",
-						"short": "Last update timestamp",
+						"title": "Updated",
 						"type": "`$STRING`",
+						"short": "Last update timestamp",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "url",
-						"short": "Website URL",
+						"title": "Url",
 						"type": "`$STRING`",
+						"short": "Website URL",
+						"format": "uri",
 					},
 				},
 				"name": "food_bank",
@@ -404,17 +430,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "json",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/foodbanks/",
@@ -423,17 +438,29 @@ func MakeConfig() map[string]any {
 										"lit": "foodbanks",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"format",
-									},
+								"parts": []any{
+									"foodbanks",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"foodbanks",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "json",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"format",
+									},
 								},
 							},
 						},
@@ -443,26 +470,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "slug",
-											"orig": "slug",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "json",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/foodbanks/{slug}/",
@@ -474,60 +481,82 @@ func MakeConfig() map[string]any {
 										"var": "slug",
 									},
 								},
+								"parts": []any{
+									"foodbanks",
+									"{slug}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "slug",
+											"orig": "slug",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "json",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"format",
 										"slug",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"foodbanks",
-									"{slug}",
-								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"foodbank",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"item": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "date-time",
 						"name": "created",
-						"short": "When this need was recorded",
+						"title": "Created",
 						"type": "`$STRING`",
+						"short": "When this need was recorded",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "foodbank_slug",
-						"short": "Food bank identifier",
+						"title": "Foodbank Slug",
 						"type": "`$STRING`",
+						"short": "Food bank identifier",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the item need record",
+						"title": "Id",
 						"type": "`$INTEGER`",
+						"short": "Unique identifier for the item need record",
 					},
 					map[string]any{
 						"name": "item",
-						"short": "Name of the item needed",
+						"title": "Item",
 						"type": "`$STRING`",
+						"short": "Name of the item needed",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "updated",
-						"short": "Last update timestamp",
+						"title": "Updated",
 						"type": "`$STRING`",
+						"short": "Last update timestamp",
+						"format": "date-time",
 					},
 				},
 				"id": map[string]any{
@@ -541,17 +570,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "json",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/items/",
@@ -560,17 +578,29 @@ func MakeConfig() map[string]any {
 										"lit": "items",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"format",
-									},
+								"parts": []any{
+									"items",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"items",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "json",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"format",
+									},
 								},
 							},
 						},

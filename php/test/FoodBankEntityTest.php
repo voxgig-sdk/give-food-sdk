@@ -115,7 +115,7 @@ function food_bank_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["food_bank01", "food_bank02", "food_bank03", "foodbank01", "foodbank02", "foodbank03"] as $k) {
+    foreach (["food_bank01", "food_bank02", "food_bank03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

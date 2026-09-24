@@ -110,7 +110,7 @@ def _food_bank_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["food_bank01", "food_bank02", "food_bank03", "foodbank01", "foodbank02", "foodbank03"],
+        ["food_bank01", "food_bank02", "food_bank03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

@@ -50,19 +50,6 @@ except Exception as err:
     print(f"list failed: {err}")
 ```
 
-### 3. Load a donationpoint
-
-DonationPoint is nested under slug, so provide the `slug`.
-`load()` returns the ENTITY — call data_get() for the record — and raises on error.
-
-```python
-try:
-    donationpoint = client.DonationPoint().load({"slug": "example_slug"})
-    print(donationpoint)
-except Exception as err:
-    print(f"load failed: {err}")
-```
-
 
 ## Error handling
 

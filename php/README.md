@@ -46,20 +46,6 @@ try {
 }
 ```
 
-### 3. Load a donationpoint
-
-DonationPoint is nested under slug, so provide the `slug`.
-
-```php
-try {
-    // load() returns the ENTITY — call data_get() for the DonationPoint record (throws on error).
-    $donationpoint = $client->DonationPoint()->load(["slug" => "example_slug"]);
-    print_r($donationpoint->data_get());
-} catch (\Throwable $err) {
-    echo "Error: " . $err->getMessage();
-}
-```
-
 
 ## Error handling
 

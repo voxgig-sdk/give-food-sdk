@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -128,12 +128,6 @@ const articles = await client.Article().list()
 for (const article of articles) {
   console.log(article)
 }
-
-// Load a specific donationpoint (returns a DonationPoint)
-const donationpoint = await client.DonationPoint().load({
-  slug: 'example_slug',
-})
-console.log(donationpoint)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -223,15 +217,6 @@ if err != nil {
     panic(err)
 }
 fmt.Println(articles)
-
-// Load a specific donationpoint
-donationPoint, err := client.DonationPoint(nil).Load(
-    map[string]any{"slug": "example_slug"}, nil,
-)
-if err != nil {
-    panic(err)
-}
-fmt.Println(donationPoint)
 ```
 
 ### Ruby

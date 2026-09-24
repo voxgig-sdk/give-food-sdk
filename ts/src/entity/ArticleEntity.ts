@@ -19,7 +19,6 @@ import type {
   ArticleListMatch,
 } from '../GiveFoodTypes'
 
-// TODO: needs Entity superclass
 class ArticleEntity extends GiveFoodEntityBase<Article> {
 
   constructor(client: GiveFoodSDK, entopts: any) {

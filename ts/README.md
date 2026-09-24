@@ -47,22 +47,6 @@ for (const article of articles) {
 }
 ```
 
-### 3. Load a donationpoint
-
-DonationPoint is nested under slug, so provide the `slug`.
-`load()` returns the entity directly and throws on failure:
-
-```ts
-try {
-  const donationpoint = await client.DonationPoint().load({
-    slug: 'example_slug',
-  })
-  console.log(donationpoint)
-} catch (err) {
-  console.error('load failed:', err)
-}
-```
-
 
 ## Error handling
 

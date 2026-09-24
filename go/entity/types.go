@@ -1,7 +1,7 @@
 // Typed models for the GiveFood SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,12 +14,6 @@ import (
 
 // Article is the typed data model for the article entity.
 type Article struct {
-	FoodbankSlug *string `json:"foodbank_slug,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Published *string `json:"published,omitempty"`
-	Source *string `json:"source,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // ArticleListMatch is the typed request payload for Article.ListTyped.
@@ -29,14 +23,6 @@ type ArticleListMatch struct {
 
 // DonationPoint is the typed data model for the donation_point entity.
 type DonationPoint struct {
-	Address *string `json:"address,omitempty"`
-	FoodbankSlug *string `json:"foodbank_slug,omitempty"`
-	Latitude *float64 `json:"latitude,omitempty"`
-	Longitude *float64 `json:"longitude,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Postcode *string `json:"postcode,omitempty"`
-	Slug *string `json:"slug,omitempty"`
-	Type *string `json:"type,omitempty"`
 }
 
 // DonationPointLoadMatch is the typed request payload for DonationPoint.LoadTyped.
@@ -52,19 +38,6 @@ type DonationPointListMatch struct {
 
 // FoodBank is the typed data model for the food_bank entity.
 type FoodBank struct {
-	Address *string `json:"address,omitempty"`
-	Email *string `json:"email,omitempty"`
-	ItemsNeeded *[]any `json:"items_needed,omitempty"`
-	Latitude *float64 `json:"latitude,omitempty"`
-	Longitude *float64 `json:"longitude,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Needs *map[string]any `json:"needs,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Postcode *string `json:"postcode,omitempty"`
-	ShoppingListUrl *string `json:"shopping_list_url,omitempty"`
-	Slug *string `json:"slug,omitempty"`
-	Updated *string `json:"updated,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // FoodBankLoadMatch is the typed request payload for FoodBank.LoadTyped.
@@ -80,11 +53,6 @@ type FoodBankListMatch struct {
 
 // Item is the typed data model for the item entity.
 type Item struct {
-	Created *string `json:"created,omitempty"`
-	FoodbankSlug *string `json:"foodbank_slug,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Item *string `json:"item,omitempty"`
-	Updated *string `json:"updated,omitempty"`
 }
 
 // ItemListMatch is the typed request payload for Item.ListTyped.

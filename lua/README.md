@@ -43,18 +43,8 @@ local articles, err = client:Article():list()
 if err then error(err) end
 
 for _, item in ipairs(articles) do
-  print(item["id"], item["foodbank_slug"])
+  print(item["id"])
 end
-```
-
-### 3. Load a donationpoint
-
-DonationPoint is nested under slug, so provide the `slug`.
-
-```lua
-local donationpoint, err = client:DonationPoint():load({ slug = "example_slug" })
-if err then error(err) end
-print(donationpoint)
 ```
 
 

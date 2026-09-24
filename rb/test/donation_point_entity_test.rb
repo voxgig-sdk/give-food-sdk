@@ -104,7 +104,7 @@ def donation_point_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["donation_point01", "donation_point02", "donation_point03", "donationpoint01", "donationpoint02", "donationpoint03"],
+    ["donation_point01", "donation_point02", "donation_point03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

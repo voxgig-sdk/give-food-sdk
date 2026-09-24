@@ -1,0 +1,6 @@
+# Flows
+
+@"./BasicArticleFlow.aontu"
+@"./BasicDonationPointFlow.aontu"
+@"./BasicFoodBankFlow.aontu"
+@"./BasicItemFlow.aontu"
