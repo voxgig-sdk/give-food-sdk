@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 GiveFoodUtility.registrar = ->(u) {
   u.clean = GiveFoodUtilities::Clean
+  u.clean_add = GiveFoodUtilities::CleanAdd
+  u.clean_explain = GiveFoodUtilities::CleanExplain
   u.done = GiveFoodUtilities::Done
   u.make_error = GiveFoodUtilities::MakeError
   u.feature_add = GiveFoodUtilities::FeatureAdd

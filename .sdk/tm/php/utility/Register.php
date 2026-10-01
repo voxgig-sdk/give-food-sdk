@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 GiveFoodUtility::setRegistrar(function (GiveFoodUtility $u): void {
     $u->clean = [GiveFoodClean::class, 'call'];
+    $u->clean_add = [GiveFoodClean::class, 'add'];
+    $u->clean_explain = [GiveFoodDone::class, 'clean_explain'];
     $u->done = [GiveFoodDone::class, 'call'];
     $u->make_error = [GiveFoodMakeError::class, 'call'];
     $u->feature_add = [GiveFoodFeatureAdd::class, 'call'];
