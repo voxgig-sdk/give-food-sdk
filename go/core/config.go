@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -169,10 +170,21 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"format",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"binary": true,
+											"kind": "raw",
+											"media": "application/x-yaml",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
 									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -269,10 +281,25 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"format",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"kind": "json",
+											"media": "application/geo+json",
+										},
+										map[string]any{
+											"binary": true,
+											"kind": "raw",
+											"media": "application/x-yaml",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
 									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -324,9 +351,23 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"format",
 										"slug",
 									},
+								},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"binary": true,
+											"kind": "raw",
+											"media": "application/x-yaml",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
+									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -457,10 +498,25 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"format",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"kind": "json",
+											"media": "application/geo+json",
+										},
+										map[string]any{
+											"binary": true,
+											"kind": "raw",
+											"media": "application/x-yaml",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
 									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -512,9 +568,23 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"format",
 										"slug",
 									},
+								},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"binary": true,
+											"kind": "raw",
+											"media": "application/x-yaml",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
+									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -597,10 +667,21 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"format",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"binary": true,
+											"kind": "raw",
+											"media": "application/x-yaml",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
 									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},

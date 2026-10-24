@@ -93,6 +93,7 @@ class GiveFoodConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -191,10 +192,21 @@ class GiveFoodConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'format',
+                  'select' => [],
+                  'response' => [
+                    'alternatives' => [
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'application/x-yaml',
+                      ],
+                      [
+                        'kind' => 'raw',
+                        'media' => 'application/xml',
+                      ],
                     ],
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -291,10 +303,25 @@ class GiveFoodConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'format',
+                  'select' => [],
+                  'response' => [
+                    'alternatives' => [
+                      [
+                        'kind' => 'json',
+                        'media' => 'application/geo+json',
+                      ],
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'application/x-yaml',
+                      ],
+                      [
+                        'kind' => 'raw',
+                        'media' => 'application/xml',
+                      ],
                     ],
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -346,9 +373,23 @@ class GiveFoodConfig
                   ],
                   'select' => [
                     'exist' => [
-                      'format',
                       'slug',
                     ],
+                  ],
+                  'response' => [
+                    'alternatives' => [
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'application/x-yaml',
+                      ],
+                      [
+                        'kind' => 'raw',
+                        'media' => 'application/xml',
+                      ],
+                    ],
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -479,10 +520,25 @@ class GiveFoodConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'format',
+                  'select' => [],
+                  'response' => [
+                    'alternatives' => [
+                      [
+                        'kind' => 'json',
+                        'media' => 'application/geo+json',
+                      ],
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'application/x-yaml',
+                      ],
+                      [
+                        'kind' => 'raw',
+                        'media' => 'application/xml',
+                      ],
                     ],
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -534,9 +590,23 @@ class GiveFoodConfig
                   ],
                   'select' => [
                     'exist' => [
-                      'format',
                       'slug',
                     ],
+                  ],
+                  'response' => [
+                    'alternatives' => [
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'application/x-yaml',
+                      ],
+                      [
+                        'kind' => 'raw',
+                        'media' => 'application/xml',
+                      ],
+                    ],
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -619,10 +689,21 @@ class GiveFoodConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'format',
+                  'select' => [],
+                  'response' => [
+                    'alternatives' => [
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'application/x-yaml',
+                      ],
+                      [
+                        'kind' => 'raw',
+                        'media' => 'application/xml',
+                      ],
                     ],
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

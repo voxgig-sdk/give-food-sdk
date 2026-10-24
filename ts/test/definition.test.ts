@@ -16,11 +16,23 @@ const PLAN: any[] = [
     "path": "/articles/",
     "args": [],
     "select": {
-      "format": "v1"
+      "format": "json"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json",
+      "application/xml",
+      "application/x-yaml"
+    ],
     "query": [
       "format"
+    ],
+    "queryArgs": [
+      {
+        "name": "format",
+        "wire": "format"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -44,11 +56,24 @@ const PLAN: any[] = [
     "path": "/donationpoints/",
     "args": [],
     "select": {
-      "format": "v1"
+      "format": "json"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json",
+      "application/geo+json",
+      "application/xml",
+      "application/x-yaml"
+    ],
     "query": [
       "format"
+    ],
+    "queryArgs": [
+      {
+        "name": "format",
+        "wire": "format"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -80,11 +105,23 @@ const PLAN: any[] = [
       }
     ],
     "select": {
-      "format": "v1"
+      "format": "json"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json",
+      "application/xml",
+      "application/x-yaml"
+    ],
     "query": [
       "format"
+    ],
+    "queryArgs": [
+      {
+        "name": "format",
+        "wire": "format"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -108,11 +145,24 @@ const PLAN: any[] = [
     "path": "/foodbanks/",
     "args": [],
     "select": {
-      "format": "v1"
+      "format": "json"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json",
+      "application/geo+json",
+      "application/xml",
+      "application/x-yaml"
+    ],
     "query": [
       "format"
+    ],
+    "queryArgs": [
+      {
+        "name": "format",
+        "wire": "format"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -145,11 +195,23 @@ const PLAN: any[] = [
       }
     ],
     "select": {
-      "format": "v1"
+      "format": "json"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json",
+      "application/xml",
+      "application/x-yaml"
+    ],
     "query": [
       "format"
+    ],
+    "queryArgs": [
+      {
+        "name": "format",
+        "wire": "format"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -180,11 +242,23 @@ const PLAN: any[] = [
     "path": "/items/",
     "args": [],
     "select": {
-      "format": "v1"
+      "format": "json"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json",
+      "application/xml",
+      "application/x-yaml"
+    ],
     "query": [
       "format"
+    ],
+    "queryArgs": [
+      {
+        "name": "format",
+        "wire": "format"
+      }
     ],
     "auth": null,
     "status": 200,

@@ -90,10 +90,24 @@ main: kit: entity: donation_point: {
           }
           m: "GET"
           o: "/donationpoints/"
-          q: {
-            exist: [
-              "format"
+          rs: {
+            alternatives: [
+              {
+                kind: "json"
+                media: "application/geo+json"
+              }
+              {
+                binary: true
+                kind: "raw"
+                media: "application/x-yaml"
+              }
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
             ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -141,9 +155,23 @@ main: kit: entity: donation_point: {
           o: "/donationpoints/{slug}/"
           q: {
             exist: [
-              "format"
               "slug"
             ]
+          }
+          rs: {
+            alternatives: [
+              {
+                binary: true
+                kind: "raw"
+                media: "application/x-yaml"
+              }
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
+            ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

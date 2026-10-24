@@ -10,6 +10,12 @@ import (
 	"github.com/voxgig-sdk/give-food-sdk/go/core"
 )
 
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const food_bankDirectLiveStrict = true
+
 func TestFoodBankDirect(t *testing.T) {
 	t.Run("direct-list-food_bank", func(t *testing.T) {
 		setup := food_bankDirectSetup([]any{
@@ -36,19 +42,14 @@ func TestFoodBankDirect(t *testing.T) {
 			"params": map[string]any{},
 		})
 		if setup.live {
-			// Live-mode leniency is a model decision
-			// (main.kit.test.live.strict): synthetic IDs 4xx constantly
-			// against an arbitrary public API, so the default SKIPS here.
-			// A project that owns its test server sets strict and FAILS.
 			if err != nil {
-				t.Fatalf("list call failed (likely synthetic IDs against live API): %v", err)
+				liveMiss(t, food_bankDirectLiveStrict, "Live list failed: %v", err)
 			}
-			if result["ok"] != true {
-				t.Fatalf("list call not ok (likely synthetic IDs against live API): %v", result)
+			if status := core.ToInt(result["status"]); result["ok"] != true || status < 200 || status >= 300 {
+				liveMiss(t, food_bankDirectLiveStrict, "Live list failed: %s", liveDescribe(result))
 			}
-			status := core.ToInt(result["status"])
-			if status < 200 || status >= 300 {
-				t.Fatalf("expected 2xx status, got %v", result["status"])
+			if _, ok := liveList(result["data"]); !ok {
+				liveMiss(t, food_bankDirectLiveStrict, "Live list returned no list: %s", liveDescribe(result))
 			}
 		} else {
 			if err != nil {
@@ -90,6 +91,14 @@ func TestFoodBankDirect(t *testing.T) {
 			t.Skip(_reason)
 			return
 		}
+		if setup.live {
+			for _, _liveKey := range []string{"slug01"} {
+				if v := setup.idmap[_liveKey]; v == nil {
+					liveMiss(t, food_bankDirectLiveStrict, "Live test blocked: needs %s via GIVE_FOOD_TEST_FOOD_BANK_ENTID", _liveKey)
+					return
+				}
+			}
+		}
 		client := setup.client
 
 		params := map[string]any{}
@@ -102,18 +111,22 @@ func TestFoodBankDirect(t *testing.T) {
 				"params": listParams,
 			})
 			if listErr != nil {
-				t.Fatalf("list call failed (likely synthetic IDs against live API): %v", listErr)
+				liveMiss(t, food_bankDirectLiveStrict, "Live list discovery failed: %v", listErr)
 			}
 			if listResult["ok"] != true {
-				t.Fatalf("list call not ok (likely synthetic IDs against live API): %v", listResult)
+				liveMiss(t, food_bankDirectLiveStrict, "Live list discovery failed: %s", liveDescribe(listResult))
 			}
-
-			// Get first entity ID from list
-			listData, _ := listResult["data"].([]any)
+			listData, listOk := liveList(listResult["data"])
+			if !listOk {
+				liveMiss(t, food_bankDirectLiveStrict, "Live list discovery returned no list: %s", liveDescribe(listResult))
+			}
 			if len(listData) == 0 {
-				t.Skip("no entities to load in live mode")
+				liveEmpty(t, "The account has no food_bank record to load")
 			}
 			firstEnt := core.ToMapAny(listData[0])
+			if firstEnt["id"] == nil {
+				liveMiss(t, food_bankDirectLiveStrict, "Live load blocked: discovery returned no usable identity")
+			}
 			params["id"] = firstEnt["id"]
 			params["slug"] = setup.idmap["slug01"]
 		} else {
@@ -127,19 +140,14 @@ func TestFoodBankDirect(t *testing.T) {
 			"query":  query,
 		})
 		if setup.live {
-			// Live mode is lenient: synthetic IDs frequently 4xx. Skip
-			// rather than fail when the load endpoint isn't reachable with
-			// the IDs we can construct from setup.idmap — unless the model
-			// sets main.kit.test.live.strict.
 			if err != nil {
-				t.Fatalf("load call failed (likely synthetic IDs against live API): %v", err)
+				liveMiss(t, food_bankDirectLiveStrict, "Live load failed: %v", err)
 			}
-			if result["ok"] != true {
-				t.Fatalf("load call not ok (likely synthetic IDs against live API): %v", result)
+			if status := core.ToInt(result["status"]); result["ok"] != true || status < 200 || status >= 300 {
+				liveMiss(t, food_bankDirectLiveStrict, "Live load failed: %s", liveDescribe(result))
 			}
-			status := core.ToInt(result["status"])
-			if status < 200 || status >= 300 {
-				t.Fatalf("expected 2xx status, got %v", result["status"])
+			if result["data"] == nil {
+				liveMiss(t, food_bankDirectLiveStrict, "Live load returned no data: %s", liveDescribe(result))
 			}
 		} else {
 			if err != nil {

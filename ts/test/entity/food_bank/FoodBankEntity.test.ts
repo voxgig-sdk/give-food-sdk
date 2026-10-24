@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { GiveFoodSDK, BaseFeature, stdutil } from '../../..'
+import { GiveFoodSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,17 +41,75 @@ describe('FoodBankEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('food_bank hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of GiveFoodSDK.test(offline).FoodBank().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of GiveFoodSDK.test(offline).FoodBank()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = GiveFoodSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.FoodBank().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of GiveFoodSDK.test().FoodBank().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new GiveFoodSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.FoodBank().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.FoodBank().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = GiveFoodSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.FoodBank().list({"format":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.GIVE_FOOD_TEST_LIVE
-    for (const op of ['list', 'load']) {
+    for (const op of ['list']) {
       if (!live && maybeSkipControl(t, 'entityOp', 'food_bank.' + op, live)) return
     }
 
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"address":{"a":true,"h":"Address","n":"address","r":false,"sh":"Physical address of the food bank","t":"`$STRING`","key$":"address","index$":0},"email":{"a":true,"fo":"email","h":"Email","n":"email","r":false,"sh":"Contact email address","t":"`$STRING`","key$":"email","index$":1},"items_needed":{"a":true,"h":"Items Needed","n":"items_needed","r":false,"sh":"List of items currently needed for donation","t":"`$ARRAY`","key$":"items_needed","index$":2},"latitude":{"a":true,"fo":"double","h":"Latitude","n":"latitude","r":false,"sh":"Latitude coordinate","t":"`$NUMBER`","key$":"latitude","index$":3},"longitude":{"a":true,"fo":"double","h":"Longitude","n":"longitude","r":false,"sh":"Longitude coordinate","t":"`$NUMBER`","key$":"longitude","index$":4},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Name of the food bank","t":"`$STRING`","key$":"name","index$":5},"needs":{"a":true,"h":"Needs","n":"needs","r":false,"sh":"Current needs status","t":"`$OBJECT`","key$":"needs","index$":6},"phone":{"a":true,"h":"Phone","n":"phone","r":false,"sh":"Contact phone number","t":"`$STRING`","key$":"phone","index$":7},"postcode":{"a":true,"h":"Postcode","n":"postcode","r":false,"sh":"Postal code","t":"`$STRING`","key$":"postcode","index$":8},"shopping_list_url":{"a":true,"fo":"uri","h":"Shopping List Url","n":"shopping_list_url","r":false,"sh":"URL to the food bank's detailed shopping list","t":"`$STRING`","key$":"shopping_list_url","index$":9},"slug":{"a":true,"h":"Slug","n":"slug","r":false,"sh":"Unique identifier for the food bank","t":"`$STRING`","key$":"slug","index$":10},"updated":{"a":true,"fo":"date-time","h":"Updated","n":"updated","r":false,"sh":"Last update timestamp","t":"`$STRING`","key$":"updated","index$":11},"url":{"a":true,"fo":"uri","h":"Url","n":"url","r":false,"sh":"Website URL","t":"`$STRING`","key$":"url","index$":12}},"name":"food_bank","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /foodbanks/","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"json","k":"query","n":"format","or":"format","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/foodbanks/","q":{"exist":["format"]},"r":{},"s":[{"lit":"foodbanks"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /foodbanks/{slug}/","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"slug","or":"slug","r":true,"t":"`$STRING`","index$":0}],"query":[{"a":true,"ex":"json","k":"query","n":"format","or":"format","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/foodbanks/{slug}/","q":{"exist":["format","slug"]},"r":{},"s":[{"lit":"foodbanks"},{"var":"slug"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"food_bank","name__orig":"food_bank","Name":"FoodBank","name_":"food_bank","name-":"food-bank","NAME":"FOOD_BANK","index$":2}, {"active":true,"entity":"food_bank","key$":"BasicFoodBankFlow","kind":"basic","name":"BasicFoodBankFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"food_bank_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"food_bank_ref01","srcdatavar":"food_bank_ref01_data","suffix":"_dt0"},"m":{"id":"food_bank01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-food_bank_ref01"}}],"index$":1}]}, 'FoodBank', {"GET /foodbanks/":{"protocol":"http","parameters":[{"name":"format","in":"query","description":"Response format","required":false,"schema":{"type":"string","enum":["json","geojson","xml","yaml"],"default":"json"},"index$":0}]},"GET /foodbanks/{slug}/":{"protocol":"http","parameters":[{"name":"slug","in":"path","description":"Unique identifier for the food bank","required":true,"schema":{"type":"string"},"index$":0},{"name":"format","in":"query","description":"Response format","required":false,"schema":{"type":"string","enum":["json","xml","yaml"],"default":"json"},"index$":1}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"address":{"a":true,"h":"Address","n":"address","r":false,"sh":"Physical address of the food bank","t":"`$STRING`","key$":"address","index$":0},"email":{"a":true,"fo":"email","h":"Email","n":"email","r":false,"sh":"Contact email address","t":"`$STRING`","key$":"email","index$":1},"items_needed":{"a":true,"h":"Items Needed","n":"items_needed","r":false,"sh":"List of items currently needed for donation","t":"`$ARRAY`","key$":"items_needed","index$":2},"latitude":{"a":true,"fo":"double","h":"Latitude","n":"latitude","r":false,"sh":"Latitude coordinate","t":"`$NUMBER`","key$":"latitude","index$":3},"longitude":{"a":true,"fo":"double","h":"Longitude","n":"longitude","r":false,"sh":"Longitude coordinate","t":"`$NUMBER`","key$":"longitude","index$":4},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Name of the food bank","t":"`$STRING`","key$":"name","index$":5},"needs":{"a":true,"h":"Needs","n":"needs","r":false,"sh":"Current needs status","t":"`$OBJECT`","key$":"needs","index$":6},"phone":{"a":true,"h":"Phone","n":"phone","r":false,"sh":"Contact phone number","t":"`$STRING`","key$":"phone","index$":7},"postcode":{"a":true,"h":"Postcode","n":"postcode","r":false,"sh":"Postal code","t":"`$STRING`","key$":"postcode","index$":8},"shopping_list_url":{"a":true,"fo":"uri","h":"Shopping List Url","n":"shopping_list_url","r":false,"sh":"URL to the food bank's detailed shopping list","t":"`$STRING`","key$":"shopping_list_url","index$":9},"slug":{"a":true,"h":"Slug","n":"slug","r":false,"sh":"Unique identifier for the food bank","t":"`$STRING`","key$":"slug","index$":10},"updated":{"a":true,"fo":"date-time","h":"Updated","n":"updated","r":false,"sh":"Last update timestamp","t":"`$STRING`","key$":"updated","index$":11},"url":{"a":true,"fo":"uri","h":"Url","n":"url","r":false,"sh":"Website URL","t":"`$STRING`","key$":"url","index$":12}},"name":"food_bank","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /foodbanks/","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"json","k":"query","n":"format","or":"format","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/foodbanks/","q":{},"r":{},"rs":{"alternatives":[{"kind":"json","media":"application/geo+json"},{"binary":true,"kind":"raw","media":"application/x-yaml"},{"kind":"raw","media":"application/xml"}],"kind":"json","media":"application/json"},"s":[{"lit":"foodbanks"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /foodbanks/{slug}/","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"slug","or":"slug","r":true,"t":"`$STRING`","index$":0}],"query":[{"a":true,"ex":"json","k":"query","n":"format","or":"format","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/foodbanks/{slug}/","q":{"exist":["slug"]},"r":{},"rs":{"alternatives":[{"binary":true,"kind":"raw","media":"application/x-yaml"},{"kind":"raw","media":"application/xml"}],"kind":"json","media":"application/json"},"s":[{"lit":"foodbanks"},{"var":"slug"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"food_bank","name__orig":"food_bank","Name":"FoodBank","name_":"food_bank","name-":"food-bank","NAME":"FOOD_BANK","index$":2}, {"active":true,"entity":"food_bank","key$":"BasicFoodBankFlow","kind":"basic","name":"BasicFoodBankFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"food_bank_ref01"}}],"index$":0},{"a":false,"d":{},"i":{"ref":"food_bank_ref01","srcdatavar":"food_bank_ref01_data","suffix":"_dt0"},"m":{"id":"food_bank01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-food_bank_ref01"}}],"unreachable":true}]}, 'FoodBank', {"GET /foodbanks/":{"protocol":"http","parameters":[{"name":"format","in":"query","description":"Response format","required":false,"schema":{"type":"string","enum":["json","geojson","xml","yaml"],"default":"json"},"index$":0}]},"GET /foodbanks/{slug}/":{"protocol":"http","parameters":[{"name":"slug","in":"path","description":"Unique identifier for the food bank","required":true,"schema":{"type":"string"},"index$":0},{"name":"format","in":"query","description":"Response format","required":false,"schema":{"type":"string","enum":["json","xml","yaml"],"default":"json"},"index$":1}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -68,11 +126,16 @@ describe('FoodBankEntity', async () => {
     const food_bank_ref01_list = (await food_bank_ref01_ent.list(food_bank_ref01_match)).map((e: any) => e.data())
 
 
-
   })
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

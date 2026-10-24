@@ -16,7 +16,7 @@ go get github.com/voxgig-sdk/give-food-sdk/go@latest
 ```
 
 The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
-release tag — see [Releases](https://github.com/voxgig-sdk/give-food-sdk/releases) for the available versions.
+release tag — see [Tags](https://github.com/voxgig-sdk/give-food-sdk/tags) for the available versions.
 
 To vendor from a local checkout instead, clone this repo alongside your
 project and add a `replace` directive pointing at the checked-out
@@ -35,9 +35,10 @@ loading a specific record.
 ### Quickstart
 
 A complete program: create a client, then call the entity operations.
-Each operation returns `(value, error)` — the value is the data itself
-(there is no `{ok, data}` wrapper), so check `err` and use the value
-directly.
+Each operation returns `(value, error)` — the value is the entity, and for
+`List` a `[]any` of entities, one per record (there is no `{ok, data}`
+wrapper), so check `err` and read a record through the entity's
+`Data()`.
 
 ```go
 package main
@@ -50,13 +51,13 @@ import (
 func main() {
     client := sdk.New()
 
-    // List article records — the value is the array of records itself.
+    // List article records — the value is a []any of entities, one per record.
     articles, err := client.Article(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
     for _, item := range articles.([]any) {
-        fmt.Println(item)
+        fmt.Println(item.(sdk.Entity).Data())
     }
 }
 ```
@@ -137,13 +138,16 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-article, err := client.Article(nil).List(
+articles, err := client.Article(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(article) // the returned mock data
+// A []any of entities, one per mock record.
+for _, item := range articles.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ### Use a custom fetch function
@@ -231,8 +235,8 @@ All entities implement the `GiveFoodEntity` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
-| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
+| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria, and return it. |
+| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria, one per record. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -240,21 +244,21 @@ All entities implement the `GiveFoodEntity` interface.
 
 ### Result shape
 
-Entity operations return `(value, error)`. The `value` is the
-operation's data **directly** — there is no wrapper:
+Entity operations return `(value, error)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` | the entity record (`map[string]any`) |
-| `List` | a `[]any` of entity records |
+| `Load` | the entity, whose `Data()` reads its record (`map[string]any`) |
+| `List` | a `[]any` of entities, one per record |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    article, err := client.Article(nil).List(map[string]any{/* fields */}, nil)
+    article, err := client.Article(nil).List(nil, nil)
     if err != nil { /* handle */ }
-    // article is the returned record
+    // article is a []any of entities, one per record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -362,7 +366,10 @@ articles, err := client.Article(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(articles) // the array of records
+// A []any of entities, one per record.
+for _, item := range articles.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -397,7 +404,7 @@ donationPoint, err := client.DonationPoint(nil).Load(map[string]any{"slug": "slu
 if err != nil {
     panic(err)
 }
-fmt.Println(donationPoint) // the loaded record
+fmt.Println(donationPoint.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -407,7 +414,10 @@ donationPoints, err := client.DonationPoint(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(donationPoints) // the array of records
+// A []any of entities, one per record.
+for _, item := range donationPoints.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -447,7 +457,7 @@ foodBank, err := client.FoodBank(nil).Load(map[string]any{"slug": "slug"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(foodBank) // the loaded record
+fmt.Println(foodBank.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -457,7 +467,10 @@ foodBanks, err := client.FoodBank(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(foodBanks) // the array of records
+// A []any of entities, one per record.
+for _, item := range foodBanks.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -488,7 +501,10 @@ items, err := client.Item(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(items) // the array of records
+// A []any of entities, one per record.
+for _, item := range items.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ## Features
@@ -625,7 +641,9 @@ The Go SDK uses `map[string]any` throughout rather than typed structs.
 This mirrors the dynamic nature of the API and keeps the SDK
 flexible — no code generation is needed when the API schema changes.
 
-Use `core.ToMapAny()` to safely cast results and nested data.
+An operation returns the entity, and its `Data()` returns the record. Use
+`core.ToMapAny()` to safely cast that record, or data nested in it, to
+`map[string]any`: it returns `nil` for anything else, an entity included.
 
 ### Package structure
 

@@ -67,6 +67,7 @@ local function make_config()
         },
         ["optspec"] = {
           ["clearTimer"] = "`$FUNCTION`",
+          ["now"] = "`$FUNCTION`",
           ["setTimer"] = "`$FUNCTION`",
         },
         ["strict"] = false,
@@ -165,10 +166,21 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "format",
+                ["select"] = {},
+                ["response"] = {
+                  ["alternatives"] = {
+                    {
+                      ["binary"] = true,
+                      ["kind"] = "raw",
+                      ["media"] = "application/x-yaml",
+                    },
+                    {
+                      ["kind"] = "raw",
+                      ["media"] = "application/xml",
+                    },
                   },
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -265,10 +277,25 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "format",
+                ["select"] = {},
+                ["response"] = {
+                  ["alternatives"] = {
+                    {
+                      ["kind"] = "json",
+                      ["media"] = "application/geo+json",
+                    },
+                    {
+                      ["binary"] = true,
+                      ["kind"] = "raw",
+                      ["media"] = "application/x-yaml",
+                    },
+                    {
+                      ["kind"] = "raw",
+                      ["media"] = "application/xml",
+                    },
                   },
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -320,9 +347,23 @@ local function make_config()
                 },
                 ["select"] = {
                   ["exist"] = {
-                    "format",
                     "slug",
                   },
+                },
+                ["response"] = {
+                  ["alternatives"] = {
+                    {
+                      ["binary"] = true,
+                      ["kind"] = "raw",
+                      ["media"] = "application/x-yaml",
+                    },
+                    {
+                      ["kind"] = "raw",
+                      ["media"] = "application/xml",
+                    },
+                  },
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -453,10 +494,25 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "format",
+                ["select"] = {},
+                ["response"] = {
+                  ["alternatives"] = {
+                    {
+                      ["kind"] = "json",
+                      ["media"] = "application/geo+json",
+                    },
+                    {
+                      ["binary"] = true,
+                      ["kind"] = "raw",
+                      ["media"] = "application/x-yaml",
+                    },
+                    {
+                      ["kind"] = "raw",
+                      ["media"] = "application/xml",
+                    },
                   },
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -508,9 +564,23 @@ local function make_config()
                 },
                 ["select"] = {
                   ["exist"] = {
-                    "format",
                     "slug",
                   },
+                },
+                ["response"] = {
+                  ["alternatives"] = {
+                    {
+                      ["binary"] = true,
+                      ["kind"] = "raw",
+                      ["media"] = "application/x-yaml",
+                    },
+                    {
+                      ["kind"] = "raw",
+                      ["media"] = "application/xml",
+                    },
+                  },
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -593,10 +663,21 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "format",
+                ["select"] = {},
+                ["response"] = {
+                  ["alternatives"] = {
+                    {
+                      ["binary"] = true,
+                      ["kind"] = "raw",
+                      ["media"] = "application/x-yaml",
+                    },
+                    {
+                      ["kind"] = "raw",
+                      ["media"] = "application/xml",
+                    },
                   },
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },

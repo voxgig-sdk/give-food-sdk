@@ -129,10 +129,24 @@ main: kit: entity: food_bank: {
           }
           m: "GET"
           o: "/foodbanks/"
-          q: {
-            exist: [
-              "format"
+          rs: {
+            alternatives: [
+              {
+                kind: "json"
+                media: "application/geo+json"
+              }
+              {
+                binary: true
+                kind: "raw"
+                media: "application/x-yaml"
+              }
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
             ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -180,9 +194,23 @@ main: kit: entity: food_bank: {
           o: "/foodbanks/{slug}/"
           q: {
             exist: [
-              "format"
               "slug"
             ]
+          }
+          rs: {
+            alternatives: [
+              {
+                binary: true
+                kind: "raw"
+                media: "application/x-yaml"
+              }
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
+            ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

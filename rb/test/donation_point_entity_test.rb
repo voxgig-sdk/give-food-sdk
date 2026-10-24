@@ -6,10 +6,34 @@ require_relative "../GiveFood_sdk"
 require_relative "runner"
 
 class DonationPointEntityTest < Minitest::Test
+  # main.kit.test.live.strict is true (the default is true): a live
+  # request that fails, or a live test missing an input it needs,
+  # fails the test.
+  # An account with no record for a test to read skips it either way.
+  LIVE_STRICT = true
+
   def test_create_instance
     testsdk = GiveFoodSDK.test(nil, nil)
     ent = testsdk.DonationPoint(nil)
     assert !ent.nil?
+  end
+
+  def test_list_entities
+    seed = {
+      "entity" => {
+        "donation_point" => {
+          "l1" => { "id" => "l1" },
+          "l2" => { "id" => "l2" },
+        },
+      },
+    }
+    items = GiveFoodSDK.test(seed, nil).DonationPoint(nil).list(nil, nil)
+    # list resolves to one entity per record; data_get reads the record.
+    assert_equal 2, items.length
+    items.each do |item|
+      assert item.respond_to?(:data_get)
+      assert item.data_get.is_a?(Hash)
+    end
   end
 
   # Feature #4: the entity stream(action, ...) method runs the op pipeline and
@@ -48,22 +72,104 @@ class DonationPointEntityTest < Minitest::Test
     end
   end
 
+  class FailHook < GiveFoodBaseFeature
+    attr_reader :unexpected
+
+    def initialize
+      super()
+      @name = "failhook"
+      @unexpected = 0
+    end
+
+    def PreSpec(ctx)
+      raise "donation_point hook failed"
+    end
+
+    def PreUnexpected(ctx)
+      @unexpected += 1
+    end
+  end
+
+  def test_stream_error
+    offline = { "net" => { "offline" => true } }
+    err = assert_raises(StandardError) do
+      GiveFoodSDK.test(offline, nil).DonationPoint(nil).stream("list", nil, nil).to_a
+    end
+    assert_match(/offline/, err.message)
+
+    GiveFoodSDK.test(offline, nil).DonationPoint(nil)
+      .stream("list", nil, { "ctrl" => { "throw" => false } }).to_a
+
+    cfg = GiveFoodConfig.shared_config
+    if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("rbac")
+      denied = GiveFoodSDK.test(nil, { "feature" => { "rbac" => { "active" => true, "deny" => true } } })
+      err = assert_raises(StandardError) do
+        denied.DonationPoint(nil).stream("list", nil, nil).to_a
+      end
+      assert_equal "rbac_denied", err.code
+    end
+  end
+
+  def test_stream_ctrl
+    explain = {}
+    ctrl = { "explain" => explain }
+    GiveFoodSDK.test(nil, nil).DonationPoint(nil).stream("list", nil, { "ctrl" => ctrl }).to_a
+    assert_equal ["explain"], ctrl.keys
+    assert_same explain, ctrl["explain"]
+    refute_empty explain
+  end
+
+  def test_unexpected
+    hook = FailHook.new
+    client = GiveFoodSDK.new({ "feature" => { "test" => { "active" => true } }, "extend" => [hook] })
+
+    err = assert_raises(StandardError) do
+      client.DonationPoint(nil).list(nil, nil)
+    end
+    assert_match(/hook failed/, err.message)
+    assert_operator hook.unexpected, :>, 0
+
+    fired = hook.unexpected
+    assert_nil client.DonationPoint(nil).list(nil, { "throw" => false })
+    assert_operator hook.unexpected, :>, fired
+  end
+
+  def test_validate_list_response
+    cfg = GiveFoodConfig.shared_config
+    unless cfg["feature"].is_a?(Hash) && cfg["feature"].key?("validate")
+      skip("feature not present in this SDK: validate")
+    end
+    opts = { "feature" => { "validate" => { "active" => true, "request" => false, "response" => true } } }
+    listed = GiveFoodSDK.test({ "entity" => { "donation_point" => { "v1" => {  } } } }, opts).DonationPoint(nil).list(nil, nil)
+    assert_equal ["v1"], listed.map { |ent| ent.data_get["id"] }
+    err = assert_raises(StandardError) do
+      GiveFoodSDK.test({ "entity" => { "donation_point" => { "v1" => { "address" => 1 } } } }, opts).DonationPoint(nil).list(nil, nil)
+    end
+    assert_equal "validate_failed", err.code
+  end
+
+  def test_validate
+    cfg = GiveFoodConfig.shared_config
+    unless cfg["feature"].is_a?(Hash) && cfg["feature"].key?("validate")
+      skip("feature not present in this SDK: validate")
+    end
+    client = GiveFoodSDK.test(nil, { "feature" => { "validate" => { "active" => true } } })
+    err = assert_raises(StandardError) do
+      client.DonationPoint(nil).list({ "format" => 1 }, nil)
+    end
+    assert_equal "validate_failed", err.code
+  end
+
   def test_basic_flow
     setup = donation_point_basic_setup(nil)
     # Per-op sdk-test-control.json skip.
     _live = setup[:live] || false
-    ["list", "load"].each do |_op|
+    ["list"].each do |_op|
       _should_skip, _reason = Runner.is_control_skipped("entityOp", "donation_point." + _op, _live ? "live" : "unit")
       if _should_skip
         skip(_reason || "skipped via sdk-test-control.json")
         return
       end
-    end
-    # The basic flow consumes synthetic IDs from the fixture. In live mode
-    # without an *_ENTID env override, those IDs hit the live API and 4xx.
-    if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set GIVE_FOOD_TEST_DONATION_POINT_ENTID JSON to run live"
-      return
     end
     client = setup[:client]
 
@@ -82,11 +188,6 @@ class DonationPointEntityTest < Minitest::Test
     donation_point_ref01_list_result = donation_point_ref01_ent.list(donation_point_ref01_match, nil)
     assert donation_point_ref01_list_result.is_a?(Array)
 
-    # LOAD
-    donation_point_ref01_match_dt0 = {}
-    donation_point_ref01_data_dt0_loaded = donation_point_ref01_ent.load(donation_point_ref01_match_dt0, nil)
-    assert !donation_point_ref01_data_dt0_loaded.nil?
-
   end
 end
 
@@ -94,7 +195,7 @@ def donation_point_basic_setup(extra)
   Runner.load_env_local
 
   entity_data_file = File.join(__dir__, "..", "..", ".sdk", "test", "entity", "donation_point", "DonationPointTestData.json")
-  entity_data_source = File.read(entity_data_file)
+  entity_data_source = File.read(entity_data_file, encoding: "UTF-8")
   entity_data = JSON.parse(entity_data_source)
 
   options = {}
@@ -113,9 +214,8 @@ def donation_point_basic_setup(extra)
     }
   )
 
-  # Detect ENTID env override before envOverride consumes it. When live
-  # mode is on without a real override, the basic test runs against synthetic
-  # IDs from the fixture and 4xx's. Surface this so the test can skip.
+  # Whether *_ENTID supplied the idmap, read before env_override consumes
+  # it: without it, the ids a live flow binds are the fixture's synthetic ones.
   entid_env_raw = ENV["GIVE_FOOD_TEST_DONATION_POINT_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 

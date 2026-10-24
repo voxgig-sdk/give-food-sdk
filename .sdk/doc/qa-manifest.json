@@ -3,5 +3,30 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Article title",
+      "Associated food bank identifier",
+      "Contact email address",
+      "Food bank identifier",
+      "Last update timestamp",
+      "Latitude coordinate",
+      "List of items currently needed for donation",
+      "Longitude coordinate",
+      "Name of the donation point",
+      "Name of the item needed",
+      "Physical address",
+      "Physical address of the food bank",
+      "Production server",
+      "Publication date",
+      "Publication source",
+      "Related food bank identifier",
+      "Successful response",
+      "This API provides access to the largest public database of food banks in the UK, including details about their locations and the items they need donated. Users can retrieve this data in various formats such as JSON, GeoJSON, XML, or YAML, facilitating numerous applications in addressing food insecurity.",
+      "Unique identifier for the article",
+      "Unique identifier for the item need record",
+      "When this need was recorded"
+    ]
+  }
 }

@@ -81,10 +81,20 @@ main: kit: entity: article: {
           }
           m: "GET"
           o: "/articles/"
-          q: {
-            exist: [
-              "format"
+          rs: {
+            alternatives: [
+              {
+                binary: true
+                kind: "raw"
+                media: "application/x-yaml"
+              }
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
             ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
